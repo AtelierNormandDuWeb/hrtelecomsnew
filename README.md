@@ -1,14 +1,13 @@
-# ZÉlect & Rénovation - Site Web Artisan Électricien
+# HrTélécoms – Site Web VoIP pour Entreprise de Téléphonie IP
 
-Bienvenue dans le dépôt du site web ZÉlect & Rénovation, un projet Laravel 10 + Vite + Breeze destiné à
-promouvoir les services d'un artisan électricien en Normandie.
-Ce projet inclut un back-office sécurisé, un système de contact avec reCAPTCHA, la gestion de réalisations,
-et une interface moderne entièrement personnalisée (sans Tailwind ni Bootstrap par défaut).
+Bienvenue dans le dépôt du site web **HrTélécoms**, un projet Laravel 10 + Vite + Breeze développé pour promouvoir les **solutions de téléphonie IP (VoIP)** destinées aux entreprises.
+
+Ce site vitrine propose une interface moderne et personnalisée (sans Tailwind ni Bootstrap par défaut), un back-office sécurisé, un système de contact avec reCAPTCHA, et une gestion de contenus adaptée aux besoins de communication d’un fournisseur de services VoIP.
 
 ## Installation locale
 ### 1. Cloner le projet
 ```
-git clone https://github.com/votre-utilisateur/zrenov14.git
+git clone https://github.com/votre-utilisateur/HrTelecoms.git
 cd zrenov14
 ```
 ### 2. Installer les dépendances backend (PHP / Laravel)
@@ -138,6 +137,6 @@ Gestion des utilisateurs: /admin/users
 
 
 # Contact
-Développé avec Laravel et Breeze par l'Atelier Normand du Web (doko972)
+Développé par l'Atelier Normand du Web
 ? doko972@gmail.com
 ? [Atelier Normand du Web](https://ateliernormandduweb.fr/)
