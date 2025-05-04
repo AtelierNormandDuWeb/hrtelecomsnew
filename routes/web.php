@@ -119,3 +119,111 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/users/delete/{user}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
 
 });
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Abouts datas
+    Route::get('/abouts', 'App\Http\Controllers\AboutController@index')->name('about.index');
+
+    //Show About by Id
+    Route::get('/abouts/show/{id}', 'App\Http\Controllers\AboutController@show')->name('about.show');
+
+    //Get Abouts by Id
+    Route::get('/abouts/create', 'App\Http\Controllers\AboutController@create')->name('about.create');
+
+    //Edit About by Id
+    Route::get('/abouts/edit/{id}', 'App\Http\Controllers\AboutController@edit')->name('about.edit');
+
+    //Save new About
+    Route::post('/abouts/store', 'App\Http\Controllers\AboutController@store')->name('about.store');
+
+    //Update One About
+    Route::put('/abouts/update/{about}', 'App\Http\Controllers\AboutController@update')->name('about.update');
+
+    //Update One About Speedly
+    Route::put('/abouts/speed/{about}', 'App\Http\Controllers\AboutController@updateSpeed')->name('about.update.speed');
+
+    //Delete About
+    Route::delete('/abouts/delete/{about}', 'App\Http\Controllers\AboutController@delete')->name('about.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Titles datas
+    Route::get('/titles', 'App\Http\Controllers\TitleController@index')->name('title.index');
+
+    //Show Title by Id
+    Route::get('/titles/show/{id}', 'App\Http\Controllers\TitleController@show')->name('title.show');
+
+    //Get Titles by Id
+    Route::get('/titles/create', 'App\Http\Controllers\TitleController@create')->name('title.create');
+
+    //Edit Title by Id
+    Route::get('/titles/edit/{id}', 'App\Http\Controllers\TitleController@edit')->name('title.edit');
+
+    //Save new Title
+    Route::post('/titles/store', 'App\Http\Controllers\TitleController@store')->name('title.store');
+
+    //Update One Title
+    Route::put('/titles/update/{title}', 'App\Http\Controllers\TitleController@update')->name('title.update');
+
+    //Update One Title Speedly
+    Route::put('/titles/speed/{title}', 'App\Http\Controllers\TitleController@updateSpeed')->name('title.update.speed');
+
+    //Delete Title
+    Route::delete('/titles/delete/{title}', 'App\Http\Controllers\TitleController@delete')->name('title.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Services datas
+    Route::get('/service', 'App\Http\Controllers\ServicesController@index')->name('service.index');
+
+    //Show Service by Id
+    Route::get('/service/show/{id}', 'App\Http\Controllers\ServicesController@show')->name('service.show');
+
+    //Get Services by Id
+    Route::get('/service/create', 'App\Http\Controllers\ServicesController@create')->name('service.create');
+
+    //Edit Service by Id
+    Route::get('/service/edit/{id}', 'App\Http\Controllers\ServicesController@edit')->name('service.edit');
+
+    //Save new Service
+    Route::post('/service/store', 'App\Http\Controllers\ServicesController@store')->name('service.store');
+
+    //Update One Service
+    Route::put('/service/update/{service}', 'App\Http\Controllers\ServicesController@update')->name('service.update');
+
+    //Update One Service Speedly
+    Route::put('/service/speed/{service}', 'App\Http\Controllers\ServicesController@updateSpeed')->name('service.update.speed');
+
+    //Delete Service
+    Route::delete('/service/delete/{service}', 'App\Http\Controllers\ServicesController@delete')->name('service.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Services datas
+    Route::get('/services', 'App\Http\Controllers\ServiceController@index')->name('service.index');
+
+    //Show Service by Id
+    Route::get('/services/show/{id}', 'App\Http\Controllers\ServiceController@show')->name('service.show');
+
+    //Get Services by Id
+    Route::get('/services/create', 'App\Http\Controllers\ServiceController@create')->name('service.create');
+
+    //Edit Service by Id
+    Route::get('/services/edit/{id}', 'App\Http\Controllers\ServiceController@edit')->name('service.edit');
+
+    //Save new Service
+    Route::post('/services/store', 'App\Http\Controllers\ServiceController@store')->name('service.store');
+
+    //Update One Service
+    Route::put('/services/update/{service}', 'App\Http\Controllers\ServiceController@update')->name('service.update');
+
+    //Update One Service Speedly
+    Route::put('/services/speed/{service}', 'App\Http\Controllers\ServiceController@updateSpeed')->name('service.update.speed');
+
+    //Delete Service
+    Route::delete('/services/delete/{service}', 'App\Http\Controllers\ServiceController@delete')->name('service.delete');
+
+});

@@ -1,6 +1,10 @@
 <section class="contact" id="contact">
     <div class="container">
-        <h2 class="section-title">Contactez-nous</h2>
+        <h2 class="section-title">
+            @foreach ($titles as $title)
+                {{ $title->title6 }}
+            @endforeach
+        </h2>
 
         <div class="contact-container">
             <div class="contact-info">
