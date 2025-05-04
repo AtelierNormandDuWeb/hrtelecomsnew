@@ -176,33 +176,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('admin')->name('admin.')->group(function(){
 
     //Get Services datas
-    Route::get('/service', 'App\Http\Controllers\ServicesController@index')->name('service.index');
-
-    //Show Service by Id
-    Route::get('/service/show/{id}', 'App\Http\Controllers\ServicesController@show')->name('service.show');
-
-    //Get Services by Id
-    Route::get('/service/create', 'App\Http\Controllers\ServicesController@create')->name('service.create');
-
-    //Edit Service by Id
-    Route::get('/service/edit/{id}', 'App\Http\Controllers\ServicesController@edit')->name('service.edit');
-
-    //Save new Service
-    Route::post('/service/store', 'App\Http\Controllers\ServicesController@store')->name('service.store');
-
-    //Update One Service
-    Route::put('/service/update/{service}', 'App\Http\Controllers\ServicesController@update')->name('service.update');
-
-    //Update One Service Speedly
-    Route::put('/service/speed/{service}', 'App\Http\Controllers\ServicesController@updateSpeed')->name('service.update.speed');
-
-    //Delete Service
-    Route::delete('/service/delete/{service}', 'App\Http\Controllers\ServicesController@delete')->name('service.delete');
-
-});
-Route::prefix('admin')->name('admin.')->group(function(){
-
-    //Get Services datas
     Route::get('/services', 'App\Http\Controllers\ServiceController@index')->name('service.index');
 
     //Show Service by Id
