@@ -1,0 +1,134 @@
+.user-form-section {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
+
+    .form-align{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .form-title {
+        font-size: 1.8rem;
+        color: var(--bck-2);
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .user-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+
+            label {
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                color: #333;
+            }
+
+            input {
+                padding: 0.8rem;
+                border: 1px solid var(--bck-1);
+                border-radius: 0.5rem;
+                font-size: 1rem;
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--golden-1);
+                    box-shadow: 0 0 5px rgba(255, 191, 0, 0.5);
+                }
+            }
+
+            .error-msg {
+                color: #cc0000;
+                font-size: 0.9rem;
+                margin-top: 0.3rem;
+            }
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-weight: bold;
+                border-radius: 0.5rem;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: none;
+
+                &.btn-cancel {
+                    background-color: #bbb;
+                    color: white;
+
+                    &:hover {
+                        background-color: #999;
+                    }
+                }
+
+                &.btn-submit {
+                    background-color: var(--golden-1);
+                    color: #fff;
+
+                    &:hover {
+                        background-color: #f0b800;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.admin-flex {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+
+    #sidebar {
+        width: 250px;
+    }
+
+    #main-content {
+        flex: 1;
+    }
+}
+
+/* Responsive : mobile */
+@media (max-width: 768px) {
+    .admin-flex {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+    }
+
+    #main-content {
+        width: 100%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .user-form-section {
+        padding: 1rem;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

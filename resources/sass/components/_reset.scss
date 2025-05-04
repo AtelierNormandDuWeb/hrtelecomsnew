@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: var(--line-height);
+    transition: all var(--transition-speed) ease;
+    zoom: var(--zoom-level);
+}
+/* Police pour dyslexie */
+.dyslexic-font {
+    font-family: 'OpenDyslexic', var(--font-family);
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+}

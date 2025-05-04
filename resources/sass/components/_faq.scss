@@ -1,0 +1,60 @@
+.faq {
+    background-color: var(--background-color);
+}
+
+.accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.accordion-header {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    padding: var(--spacing-md);
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition-speed) ease;
+}
+
+.accordion-header:hover {
+    background-color: var(--accent-color);
+}
+
+.accordion-icon {
+    transition: transform var(--transition-speed) ease;
+}
+
+.accordion-content {
+    background-color: white;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--transition-speed) ease;
+}
+
+.accordion-content-inner {
+    padding: var(--spacing-md);
+}
+
+.accordion-item.active .accordion-header {
+    background-color: var(--accent-color);
+}
+
+.accordion-item.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 300px;
+    padding: var(--spacing-md);
+}

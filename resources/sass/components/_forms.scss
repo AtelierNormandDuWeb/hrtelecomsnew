@@ -1,0 +1,237 @@
+.auth-form {
+    max-width: 500px;
+    margin: 5rem auto;
+    padding: 2rem;
+    background: var(--primary-color);
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px var(--shadowBox-4);
+
+    h2,
+    label,
+    a,
+    p{
+        color: var(--text-color-w);
+    }
+
+}
+
+.alert-danger{
+    color: var(--error-color);
+}
+
+.auth-form input,
+.auth-form button {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.5rem;
+}
+
+.auth-form button {
+    background-color: var(--accent-color);
+    color: var(--text-color-w);
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.auth-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+.auth-link a {
+    color: var(--text-color-w);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+.dashboard-section {
+    background-color: var(--bck-1);
+    padding: 5rem 1rem;
+    min-height: 80vh;
+    text-align: center;
+}
+
+.dashboard-section .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--background-color);
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--golden-1);
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-content {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.logged-status {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--green-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .dashboard-section .container {
+        padding: 2rem 1rem;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+    }
+
+    .dashboard-content {
+        font-size: 1rem;
+    }
+}
+
+
+.nav-dashboard {
+    background-color: var(--bck-2);
+    color: var(--font-color-1);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #333;
+    font-family: Arial, sans-serif;
+}
+
+.container-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo .nav-brand {
+    font-size: 1.8rem;
+    color: var(--golden-1);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--font-color-1);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--golden-1);
+}
+
+.nav-link-c {
+    color: var(--font-color-2);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link-c:hover,
+.nav-link-c.active {
+    color: var(--golden-1);
+}
+
+.user-dropdown {
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.user-trigger {
+    color: var(--font-color-1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: var(--bck-2);
+    border-radius: 0.4rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    z-index: 10;
+    box-shadow: 0 4px 8px var(--shadowBox-3);
+}
+
+.dropdown-menu a {
+    display: block;
+    color: var(--font-color-1);
+    padding: 0.5rem 0;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    color: var(--golden-1);
+}
+
+/* Responsive */
+.nav-mobile {
+    display: none;
+    background-color: var(--bck-2);
+    padding: 1rem;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bck-2);
+    padding: 1rem;
+    border-top: 1px solid #333;
+}
+
+.mobile-menu a {
+    color: var(--font-color-1);
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+
+.mobile-menu a:hover {
+    color: var(--golden-1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive breakpoint */
+@media (max-width: 768px) {
+    .container-dashboard {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: block;
+    }
+}
+
+.form-group{
+    color: #ffff;
+}

@@ -1,0 +1,52 @@
+<nav class="nav-dashboard">
+    <div class="container-dashboard">
+        <!-- Logo -->
+        <div class="nav-logo">
+            <a href="{{ route('dashboard') }}" class="nav-brand">ZÉlect & Rénovation</a>
+        </div>
+
+        <!-- Liens principaux -->
+        <ul class="nav-links">
+            {{-- <li><a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">Tableau de bord</a></li> --}}
+        </ul>
+
+        <!-- Dropdown utilisateur -->
+        <div class="user-dropdown">
+            <div class="user-trigger" onclick="toggleDropdown()">
+                {{ Auth::user()->name }} ▼
+            </div>
+            <div id="dropdown-menu" class="dropdown-menu">
+                <a href="{{ route('profile.edit') }}">Profil</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Déconnecter</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Menu responsive mobile -->
+<div class="nav-mobile">
+    <button onclick="toggleMobileMenu()">☰</button>
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <a href="{{ route('dashboard') }}">Tableau de bord</a>
+        <a href="{{ route('profile.edit') }}">Profil</a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Se déconnecter</a>
+        </form>
+    </div>
+</div>
+<script>
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdown-menu');
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+    
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+    </script>
+    

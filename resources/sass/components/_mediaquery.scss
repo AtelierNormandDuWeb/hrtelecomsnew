@@ -1,0 +1,136 @@
+@media (max-width: 992px) {
+    .header-content {
+        padding: var(--spacing-sm) var(--spacing-md);
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        justify-content: flex-start;
+        gap: 2rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+    
+    .nav-toggle {
+        display: block;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .logo {
+        max-width: 60%;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .nav-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: auto;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        gap: 0;
+        transition: left var(--transition-speed) ease;
+        z-index: 1000;
+        padding: var(--spacing-md) 0;
+        box-shadow: var(--box-shadow);
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav a {
+        display: block;
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+    
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .dropdown-content.active {
+        display: block;
+    }
+    
+    .dropdown-content a {
+        padding-left: var(--spacing-lg);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    section {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .accessibility-tools {
+        width: 250px;
+    }
+    
+    .contact-container,
+    .about-content,
+    .solution-content {
+        flex-direction: column;
+    }
+    
+    .about-image,
+    .solution-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding-left: 1rem;
+    }
+    
+    .nav-toggle {
+        right: 1rem;
+    }
+}
