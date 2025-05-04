@@ -7,8 +7,9 @@ Ce site vitrine propose une interface moderne et personnalisée (sans Tailwind n
 ## Installation locale
 ### 1. Cloner le projet
 ```
-git clone https://github.com/votre-utilisateur/HrTelecoms.git
-cd zrenov14
+git clone https://github.com/votre-utilisateur/hrtelecomsnew.git
+cd hrtelecomsnew
+
 ```
 ### 2. Installer les dépendances backend (PHP / Laravel)
 ### 2.1 Si vous avez une erreur c'est que php n'est pas déclaré dans les variables d'environnements (voir 2.2)
