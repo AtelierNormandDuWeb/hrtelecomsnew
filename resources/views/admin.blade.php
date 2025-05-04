@@ -95,6 +95,18 @@
     <a class="nav-link" href="{{route('admin.service.index')}}">
         Services
     </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.testimonial.index')}}">
+        Testimonials
+    </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.faq.index')}}">
+        Faqs
+    </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.solution.index')}}">
+        Solutions
+    </a>
 </li></ul>
                     </div>
                 </nav>

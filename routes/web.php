@@ -176,33 +176,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('admin')->name('admin.')->group(function(){
 
     //Get Services datas
-    Route::get('/service', 'App\Http\Controllers\ServicesController@index')->name('service.index');
-
-    //Show Service by Id
-    Route::get('/service/show/{id}', 'App\Http\Controllers\ServicesController@show')->name('service.show');
-
-    //Get Services by Id
-    Route::get('/service/create', 'App\Http\Controllers\ServicesController@create')->name('service.create');
-
-    //Edit Service by Id
-    Route::get('/service/edit/{id}', 'App\Http\Controllers\ServicesController@edit')->name('service.edit');
-
-    //Save new Service
-    Route::post('/service/store', 'App\Http\Controllers\ServicesController@store')->name('service.store');
-
-    //Update One Service
-    Route::put('/service/update/{service}', 'App\Http\Controllers\ServicesController@update')->name('service.update');
-
-    //Update One Service Speedly
-    Route::put('/service/speed/{service}', 'App\Http\Controllers\ServicesController@updateSpeed')->name('service.update.speed');
-
-    //Delete Service
-    Route::delete('/service/delete/{service}', 'App\Http\Controllers\ServicesController@delete')->name('service.delete');
-
-});
-Route::prefix('admin')->name('admin.')->group(function(){
-
-    //Get Services datas
     Route::get('/services', 'App\Http\Controllers\ServiceController@index')->name('service.index');
 
     //Show Service by Id
@@ -225,5 +198,87 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //Delete Service
     Route::delete('/services/delete/{service}', 'App\Http\Controllers\ServiceController@delete')->name('service.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Testimonials datas
+    Route::get('/testimonials', 'App\Http\Controllers\TestimonialController@index')->name('testimonial.index');
+
+    //Show Testimonial by Id
+    Route::get('/testimonials/show/{id}', 'App\Http\Controllers\TestimonialController@show')->name('testimonial.show');
+
+    //Get Testimonials by Id
+    Route::get('/testimonials/create', 'App\Http\Controllers\TestimonialController@create')->name('testimonial.create');
+
+    //Edit Testimonial by Id
+    Route::get('/testimonials/edit/{id}', 'App\Http\Controllers\TestimonialController@edit')->name('testimonial.edit');
+
+    //Save new Testimonial
+    Route::post('/testimonials/store', 'App\Http\Controllers\TestimonialController@store')->name('testimonial.store');
+
+    //Update One Testimonial
+    Route::put('/testimonials/update/{testimonial}', 'App\Http\Controllers\TestimonialController@update')->name('testimonial.update');
+
+    //Update One Testimonial Speedly
+    Route::put('/testimonials/speed/{testimonial}', 'App\Http\Controllers\TestimonialController@updateSpeed')->name('testimonial.update.speed');
+
+    //Delete Testimonial
+    Route::delete('/testimonials/delete/{testimonial}', 'App\Http\Controllers\TestimonialController@delete')->name('testimonial.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Faqs datas
+    Route::get('/faqs', 'App\Http\Controllers\FaqController@index')->name('faq.index');
+
+    //Show Faq by Id
+    Route::get('/faqs/show/{id}', 'App\Http\Controllers\FaqController@show')->name('faq.show');
+
+    //Get Faqs by Id
+    Route::get('/faqs/create', 'App\Http\Controllers\FaqController@create')->name('faq.create');
+
+    //Edit Faq by Id
+    Route::get('/faqs/edit/{id}', 'App\Http\Controllers\FaqController@edit')->name('faq.edit');
+
+    //Save new Faq
+    Route::post('/faqs/store', 'App\Http\Controllers\FaqController@store')->name('faq.store');
+
+    //Update One Faq
+    Route::put('/faqs/update/{faq}', 'App\Http\Controllers\FaqController@update')->name('faq.update');
+
+    //Update One Faq Speedly
+    Route::put('/faqs/speed/{faq}', 'App\Http\Controllers\FaqController@updateSpeed')->name('faq.update.speed');
+
+    //Delete Faq
+    Route::delete('/faqs/delete/{faq}', 'App\Http\Controllers\FaqController@delete')->name('faq.delete');
+
+});
+
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Solutions datas
+    Route::get('/solutions', 'App\Http\Controllers\SolutionController@index')->name('solution.index');
+
+    //Show Solution by Id
+    Route::get('/solutions/show/{id}', 'App\Http\Controllers\SolutionController@show')->name('solution.show');
+
+    //Get Solutions by Id
+    Route::get('/solutions/create', 'App\Http\Controllers\SolutionController@create')->name('solution.create');
+
+    //Edit Solution by Id
+    Route::get('/solutions/edit/{id}', 'App\Http\Controllers\SolutionController@edit')->name('solution.edit');
+
+    //Save new Solution
+    Route::post('/solutions/store', 'App\Http\Controllers\SolutionController@store')->name('solution.store');
+
+    //Update One Solution
+    Route::put('/solutions/update/{solution}', 'App\Http\Controllers\SolutionController@update')->name('solution.update');
+
+    //Update One Solution Speedly
+    Route::put('/solutions/speed/{solution}', 'App\Http\Controllers\SolutionController@updateSpeed')->name('solution.update.speed');
+
+    //Delete Solution
+    Route::delete('/solutions/delete/{solution}', 'App\Http\Controllers\SolutionController@delete')->name('solution.delete');
 
 });
