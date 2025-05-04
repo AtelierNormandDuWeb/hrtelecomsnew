@@ -1,10 +1,12 @@
 <section class="about" id="about">
     <div class="container">
+        <h2 class="section-title">
+            @foreach ($titles as $title)
+            {{ $title->title1 }}
+            @endforeach
+        </h2>
+        
         @foreach ($abouts as $about)
-            <h2 class="section-title">
-                {{ $about->title1 }}
-            </h2>
-
             <div class="about-content">
                 <div class="about-text">
                     <h3>{{ $about->title2 }}</h3>

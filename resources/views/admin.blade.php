@@ -87,6 +87,14 @@
     <a class="nav-link" href="{{route('admin.about.index')}}">
         Abouts
     </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.title.index')}}">
+        Titles
+    </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.service.index')}}">
+        Services
+    </a>
 </li></ul>
                     </div>
                 </nav>
