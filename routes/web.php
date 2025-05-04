@@ -119,3 +119,30 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/users/delete/{user}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
 
 });
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Abouts datas
+    Route::get('/abouts', 'App\Http\Controllers\AboutController@index')->name('about.index');
+
+    //Show About by Id
+    Route::get('/abouts/show/{id}', 'App\Http\Controllers\AboutController@show')->name('about.show');
+
+    //Get Abouts by Id
+    Route::get('/abouts/create', 'App\Http\Controllers\AboutController@create')->name('about.create');
+
+    //Edit About by Id
+    Route::get('/abouts/edit/{id}', 'App\Http\Controllers\AboutController@edit')->name('about.edit');
+
+    //Save new About
+    Route::post('/abouts/store', 'App\Http\Controllers\AboutController@store')->name('about.store');
+
+    //Update One About
+    Route::put('/abouts/update/{about}', 'App\Http\Controllers\AboutController@update')->name('about.update');
+
+    //Update One About Speedly
+    Route::put('/abouts/speed/{about}', 'App\Http\Controllers\AboutController@updateSpeed')->name('about.update.speed');
+
+    //Delete About
+    Route::delete('/abouts/delete/{about}', 'App\Http\Controllers\AboutController@delete')->name('about.delete');
+
+});
