@@ -44,9 +44,8 @@
         <div class="footer-column">
             <h3>Légal</h3>
             <ul class="footer-links">
-                <li><a href="#">Mentions légales</a></li>
-                <li><a href="#">Politique de confidentialité</a></li>
-                <li><a href="#">Conditions générales</a></li>
+                <li><a href="{{ route('mentions-legales') }}">Mentions légales</a></li>
+                <li><a href="{{ route('confidentialite') }}">Politique de confidentialité</a></li>
                 <li><a href="#">Cookies</a></li>
             </ul>
         </div>

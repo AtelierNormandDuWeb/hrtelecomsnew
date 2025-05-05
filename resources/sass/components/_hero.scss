@@ -265,3 +265,21 @@
       &:nth-child(6) { left: calc(50% + 420px); opacity: 0; }
     }
   }
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards 0.9s;
+}
+
+.cta-button:hover {
+    background-color: var(--light-text);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-hover);
+}

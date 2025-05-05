@@ -9,6 +9,8 @@ import './testimonials';
 import './animations';
 import './forms';
 import './utils';
+import './confidentialite';
+import './mentions';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

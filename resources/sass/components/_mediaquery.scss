@@ -1,3 +1,4 @@
+/* Responsive design */
 @media (max-width: 992px) {
     .header-content {
         padding: var(--spacing-sm) var(--spacing-md);
@@ -15,20 +16,21 @@
 
 @media (max-width: 768px) {
     .header-content {
-        justify-content: flex-start;
-        gap: 2rem;
-        padding-left: 2rem;
-        position: relative;
+        justify-content: flex-start; /* Changez de space-between à flex-start */
+        gap: 2rem; /* Ajoute un espace entre le logo et le menu burger */
+        padding-left: 2rem; /* Ajoute un padding à gauche */
+        position: relative; /* Pour positionner correctement le burger */
     }
     
     .nav-toggle {
         display: block;
         position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
+        right: 2rem; /* Position à 2rem du bord droit */
+        top: 50%; /* Centre verticalement */
+        transform: translateY(-50%); /* Ajustement pour un centrage parfait */
     }
     
+    /* Assurez-vous que le logo n'est pas trop large en version mobile */
     .logo {
         max-width: 60%;
     }
@@ -124,7 +126,7 @@
         order: -1;
     }
 }
-
+/* Pour les très petits écrans, ajuster encore le padding si nécessaire */
 @media (max-width: 480px) {
     .header-content {
         padding-left: 1rem;

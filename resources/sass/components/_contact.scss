@@ -10,8 +10,10 @@
 }
 
 .contact-info {
-    flex: 1;
-    min-width: 300px;
+    // flex: 1;
+    // min-width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .info-item {

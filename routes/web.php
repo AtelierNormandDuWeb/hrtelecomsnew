@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/mentions-legales', function () {
-    return view('mentions');
-})->name('mentions.legales');
+
+Route::get('/mentions-legales', fn() => view('mentions-legales'))->name('mentions-legales');
+
+Route::get('/confidentialite', fn() => view('confidentialite'))->name('confidentialite');
 
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 

@@ -5,7 +5,7 @@
         <label for="theme-toggle">Mode sombre</label>
         <label class="switch">
             <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
+            <span class="accessibility-slider"></span>
         </label>
     </div>
     
@@ -13,7 +13,7 @@
         <label for="dyslexic-toggle">Police dyslexie</label>
         <label class="switch">
             <input type="checkbox" id="dyslexic-toggle">
-            <span class="slider"></span>
+            <span class="accessibility-slider"></span>
         </label>
     </div>
     
@@ -21,7 +21,7 @@
         <label for="colorblind-toggle">Mode daltonien</label>
         <label class="switch">
             <input type="checkbox" id="colorblind-toggle">
-            <span class="slider"></span>
+            <span class="accessibility-slider"></span>
         </label>
     </div>
     
@@ -38,7 +38,7 @@
         <label for="high-contrast-toggle">Contraste élevé</label>
         <label class="switch">
             <input type="checkbox" id="high-contrast-toggle">
-            <span class="slider"></span>
+            <span class="accessibility-slider"></span>
         </label>
     </div>
 </section>
