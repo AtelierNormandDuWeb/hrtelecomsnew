@@ -46,7 +46,7 @@
             <ul class="footer-links">
                 <li><a href="{{ route('mentions-legales') }}">Mentions légales</a></li>
                 <li><a href="{{ route('confidentialite') }}">Politique de confidentialité</a></li>
-                <li><a href="#">Cookies</a></li>
+                <li><a href="{{ route('cookiesview') }}">Cookies</a></li>
             </ul>
         </div>
     </div>

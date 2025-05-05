@@ -23,6 +23,10 @@ Route::get('/mentions-legales', fn() => view('mentions-legales'))->name('mention
 
 Route::get('/confidentialite', fn() => view('confidentialite'))->name('confidentialite');
 
+Route::get('/cookiesview', fn() => view('cookiesview'))->name('cookiesview');
+
+Route::get('/ourservices', fn() => view('ourservices'))->name('ourservices');
+
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/dashboard', function () {

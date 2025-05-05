@@ -12,6 +12,9 @@
     --success-color: #4caf50; /* Vert pour les succès */
     --error-color: #f44336; /* Rouge pour les erreurs */
     --warning-color: #ff9800; /* Orange pour les avertissements */
+    --primary-light: #3b82f6;
+    --primary-color-services: #2563eb;
+    --secondary-color-services: #1e3a8a;
     
     /* Typographie */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,12 +32,13 @@
     
     /* Bordures et ombres */
     --border-radius: 8px;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.2);
     
     /* Transitions */
-    --transition-speed: 0.3s;
+    --transition-speed: 0.4s;
+    --transition-ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
     
     /* Zoom */
     --zoom-level: 1;

@@ -1,0 +1,333 @@
+.cookie-confidentialite-container {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 40px 20px;
+    width: 100%;
+
+    h2 {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        border-bottom: 2px solid var(--background-color);
+        padding-bottom: 10px;
+        position: relative;
+    }
+    
+    h2::before {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(52, 152, 219, 0.1);
+        border-radius: 50%;
+        left: -15px;
+        top: -10px;
+        z-index: -1;
+    }
+    
+    h3 {
+        color: var(--secondary-color);
+        margin: 15px 0;
+        font-size: 1.3rem;
+    }
+    
+    p {
+        margin-bottom: 15px;
+        color: #555;
+        line-height: 1.6;
+    }
+    
+    ul {
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+    
+    li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+        color: #555;
+        line-height: 1.6;
+    }
+    
+    li::before {
+        content: '•';
+        color: var(--primary-color);
+        font-weight: bold;
+        position: absolute;
+        left: -5px;
+    }
+    
+    strong {
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+}
+
+.cookie-confidentialite-header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.cookie-confidentialite-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.cookie-confidentialite-header h1::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: var(--accent-color);
+    bottom: -10px;
+    left: 25%;
+    transform: scaleX(0);
+    animation: growLine 1.5s forwards ease-out;
+}
+
+.cookie-confidentialite-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards ease-out;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.cookie-confidentialite-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.cookie-info-highlight {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-left: 4px solid var(--primary-color);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.cookie-table thead {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cookie-table th, .cookie-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.cookie-table tbody tr:nth-child(even) {
+    background-color: rgba(236, 240, 241, 0.5);
+}
+
+.cookie-table tbody tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.cookie-category {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed);
+}
+
+.cookie-category:hover {
+    transform: translateY(-3px);
+}
+
+.cookie-icon {
+    min-width: 50px;
+    height: 50px;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.cookie-info {
+    flex: 1;
+}
+
+.cookie-category h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.cookie-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+}
+
+.cookie-btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.cookie-btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+}
+
+.cookie-btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.cookie-btn-secondary:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-3px);
+}
+
+.cookie-btn-accent {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.cookie-btn-accent:hover {
+    background-color: #c0392b;
+    transform: translateY(-3px);
+}
+
+.cookie-accordion-title {
+    cursor: pointer;
+    padding: 15px;
+    background-color: rgba(236, 240, 241, 0.5);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: background-color var(--transition-speed);
+}
+
+.cookie-accordion-title:after {
+    content: "+";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    transition: transform var(--transition-speed);
+}
+
+.cookie-accordion-title.active:after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.cookie-accordion-title:hover {
+    background-color: rgba(236, 240, 241, 0.8);
+}
+
+.cookie-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    padding: 0 15px;
+}
+
+.cookie-accordion-content.show {
+    max-height: 500px;
+    padding: 15px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes growLine {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Animation pour les sections lors du scroll */
+.cookie-confidentialite-section {
+    animation-play-state: paused;
+}
+
+.cookie-confidentialite-section.animate {
+    animation-play-state: running;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cookie-confidentialite-header h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .cookie-confidentialite-section {
+        padding: 20px;
+    }
+
+    .cookie-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .cookie-category {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cookie-icon {
+        margin-bottom: 10px;
+    }
+}

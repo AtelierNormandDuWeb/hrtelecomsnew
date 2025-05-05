@@ -11,6 +11,8 @@ import './forms';
 import './utils';
 import './confidentialite';
 import './mentions';
+import './cookiesview';
+import './servicesproposed';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
