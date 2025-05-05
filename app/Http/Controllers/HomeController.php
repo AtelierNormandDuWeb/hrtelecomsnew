@@ -8,6 +8,8 @@ use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Solution;
+use App\Models\Info;
+use App\Models\Contactsujet;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -23,6 +25,8 @@ class HomeController extends Controller
         $testimonials = Testimonial::orderBy('created_at', 'desc')->paginate(10);
         $faqs = Faq::orderBy('created_at', 'desc')->paginate(10);
         $solutions = Solution::orderBy('created_at', 'desc')->paginate(2);
+        $infos = Info::orderBy('created_at', 'desc')->paginate(10);
+        $contactsujets = Contactsujet::orderBy('created_at', 'asc')->paginate(10);
 
         return view('home', [
             'realizations' => $realizations,
@@ -31,7 +35,9 @@ class HomeController extends Controller
             'services' => $services,
             'testimonials' => $testimonials,
             'faqs' => $faqs,
-            'solutions' => $solutions
+            'solutions' => $solutions,
+            'infos' => $infos,
+            'contactsujets' => $contactsujets
         ]);
     }
 }

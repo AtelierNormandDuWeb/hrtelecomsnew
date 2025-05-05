@@ -50,7 +50,7 @@
         </div>
         @endforeach
 
-        {{-- <div id="ipbx" class="tab-content">
+        <div id="ipbx" class="tab-content">
             <div class="solution-content">
                 <div class="solution-text">
                     <h3>Solution IPBX</h3>
@@ -87,6 +87,6 @@
                     <img src="{{ asset('images/ipbximg.png') }}" alt="Solution IPBX" />
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </section>

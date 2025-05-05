@@ -107,6 +107,14 @@
     <a class="nav-link" href="{{route('admin.solution.index')}}">
         Solutions
     </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.info.index')}}">
+        Infos
+    </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.contactsujet.index')}}">
+        Contactsujets
+    </a>
 </li></ul>
                     </div>
                 </nav>

@@ -282,3 +282,57 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/solutions/delete/{solution}', 'App\Http\Controllers\SolutionController@delete')->name('solution.delete');
 
 });
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Infos datas
+    Route::get('/infos', 'App\Http\Controllers\InfoController@index')->name('info.index');
+
+    //Show Info by Id
+    Route::get('/infos/show/{id}', 'App\Http\Controllers\InfoController@show')->name('info.show');
+
+    //Get Infos by Id
+    Route::get('/infos/create', 'App\Http\Controllers\InfoController@create')->name('info.create');
+
+    //Edit Info by Id
+    Route::get('/infos/edit/{id}', 'App\Http\Controllers\InfoController@edit')->name('info.edit');
+
+    //Save new Info
+    Route::post('/infos/store', 'App\Http\Controllers\InfoController@store')->name('info.store');
+
+    //Update One Info
+    Route::put('/infos/update/{info}', 'App\Http\Controllers\InfoController@update')->name('info.update');
+
+    //Update One Info Speedly
+    Route::put('/infos/speed/{info}', 'App\Http\Controllers\InfoController@updateSpeed')->name('info.update.speed');
+
+    //Delete Info
+    Route::delete('/infos/delete/{info}', 'App\Http\Controllers\InfoController@delete')->name('info.delete');
+
+});
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Contactsujets datas
+    Route::get('/contactsujets', 'App\Http\Controllers\ContactsujetController@index')->name('contactsujet.index');
+
+    //Show Contactsujet by Id
+    Route::get('/contactsujets/show/{id}', 'App\Http\Controllers\ContactsujetController@show')->name('contactsujet.show');
+
+    //Get Contactsujets by Id
+    Route::get('/contactsujets/create', 'App\Http\Controllers\ContactsujetController@create')->name('contactsujet.create');
+
+    //Edit Contactsujet by Id
+    Route::get('/contactsujets/edit/{id}', 'App\Http\Controllers\ContactsujetController@edit')->name('contactsujet.edit');
+
+    //Save new Contactsujet
+    Route::post('/contactsujets/store', 'App\Http\Controllers\ContactsujetController@store')->name('contactsujet.store');
+
+    //Update One Contactsujet
+    Route::put('/contactsujets/update/{contactsujet}', 'App\Http\Controllers\ContactsujetController@update')->name('contactsujet.update');
+
+    //Update One Contactsujet Speedly
+    Route::put('/contactsujets/speed/{contactsujet}', 'App\Http\Controllers\ContactsujetController@updateSpeed')->name('contactsujet.update.speed');
+
+    //Delete Contactsujet
+    Route::delete('/contactsujets/delete/{contactsujet}', 'App\Http\Controllers\ContactsujetController@delete')->name('contactsujet.delete');
+
+});

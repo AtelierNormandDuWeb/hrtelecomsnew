@@ -7,12 +7,13 @@
         </h2>
 
         <div class="contact-container">
+            @foreach ($infos as $info)
             <div class="contact-info">
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt info-icon"></i>
                     <div>
                         <h3>Adresse</h3>
-                        <p>16 rue de la cavée, Impasse Banville<br> 14320 Laize-Clinchamps, France</p>
+                        <p>{{ $info->adresse }}<br> {{ $info->codepostal }} {{ $info->ville }}, {{ $info->pays }}</p>
                     </div>
                 </div>
 
@@ -20,7 +21,7 @@
                     <i class="fas fa-phone-alt info-icon"></i>
                     <div>
                         <h3>Téléphone</h3>
-                        <p>+33 2 31 43 50 11</p>
+                        <p>{{ $info->telephone }}</p>
                     </div>
                 </div>
 
@@ -28,7 +29,7 @@
                     <i class="fas fa-envelope info-icon"></i>
                     <div>
                         <h3>Email</h3>
-                        <p>contact@HrTélécoms.fr</p>
+                        <p>{{ $info->email }}</p>
                     </div>
                 </div>
 
@@ -36,13 +37,15 @@
                     <i class="fas fa-clock info-icon"></i>
                     <div>
                         <h3>Horaires d'ouverture</h3>
-                        <p>Lundi - Vendredi : 9h00 - 18h00<br>
-                            Mardi - Vendredi : 9h00 - 18h00<br>
-                            Mercredi - Vendredi : 9h00 - 18h00<br>
-                            Jeudi - Vendredi : 9h00 - 18h00<br>
-                            Vendredi - Vendredi : 9h00 - 18h00<br>
-                            Samedi : Fermé<br>
-                            Dimanche : Fermé</p>
+                        <ul>
+                            <li>Lundi : {{ $info->lundi }}</li>
+                            <li>Mardi : {{ $info->mardi }}</li>
+                            <li>Mercredi : {{ $info->mercredi }}</li>
+                            <li>Jeudi : {{ $info->jeudi }}</li>
+                            <li>Vendredi : {{ $info->vendredi }}</li>
+                            <li>Samedi : {{ $info->samedi }}</li>
+                            <li>Dimanche : {{ $info->dimanche }}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -72,11 +75,13 @@
                     <div class="form-group">
                         <label for="subject">Sujet</label>
                         <select id="subject" name="subject">
-                            <option value="devis">Demande de devis</option>
-                            <option value="demo">Demande de démonstration</option>
+                            @foreach ($contactsujets as $contactsujet)
+                            <option value="{{ $contactsujet->sujet }}">{{ $contactsujet->sujet }}</option>
+                            {{-- <option value="demo">Demande de démonstration</option>
                             <option value="information">Demande d'information</option>
                             <option value="support">Support technique</option>
-                            <option value="autre">Autre</option>
+                            <option value="autre">Autre</option> --}}
+                            @endforeach
                         </select>
                     </div>
 
@@ -89,5 +94,6 @@
                 </form>
             </div>
         </div>
+        @endforeach
     </div>
 </section>
