@@ -96,15 +96,13 @@
     border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked + .accessibility-slider {
     background-color: var(--accent-color);
 }
-
-input:focus + .slider {
+input:focus + .accessibility-slider {
     box-shadow: 0 0 1px var(--accent-color);
 }
-
-input:checked + .slider:before {
+input:checked + .accessibility-slider:before {
     transform: translateX(26px);
 }
 

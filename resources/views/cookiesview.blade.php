@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('sections.accessibilitytools')
 @include('sections.cookies')
 
 @endsection
