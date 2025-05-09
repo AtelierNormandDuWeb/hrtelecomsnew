@@ -8,6 +8,7 @@
     flex-wrap: wrap;
     gap: var(--spacing-lg);
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .about-text {
@@ -43,4 +44,68 @@
 
 .about-image:hover img {
     transform: scale(1.05);
+}
+
+/* CAROUSEL PHONE*/
+// Animation
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 7));
+    }
+}
+
+// Styling
+.phone-slider {
+    background: none;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+    height: 200px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    // width: 960px;
+
+    &::before,
+    &::after {
+        // background: linear-gradient(
+        //     to right,
+        //     rgba(255, 255, 255, 1) 0%,
+        //     rgba(255, 255, 255, 0) 100%
+        // );
+        content: "";
+        height: 100px;
+        position: absolute;
+        width: 200px;
+        z-index: 2;
+    }
+
+    &::after {
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
+    }
+
+    &::before {
+        left: 0;
+        top: 0;
+    }
+
+    .phone-slide-track {
+        animation: scroll 40s linear infinite;
+        display: flex;
+        width: calc(250px * 14);
+    }
+
+    .phone-slide {
+        height: 200px;
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content {
+        margin-bottom: 1rem;
+    }
 }

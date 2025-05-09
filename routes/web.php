@@ -341,3 +341,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/contactsujets/delete/{contactsujet}', 'App\Http\Controllers\ContactsujetController@delete')->name('contactsujet.delete');
 
 });
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Phonesliders datas
+    Route::get('/phonesliders', 'App\Http\Controllers\PhonesliderController@index')->name('phoneslider.index');
+
+    //Show Phoneslider by Id
+    Route::get('/phonesliders/show/{id}', 'App\Http\Controllers\PhonesliderController@show')->name('phoneslider.show');
+
+    //Get Phonesliders by Id
+    Route::get('/phonesliders/create', 'App\Http\Controllers\PhonesliderController@create')->name('phoneslider.create');
+
+    //Edit Phoneslider by Id
+    Route::get('/phonesliders/edit/{id}', 'App\Http\Controllers\PhonesliderController@edit')->name('phoneslider.edit');
+
+    //Save new Phoneslider
+    Route::post('/phonesliders/store', 'App\Http\Controllers\PhonesliderController@store')->name('phoneslider.store');
+
+    //Update One Phoneslider
+    Route::put('/phonesliders/update/{phoneslider}', 'App\Http\Controllers\PhonesliderController@update')->name('phoneslider.update');
+
+    //Update One Phoneslider Speedly
+    Route::put('/phonesliders/speed/{phoneslider}', 'App\Http\Controllers\PhonesliderController@updateSpeed')->name('phoneslider.update.speed');
+
+    //Delete Phoneslider
+    Route::delete('/phonesliders/delete/{phoneslider}', 'App\Http\Controllers\PhonesliderController@delete')->name('phoneslider.delete');
+
+});

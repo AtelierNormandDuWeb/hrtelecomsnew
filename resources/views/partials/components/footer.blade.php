@@ -3,7 +3,7 @@
         <div class="footer-column">
             <h3>HrTélécoms</h3>
             <p>Solutions de téléphonie IP innovantes pour les professionnels.</p>
-            
+
             <div class="social-icons">
                 <a href="#" class="social-icon" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -19,7 +19,7 @@
                 </a>
             </div>
         </div>
-        
+
         <div class="footer-column">
             <h3>Navigation</h3>
             <ul class="footer-links">
@@ -31,16 +31,16 @@
                 <li><a href="{{ url('/') }}#contact">Contact</a></li>
             </ul>
         </div>
-        
+
         <div class="footer-column">
             <h3>Solutions</h3>
             <ul class="footer-links">
-                <li><a href="#">Communications unifiées</a></li>
-                <li><a href="#">Centre d'appels</a></li>
-                <li><a href="#">Solutions mobiles</a></li>
+                <li><a href="{{ url('/') }}#services">Services Cloud</a></li>
+                <li><a href="{{ url('/') }}#contact">Support Technique</a></li>
+                <li><a href="{{ url('/') }}#about">Matériel Téléphonique</a></li>
             </ul>
         </div>
-        
+
         <div class="footer-column">
             <h3>Légal</h3>
             <ul class="footer-links">
@@ -50,7 +50,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="footer-bottom">
         <p>&copy; 2025 HrTélécoms. Tous droits réservés.</p>
     </div>

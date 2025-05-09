@@ -10,6 +10,7 @@ use App\Models\Faq;
 use App\Models\Solution;
 use App\Models\Info;
 use App\Models\Contactsujet;
+use App\Models\Phoneslider;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -27,6 +28,7 @@ class HomeController extends Controller
         $solutions = Solution::orderBy('created_at', 'desc')->paginate(2);
         $infos = Info::orderBy('created_at', 'desc')->paginate(10);
         $contactsujets = Contactsujet::orderBy('created_at', 'asc')->paginate(10);
+        $phonesliders = Phoneslider::orderBy('created_at', 'asc')->paginate(1);
 
         return view('home', [
             'realizations' => $realizations,
@@ -37,7 +39,8 @@ class HomeController extends Controller
             'faqs' => $faqs,
             'solutions' => $solutions,
             'infos' => $infos,
-            'contactsujets' => $contactsujets
+            'contactsujets' => $contactsujets,
+            'phonesliders' => $phonesliders
         ]);
     }
 }

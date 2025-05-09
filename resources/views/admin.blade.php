@@ -115,6 +115,10 @@
     <a class="nav-link" href="{{route('admin.contactsujet.index')}}">
         Contactsujets
     </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.phoneslider.index')}}">
+        Phonesliders
+    </a>
 </li></ul>
                     </div>
                 </nav>
