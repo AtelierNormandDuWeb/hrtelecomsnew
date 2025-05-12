@@ -38,9 +38,9 @@ export function initAccessibility() {
     if (dyslexicToggle) {
         dyslexicToggle.addEventListener('change', function() {
             if (this.checked) {
-                addClass(body, 'dyslexic-font');
+                addClass(body, 'OpenDyslexic');
             } else {
-                removeClass(body, 'dyslexic-font');
+                removeClass(body, 'OpenDyslexic');
             }
         });
     }

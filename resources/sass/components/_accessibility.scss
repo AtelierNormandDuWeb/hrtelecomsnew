@@ -125,3 +125,12 @@ input:checked + .accessibility-slider:before {
 .zoom-btn:hover {
     background-color: var(--accent-color);
 }
+
+/* Style pour appliquer la police OpenDyslexic */
+body.OpenDyslexic {
+    font-family: "OpenDyslexic", sans-serif !important;
+}
+
+body.OpenDyslexic * {
+    font-family: "OpenDyslexic", sans-serif !important;
+}
