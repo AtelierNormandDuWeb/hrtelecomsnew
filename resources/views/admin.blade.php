@@ -119,6 +119,10 @@
     <a class="nav-link" href="{{route('admin.phoneslider.index')}}">
         Phonesliders
     </a>
+</li><li class="nav-item">
+    <a class="nav-link" href="{{route('admin.heroslider.index')}}">
+        Herosliders
+    </a>
 </li></ul>
                     </div>
                 </nav>
