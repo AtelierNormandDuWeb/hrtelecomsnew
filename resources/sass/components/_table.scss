@@ -1,0 +1,123 @@
+/* Styles de tableau responsive avec vue en colonne sur mobile */
+
+/* Style de base pour tous les écrans */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+/* Style pour les smartphones (écrans de moins de 768px) */
+@media screen and (max-width: 767px) {
+    /* Masquer l'en-tête du tableau sur mobile */
+    .table thead {
+        display: none;
+    }
+    
+    /* Transformer les lignes en blocs */
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background-color: #fff;
+    }
+    
+    /* Transformer les cellules en blocs avec un padding spécifique */
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem 0.75rem;
+        border-top: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        min-height: 30px;
+    }
+    
+    /* Enlever la bordure de la dernière cellule */
+    .table tbody td:last-child {
+        border-bottom: none;
+    }
+    
+    /* Ajouter les libellés des colonnes avant chaque cellule */
+    .table tbody td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: capitalize;
+        color: #555;
+    }
+    
+    /* Colonne d'ID */
+    .table tbody td:nth-child(1):before {
+        content: "N#:";
+    }
+    
+    /* Colonne de Titre 1 */
+    .table tbody td:nth-child(2):before {
+        content: "Titre 1:";
+    }
+    
+    /* Colonne de Titre 2 */
+    .table tbody td:nth-child(3):before {
+        content: "Titre 2:";
+    }
+    
+    /* Colonne de Titre 3 */
+    .table tbody td:nth-child(4):before {
+        content: "Titre 3:";
+    }
+    
+    /* Colonne de Titre 4 */
+    .table tbody td:nth-child(5):before {
+        content: "Titre 4:";
+    }
+    
+    /* Colonne de Titre 5 */
+    .table tbody td:nth-child(6):before {
+        content: "Titre 5:";
+    }
+    
+    /* Colonne de Titre 6 */
+    .table tbody td:nth-child(7):before {
+        content: "Titre 6:";
+    }
+    
+    /* Colonne d'Actions */
+    .table tbody td:nth-child(8):before {
+        content: "Actions:";
+    }
+    
+    /* Style spécifique pour la cellule d'actions */
+    .table tbody td:last-child {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+    
+    /* Ajustement des boutons d'action */
+    .table tbody td .btn {
+        margin-left: 0.25rem;
+    }
+}

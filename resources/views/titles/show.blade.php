@@ -6,61 +6,44 @@
 
 @section('content')
     <div >
-        <h3>Show Title</h3>
+        <h3>Voir Titres</h3>
 
         <a href="{{ route('admin.title.index') }}" class="btn btn-success my-1">
-            Home
+            Accueil
         </a>
         <div class="table-responsive">
         <table class="table table-bordered">
             <tbody>
                     <tr>
-        <th>Title1</th> 
+        <th>Titre 1</th> 
         <td>{{ $title->title1 }}</td>
 </tr>
     <tr>
-        <th>Title2</th> 
+        <th>Titre 2</th> 
         <td>{{ $title->title2 }}</td>
 </tr>
     <tr>
-        <th>Title3</th> 
+        <th>Titre 3</th> 
         <td>{{ $title->title3 }}</td>
 </tr>
     <tr>
-        <th>Title4</th> 
+        <th>Titre 4</th> 
         <td>{{ $title->title4 }}</td>
 </tr>
     <tr>
-        <th>Title5</th> 
+        <th>Titre 5</th> 
         <td>{{ $title->title5 }}</td>
 </tr>
     <tr>
-        <th>Title6</th> 
+        <th>Titre 6</th> 
         <td>{{ $title->title6 }}</td>
-</tr>
-    <tr>
-        <th>Title7</th> 
-        <td>{{ $title->title7 }}</td>
-</tr>
-    <tr>
-        <th>Title8</th> 
-        <td>{{ $title->title8 }}</td>
-</tr>
-    <tr>
-        <th>Title9</th> 
-        <td>{{ $title->title9 }}</td>
-</tr>
-    <tr>
-        <th>Title10</th> 
-        <td>{{ $title->title10 }}</td>
-</tr>
-	
+</tr>	
             </tbody>
         </table>
 
         <div>
             <a href="{{ route('admin.title.edit', ['id' => $title->id]) }}" class="btn btn-primary my-1">
-                <i class="fa-solid fa-pen-to-square"></i>  Edit
+                <i class="fa-solid fa-pen-to-square"></i>  Modifier
             </a>
         </div>
     </div>

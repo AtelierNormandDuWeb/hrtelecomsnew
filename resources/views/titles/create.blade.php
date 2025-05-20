@@ -2,9 +2,9 @@
 
 @section('content')
 <div >
-    <h3>Create Title</h3>
+    <h3>Creer Titre</h3>
     <a href="{{ route('admin.title.index') }}" class="btn btn-success my-1">
-            Home
+            Accueil
     </a>
     @include('titles/titleForm')
         </div>
