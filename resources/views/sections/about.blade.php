@@ -28,43 +28,43 @@
 		</div>
         @endforeach --}}
                 <div class="phone-slide">
-                    <img src="{{ asset('images/w79p-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/w79p-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/wh64-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/wh64-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/t54w-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/t54w-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/T54W-EXP50_-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/T54W-EXP50_-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/w70b-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/w70b-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/w79p-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/w79p-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/wh64-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/wh64-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/t54w-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/t54w-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/T54W-EXP50_-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/T54W-EXP50_-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
                 <div class="phone-slide">
-                    <img src="{{ asset('images/w70b-removebg-preview.webp') }}" height="200" width="200"
+                    <img src="{{ asset('images/w70b-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />
                 </div>
             </div>

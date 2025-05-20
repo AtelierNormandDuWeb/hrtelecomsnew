@@ -190,11 +190,11 @@
         
         <p>Pour plus d'informations sur les cookies et comment les gérer, visitez <a href="https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi" target="_blank">le site de la CNIL</a>.</p>
         
-        <div class="cookie-buttons">
+        {{-- <div class="cookie-buttons">
             <button class="cookie-btn cookie-btn-primary">Accepter tous les cookies</button>
             <button class="cookie-btn cookie-btn-secondary">Seulement les cookies essentiels</button>
             <button class="cookie-btn cookie-btn-accent">Personnaliser mes choix</button>
-        </div>
+        </div> --}}
     </div>
 
     <div class="cookie-confidentialite-section">

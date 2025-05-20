@@ -378,3 +378,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/phonesliders/delete/{phoneslider}', 'App\Http\Controllers\PhonesliderController@delete')->name('phoneslider.delete');
 
 });
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    //Get Herosliders datas
+    Route::get('/herosliders', 'App\Http\Controllers\HerosliderController@index')->name('heroslider.index');
+
+    //Show Heroslider by Id
+    Route::get('/herosliders/show/{id}', 'App\Http\Controllers\HerosliderController@show')->name('heroslider.show');
+
+    //Get Herosliders by Id
+    Route::get('/herosliders/create', 'App\Http\Controllers\HerosliderController@create')->name('heroslider.create');
+
+    //Edit Heroslider by Id
+    Route::get('/herosliders/edit/{id}', 'App\Http\Controllers\HerosliderController@edit')->name('heroslider.edit');
+
+    //Save new Heroslider
+    Route::post('/herosliders/store', 'App\Http\Controllers\HerosliderController@store')->name('heroslider.store');
+
+    //Update One Heroslider
+    Route::put('/herosliders/update/{heroslider}', 'App\Http\Controllers\HerosliderController@update')->name('heroslider.update');
+
+    //Update One Heroslider Speedly
+    Route::put('/herosliders/speed/{heroslider}', 'App\Http\Controllers\HerosliderController@updateSpeed')->name('heroslider.update.speed');
+
+    //Delete Heroslider
+    Route::delete('/herosliders/delete/{heroslider}', 'App\Http\Controllers\HerosliderController@delete')->name('heroslider.delete');
+
+});

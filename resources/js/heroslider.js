@@ -23,4 +23,4 @@ document.addEventListener('click', function(e) {
 });
 
 // Défilement Automatique toutes les 2500 ms
-setInterval(nextSlide, 6000);
+setInterval(nextSlide, 5000);
