@@ -1,6 +1,6 @@
 <section class="hero">
     <ul class='slider'>
-      @foreach ($herosliders as $heroslider)
+      {{-- @foreach ($herosliders as $heroslider)
         <li class='item-img box1' style="background-image: url('{{ asset('storage/' . $heroslider->imageUrl) }}')">
             <div class='content'>
                 <h2 class='title'>{{ $heroslider->title }}</h2>
@@ -8,8 +8,8 @@
                 <button class="cta-button">{{ $heroslider->button }}</button>
             </div>
         </li>
-        @endforeach
-        {{-- <li class='item-img' style="background-image: url('{{ asset('images/1.jpg') }}')">
+        @endforeach --}}
+        <li class='item-img' style="background-image: url('{{ asset('images/1.jpg') }}')">
         <div class='content'>
           <h2 class='title'>"Votre téléphonie, partout avec vous."</h2>
           <p class='description'>
@@ -68,7 +68,7 @@
           </p>
           <button>Nous contacter</button>
         </div>
-      </li> --}}
+      </li>
     </ul>
 
     <nav class='nav'>
