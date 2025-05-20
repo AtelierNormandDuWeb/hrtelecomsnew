@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,16 @@ Route::get('/cookiesview', fn() => view('cookiesview'))->name('cookiesview');
 
 Route::get('/ourservices', fn() => view('ourservices'))->name('ourservices');
 
-Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+// Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+// Routes existantes
+Route::get('/contact', [AppointmentController::class, 'showForm'])->name('appointments.form');
+Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('/appointments/confirm/{appointmentId}', [AppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
+
+// Routes pour l'authentification Google Calendar
+Route::get('/google-calendar/auth', [AppointmentController::class, 'redirectToGoogleAuth'])->name('google-calendar.auth');
+Route::get('/google-calendar/callback', [AppointmentController::class, 'handleGoogleCallback'])->name('google-calendar.callback');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
