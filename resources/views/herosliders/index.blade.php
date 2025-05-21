@@ -6,19 +6,19 @@
 
 @section('content')
 <div >
-<h3> Herosliders Details</h3>
+<h3> Détail de l'Heroslider</h3>
 
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-start">
     <div class="dropdown m-1">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Column
+            Colonne
         </button>
         <div id="columnSelector" class="dropdown-menu"> </div>
     </div>
     <a href="{{ route('admin.heroslider.create') }}" class="btn btn-success m-1">
 
-            Create Heroslider
+            Creer nouveau Heroslider
 
     </a>
 </div>
@@ -30,9 +30,9 @@
                 <tr>
                     <th scope="col">N#</th>
 						<th scope="col">ImageUrl</th>
-						<th scope="col">Title</th>
+						<th scope="col">Titre</th>
 						<th scope="col">Description</th>
-						<th scope="col">Button</th>
+						<th scope="col">Boutton</th>
 						
 						<th scope="col">Actions</th>
                 </tr>
@@ -81,15 +81,15 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-            <h3 class="modal-title fs-5" id="confirmModalLabel">Delete confirm</h3>
+            <h3 class="modal-title fs-5" id="confirmModalLabel">Confirmer suppression</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
             ...
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary confirmDeleteAction">Delete</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary confirmDeleteAction">Supprimer</button>
             </div>
         </div>
         </div>

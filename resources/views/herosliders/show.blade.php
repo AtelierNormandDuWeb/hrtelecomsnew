@@ -6,10 +6,10 @@
 
 @section('content')
     <div >
-        <h3>Show Heroslider</h3>
+        <h3>Voir Heroslider</h3>
 
         <a href="{{ route('admin.heroslider.index') }}" class="btn btn-success my-1">
-            Home
+            Accueil
         </a>
         <div class="table-responsive">
         <table class="table table-bordered">
@@ -25,7 +25,7 @@
         </td>
      </tr>
     <tr>
-        <th>Title</th> 
+        <th>Titre</th> 
         <td>{{ $heroslider->title }}</td>
 </tr>
     <tr>
@@ -33,7 +33,7 @@
         <td>{{ $heroslider->description }}</td>
 </tr>
     <tr>
-        <th>Button</th> 
+        <th>Boutton</th> 
         <td>{{ $heroslider->button }}</td>
 </tr>
 	
@@ -42,7 +42,7 @@
 
         <div>
             <a href="{{ route('admin.heroslider.edit', ['id' => $heroslider->id]) }}" class="btn btn-primary my-1">
-                <i class="fa-solid fa-pen-to-square"></i>  Edit
+                <i class="fa-solid fa-pen-to-square"></i>  Modifier
             </a>
         </div>
     </div>

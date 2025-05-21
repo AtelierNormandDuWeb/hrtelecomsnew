@@ -13,7 +13,7 @@ class HerosliderController extends Controller
 {
     public function index(): View
     {
-        $herosliders = Heroslider::orderBy('created_at', 'desc')->paginate(5);
+        $herosliders = Heroslider::orderBy('created_at', 'desc')->paginate(10);
         return view('herosliders/index', ['herosliders' => $herosliders]);
     }
 

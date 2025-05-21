@@ -441,10 +441,9 @@
         }
 
         .sidenav__profile-title img {
-            width: 100%;
-            height: 100%;
-            padding: 1rem;
-            border-bottom: #cfcfcf solid 2px;
+            padding-top: 32px;
+            height: 10vw;
+            width: auto;
         }
 
         .sidenav--active {
@@ -616,9 +615,8 @@
         .main-header__intro-wrapper {
             display: flex;
             flex: 1;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+            /* flex-direction: column; */
+            justify-content:center;
             height: 160px;
             padding: 12px 30px;
             background: rgba(255, 255, 255, 0.12);
@@ -715,7 +713,7 @@
         @media only screen and (min-width: 65.625em) {
             .main-header__intro-wrapper {
                 flex-direction: row;
-                justify-content: center;
+                justify-content: flex-start;
             }
 
             .main-header__welcome {
@@ -822,6 +820,7 @@
         @media only screen and (min-width: 65.625em) {
             .main-header__intro-wrapper {
                 flex-direction: row;
+                justify-content: flex-start;
             }
 
             .main-header__welcome {
@@ -876,14 +875,8 @@
                 <i class="fas fa-times sidenav__brand-close"></i>
             </div>
             <div class="sidenav__profile">
-                <div class="sidenav__profile-title">
-                    {{-- <img src="images/logo.jpg" alt="image du logo"> --}}
-                    {{-- <a href="#" class="logo"> --}}
-                    <img class="logo-icon" src="{{ asset('images/Logo.png') }}" alt="Logo de l'entreprise HrTélécoms">
-                    {{-- </a> --}}
-                </div>
                 <div class="sidenav__profile-adress">
-                    <h2>HrTelecoms - Tableau de bord</h2>
+                    {{-- <h2>HrTelecoms - Tableau de bord</h2> --}}
                     <a href="{{ route('home') }}">
                         <h3>Retour site Web</h3>
                     </a>
@@ -891,6 +884,19 @@
             </div>
             <div class="row row--align-v-center row--align-h-center">
                 <ul class="navList">
+                    <li>
+                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                            {{-- <i class="fas"></i> --}}
+                            <span class="navList__subheading-title">Accueil</span>
+                        </div>
+                        <ul class="subList">
+                            <li class="subList__item">
+                                <a class="nav-link" href="{{ route('admin.heroslider.index') }}">
+                                    Section accueil
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
                             {{-- <i class="fas"></i> --}}
@@ -931,7 +937,7 @@
                         </ul>
                     </li>
 
-                                        <li>
+                    <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
                             {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Avis</span>
@@ -942,11 +948,11 @@
                                     Les avis
                                 </a>
                             </li>
-                    
+
                         </ul>
                     </li>
 
-                                        <li>
+                    <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
                             {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Questions</span>
@@ -960,7 +966,7 @@
                         </ul>
                     </li>
 
-                    
+
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
                             {{-- <i class="fas  fa-list-ul"></i> --}}
@@ -1022,24 +1028,6 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span class="navList__subheading-title">Horaires et plan</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <i class="fas fa-heart"></i>
-                            <span class="navList__subheading-title">Favoris</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span class="navList__subheading-title">Partage SMS</span>
-                        </div>
-                    </li> --}}
                 </ul>
             </div>
 
@@ -1061,10 +1049,13 @@
         <main class="main">
             <div class="main-header">
                 <div class="main-header__intro-wrapper">
-                    <div class="main-header__welcome">
+                    <div class="sidenav__profile-title">
+                        <img class="logo-icon" src="{{ asset('images/Logo.png') }}" alt="Logo de l'entreprise HrTélécoms">
+                    </div>
+                    {{-- <div class="main-header__welcome">
                         <h1 class="main-header__welcome-title">HrTelecoms - Tableau de bord</h1>
                         <p class="main-header__welcome-subtitle">Gerez ici votre site web</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="p-3">
@@ -1077,6 +1068,15 @@
         </footer>
     </div>
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    @yield('scripts')
     <script>
         /* Scripts pour le dashboard en CSS grid */
         $(document).ready(() => {
