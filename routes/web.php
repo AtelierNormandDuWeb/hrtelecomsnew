@@ -28,7 +28,9 @@ Route::get('/cookiesview', fn() => view('cookiesview'))->name('cookiesview');
 
 Route::get('/ourservices', fn() => view('ourservices'))->name('ourservices');
 
-// Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+// Route::get('/pagecontact', fn() => view('pagecontact'))->name('pagecontact');
+
+Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
 
 // Routes existantes
 Route::get('/contact', [AppointmentController::class, 'showForm'])->name('appointments.form');

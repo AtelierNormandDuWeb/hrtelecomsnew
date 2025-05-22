@@ -123,7 +123,7 @@
             right: 8px;
             top: 8px;
             visibility: visible;
-            color: rgba(255, 255, 255, 0.5);
+            color: #3f72af;
             cursor: pointer;
         }
 
@@ -177,7 +177,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 16px 16px 3px;
-            color: rgba(255, 255, 255, 0.5);
+            color: #3f72af;
             text-transform: uppercase;
             font-size: 15px;
         }
@@ -249,7 +249,7 @@
             padding: 8px;
             text-transform: capitalize;
             padding: 8px 30px;
-            color: #D3D3D3;
+            color: #3f72af;
         }
 
         .navList .subList__item:first-child {
@@ -506,7 +506,7 @@
         .navList__subheading {
             position: relative;
             padding: 10px 30px;
-            color: rgba(54, 54, 54, 0.5);
+            color: #3f72af;
             font-size: 16px;
             text-transform: capitalize;
         }
@@ -688,6 +688,7 @@
                 grid-template-areas: "sidenav header" "sidenav main" "sidenav footer";
                 height: 100vh;
             }
+
             .sidenav {
                 position: relative;
                 transform: translateX(0);
@@ -695,9 +696,11 @@
                 display: flex;
                 flex-direction: column;
             }
+
             .sidenav__brand-close {
                 visibility: hidden;
             }
+
             .main-header__intro-wrapper {
                 padding: 0 30px;
             }
@@ -881,10 +884,10 @@
             <div class="row row--align-v-center row--align-h-center">
                 <ul class="navList">
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Accueil</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.heroslider.index') }}">
                                     Section accueil
@@ -893,10 +896,10 @@
                         </ul>
                     </li>
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">A propos</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.about.index') }}">
                                     A propos
@@ -905,10 +908,10 @@
                         </ul>
                     </li>
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Titre</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.title.index') }}">
                                     Les titres
@@ -917,10 +920,10 @@
                         </ul>
                     </li>
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Services</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.service.index') }}">
                                     Les Services
@@ -928,26 +931,23 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Avis</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.testimonial.index') }}">
                                     Les avis
                                 </a>
                             </li>
-
                         </ul>
                     </li>
-
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Questions</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.faq.index') }}">
                                     Foire aux questions
@@ -955,13 +955,11 @@
                             </li>
                         </ul>
                     </li>
-
-
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Solutions</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.solution.index') }}">
                                     Nos solutions
@@ -969,12 +967,11 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
+                        <div class="navList__subheading row row--align-v-center">
                             <span class="navList__subheading-title">Informations</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.info.index') }}">
                                     Les informations
@@ -982,15 +979,14 @@
                             </li>
                         </ul>
                     </li>
-
                     <li>
-                        <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            <span class="navList__subheading-title">Contact</span>
+                        <div class="navList__subheading row row--align-v-center">
+                            <span class="navList__subheading-title">Contact sujet</span>
                         </div>
-                        <ul class="subList">
+                        <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <a class="nav-link" href="{{ route('admin.contactsujet.index') }}">
-                                    Formulaire de contact
+                                    Sujet du contact
                                 </a>
                             </li>
                         </ul>

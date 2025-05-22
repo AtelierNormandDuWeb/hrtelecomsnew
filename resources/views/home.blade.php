@@ -8,6 +8,6 @@
 @include('sections.solutions')
 @include('sections.testimonials')
 @include('sections.faq')
-@include('sections.contact')
+{{-- @include('sections.contact') --}}
 
 @endsection

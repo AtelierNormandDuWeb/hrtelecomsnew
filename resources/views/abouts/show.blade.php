@@ -8,32 +8,32 @@
 
 @section('content')
     <div>
-        <h3>Show About</h3>
+        <h3>Voir A propos</h3>
 
         <a href="{{ route('admin.about.index') }}" class="btn btn-success my-1">
-            Home
+            Accueil
         </a>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th>Title1</th>
+                        <th>Titre 1</th>
                         <td>{{ $about->title1 }}</td>
                     </tr>
                     <tr>
-                        <th>Title2</th>
+                        <th>Titre 2</th>
                         <td>{{ $about->title2 }}</td>
                     </tr>
                     <tr>
-                        <th>Texte1</th>
+                        <th>Texte 1</th>
                         <td>{{ $about->texte1 }}</td>
                     </tr>
                     <tr>
-                        <th>Texte2</th>
+                        <th>Texte 2</th>
                         <td>{{ $about->texte2 }}</td>
                     </tr>
                     <tr>
-                        <th>Button</th>
+                        <th>Boutton</th>
                         <td>{{ $about->button }}</td>
                     </tr>
                     <tr>
@@ -51,7 +51,7 @@
 
             <div>
                 <a href="{{ route('admin.about.edit', ['id' => $about->id]) }}" class="btn btn-primary my-1">
-                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                    <i class="fa-solid fa-pen-to-square"></i> Modifier
                 </a>
             </div>
         </div>

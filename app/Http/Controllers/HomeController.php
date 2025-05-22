@@ -28,7 +28,7 @@ class HomeController extends Controller
         $faqs = Faq::orderBy('created_at', 'desc')->paginate(10);
         $solutions = Solution::orderBy('created_at', 'desc')->paginate(2);
         $infos = Info::orderBy('created_at', 'desc')->paginate(10);
-        $contactsujets = Contactsujet::orderBy('created_at', 'asc')->paginate(10);
+        $contactsujets = Contactsujet::orderBy('created_at', 'asc')->get();
         $phonesliders = Phoneslider::orderBy('created_at', 'asc')->paginate(1);
         $herosliders = Heroslider::orderBy('created_at', 'asc')->paginate(10);
 
@@ -44,6 +44,19 @@ class HomeController extends Controller
             'contactsujets' => $contactsujets,
             'phonesliders' => $phonesliders,
             'herosliders' => $herosliders
+        ]);
+    }
+
+        public function pagecontact(): View
+    {
+        $titles = Title::orderBy('created_at', 'desc')->get();
+        $infos = Info::orderBy('created_at', 'desc')->get();
+        $contactsujets = Contactsujet::orderBy('created_at', 'asc')->get();
+        
+        return view('pagecontact', [
+            'titles' => $titles,
+            'infos' => $infos,
+            'contactsujets' => $contactsujets
         ]);
     }
 }

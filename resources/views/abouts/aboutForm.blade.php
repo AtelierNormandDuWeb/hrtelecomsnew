@@ -11,7 +11,7 @@
                     @method('PUT')
                 @endif
                 <div class="mb-3">
-                    <label for="title1" class="form-label">Title1</label>
+                    <label for="title1" class="form-label">Titre 1</label>
                     <input type="text" placeholder="Title1 ..." name="title1"
                         value="{{ old('title1', isset($about) ? $about->title1 : '') }}" class="form-control"
                         id="title1" aria-describedby="title1Help" required />
@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="title2" class="form-label">Title2</label>
+                    <label for="title2" class="form-label">Titre 2</label>
                     <input type="text" placeholder="Title2 ..." name="title2"
                         value="{{ old('title2', isset($about) ? $about->title2 : '') }}" class="form-control"
                         id="title2" aria-describedby="title2Help" required />
@@ -35,7 +35,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="texte1" class="form-label">Texte1</label>
+                    <label for="texte1" class="form-label">Texte 1</label>
                     <input type="text" placeholder="Texte1 ..." name="texte1"
                         value="{{ old('texte1', isset($about) ? $about->texte1 : '') }}" class="form-control"
                         id="texte1" aria-describedby="texte1Help" required />
@@ -47,7 +47,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="texte2" class="form-label">Texte2</label>
+                    <label for="texte2" class="form-label">Texte 2</label>
                     <input type="text" placeholder="Texte2 ..." name="texte2"
                         value="{{ old('texte2', isset($about) ? $about->texte2 : '') }}" class="form-control"
                         id="texte2" aria-describedby="texte2Help" required />
@@ -59,7 +59,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="button" class="form-label">Button</label>
+                    <label for="button" class="form-label">Boutton</label>
                     <input type="text" placeholder="Button ..." name="button"
                         value="{{ old('button', isset($about) ? $about->button : '') }}" class="form-control"
                         id="button" aria-describedby="buttonHelp" required />
@@ -89,14 +89,8 @@
                 </div> <a href="{{ route('admin.about.index') }}" class="btn btn-danger mt-1">
                     Annuler
                 </a>
-                <button class="btn btn-primary mt-1"> {{ isset($about) ? 'Update' : 'Create' }}</button>
+                <button class="btn btn-primary mt-1"> {{ isset($about) ? 'Modifier' : 'Creer' }}</button>
             </form>
-        </div>
-        <div class="col-md-4">
-            <a class="btn btn-danger mt-1" href="{{ route('admin.about.index') }}">
-                Cancel
-            </a>
-            <button class="btn btn-primary mt-1"> {{ isset($about) ? 'Update' : 'Create' }}</button>
         </div>
     </div>
 

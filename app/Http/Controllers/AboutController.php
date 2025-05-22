@@ -14,7 +14,10 @@ class AboutController extends Controller
     public function index(): View
     {
         $abouts = About::orderBy('created_at', 'desc')->paginate(5);
-        return view('abouts/index', ['abouts' => $abouts]);
+        return view('abouts/index', 
+        [
+            'abouts' => $abouts
+        ]);
     }
 
     public function show($id): View

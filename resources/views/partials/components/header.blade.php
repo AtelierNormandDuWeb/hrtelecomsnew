@@ -21,7 +21,7 @@
                 </li>
                 <li><a href="{{ url('/') }}#services">Services</a></li>
                 <li><a href="{{ url('/') }}#faq">FAQ</a></li>
-                <li><a href="{{ url('/') }}#contact">Contact</a></li>
+                <li><a href="{{ url('/pagecontact') }}#contact">Contact</a></li>
             </ul>
         </nav>
     </div>
