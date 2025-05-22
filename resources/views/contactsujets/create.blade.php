@@ -2,9 +2,9 @@
 
 @section('content')
 <div >
-    <h3>Create Contactsujet</h3>
+    <h3>creer nouveau titre</h3>
     <a href="{{ route('admin.contactsujet.index') }}" class="btn btn-success my-1">
-            Home
+            Accueil
     </a>
     @include('contactsujets/contactsujetForm')
         </div>

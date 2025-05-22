@@ -15,9 +15,7 @@
                 <div id="columnSelector" class="dropdown-menu"> </div>
             </div>
             <a href="{{ route('admin.service.create') }}" class="btn btn-success m-1">
-
                 Creer Service
-
             </a>
         </div>
         <div class="table-responsive">
