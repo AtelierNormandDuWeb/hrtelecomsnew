@@ -442,7 +442,7 @@
 
         .sidenav__profile-title img {
             padding-top: 32px;
-            height: 10vw;
+            height: 80px;
             width: auto;
         }
 
@@ -616,7 +616,7 @@
             display: flex;
             flex: 1;
             /* flex-direction: column; */
-            justify-content:center;
+            justify-content: center;
             height: 160px;
             padding: 12px 30px;
             background: rgba(255, 255, 255, 0.12);
@@ -688,7 +688,6 @@
                 grid-template-areas: "sidenav header" "sidenav main" "sidenav footer";
                 height: 100vh;
             }
-
             .sidenav {
                 position: relative;
                 transform: translateX(0);
@@ -696,11 +695,9 @@
                 display: flex;
                 flex-direction: column;
             }
-
             .sidenav__brand-close {
                 visibility: hidden;
             }
-
             .main-header__intro-wrapper {
                 padding: 0 30px;
             }
@@ -876,7 +873,6 @@
             </div>
             <div class="sidenav__profile">
                 <div class="sidenav__profile-adress">
-                    {{-- <h2>HrTelecoms - Tableau de bord</h2> --}}
                     <a href="{{ route('home') }}">
                         <h3>Retour site Web</h3>
                     </a>
@@ -886,7 +882,6 @@
                 <ul class="navList">
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas"></i> --}}
                             <span class="navList__subheading-title">Accueil</span>
                         </div>
                         <ul class="subList">
@@ -899,7 +894,6 @@
                     </li>
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas"></i> --}}
                             <span class="navList__subheading-title">A propos</span>
                         </div>
                         <ul class="subList">
@@ -912,7 +906,6 @@
                     </li>
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Titre</span>
                         </div>
                         <ul class="subList">
@@ -925,7 +918,6 @@
                     </li>
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Services</span>
                         </div>
                         <ul class="subList">
@@ -939,7 +931,6 @@
 
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Avis</span>
                         </div>
                         <ul class="subList">
@@ -954,7 +945,6 @@
 
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Questions</span>
                         </div>
                         <ul class="subList">
@@ -969,7 +959,6 @@
 
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Solutions</span>
                         </div>
                         <ul class="subList">
@@ -983,7 +972,6 @@
 
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Informations</span>
                         </div>
                         <ul class="subList">
@@ -997,7 +985,6 @@
 
                     <li>
                         <div class="navList__subheading row row--align-v-center navList__subheading--open">
-                            {{-- <i class="fas  fa-list-ul"></i> --}}
                             <span class="navList__subheading-title">Contact</span>
                         </div>
                         <ul class="subList">
@@ -1010,7 +997,6 @@
                     </li>
                     <li>
                         <div class="navList__subheading row row--align-v-center">
-                            {{-- <i class="fas fa-user"></i> --}}
                             <span class="navList__subheading-title">Gestion</span>
                         </div>
                         <ul class="subList subList--hidden">
@@ -1050,12 +1036,9 @@
             <div class="main-header">
                 <div class="main-header__intro-wrapper">
                     <div class="sidenav__profile-title">
-                        <img class="logo-icon" src="{{ asset('images/Logo.png') }}" alt="Logo de l'entreprise HrTélécoms">
+                        <img class="logo-icon" src="{{ asset('images/Logo.png') }}"
+                            alt="Logo de l'entreprise HrTélécoms">
                     </div>
-                    {{-- <div class="main-header__welcome">
-                        <h1 class="main-header__welcome-title">HrTelecoms - Tableau de bord</h1>
-                        <p class="main-header__welcome-subtitle">Gerez ici votre site web</p>
-                    </div> --}}
                 </div>
             </div>
             <div class="p-3">
