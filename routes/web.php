@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CardsController;
+use App\Http\Controllers\CardsDisplayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,9 @@ Route::get('/cookiesview', fn() => view('cookiesview'))->name('cookiesview');
 
 Route::get('/ourservices', fn() => view('ourservices'))->name('ourservices');
 
-// Route::get('/pagecontact', fn() => view('pagecontact'))->name('pagecontact');
+Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('trombinoscope');
+
+Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');
 
 Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
 
@@ -406,4 +410,42 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //Delete Heroslider
     Route::delete('/herosliders/delete/{heroslider}', 'App\Http\Controllers\HerosliderController@delete')->name('heroslider.delete');
 
+});
+// Route::prefix('admin')->name('admin.')->group(function(){
+
+//     //Get Cards datas
+//     Route::get('/cards', 'App\Http\Controllers\CardsController@index')->name('cards.index');
+
+//     //Show Card by Id
+//     Route::get('/cards/show/{id}', 'App\Http\Controllers\CardsController@show')->name('cards.show');
+
+//     //Get Cards by Id
+//     Route::get('/cards/create', 'App\Http\Controllers\CardsController@create')->name('cards.create');
+
+//     //Edit Card by Id
+//     Route::get('/cards/edit/{id}', 'App\Http\Controllers\CardsController@edit')->name('cards.edit');
+
+//     //Save new Card
+//     Route::post('/cards/store', 'App\Http\Controllers\CardsController@store')->name('cards.store');
+
+//     //Update One Card
+//     Route::put('/cards/update/{cards}', 'App\Http\Controllers\CardsController@update')->name('cards.update');
+
+//     //Update One Card Speedly
+//     Route::put('/cards/speed/{cards}', 'App\Http\Controllers\CardsController@updateSpeed')->name('cards.update.speed');
+
+//     //Delete Card
+//     Route::delete('/cards/delete/{cards}', 'App\Http\Controllers\CardsController@delete')->name('cards.delete');
+
+// });
+
+Route::prefix('admin/cards')->name('admin.cards.')->group(function () {
+    Route::get('/', [CardsController::class, 'index'])->name('index');
+    Route::get('/create', [CardsController::class, 'create'])->name('create');
+    Route::post('/', [CardsController::class, 'store'])->name('store');
+    Route::get('/show/{id}', [CardsController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [CardsController::class, 'edit'])->name('edit');
+    Route::put('/{cards}', [CardsController::class, 'update'])->name('update');
+    Route::put('/speed/{cards}', [CardsController::class, 'updateSpeed'])->name('updateSpeed');
+    Route::delete('/delete/{cards}', [CardsController::class, 'delete'])->name('delete');
 });
