@@ -445,345 +445,380 @@
         </div>
     </section>
     <script>
-        console.clear();
+    console.clear();
 
-        const cardTemplate = document.querySelector("#tpl-card");
-        const cardContainer = document.querySelector("#cards-container");
+    const cardTemplate = document.querySelector("#tpl-card");
+    const cardContainer = document.querySelector("#cards-container");
 
-        const ITEMS_PER_ROW = 4;
-        const SPACING = 100;
+    // Vérification de l'existence des éléments essentiels
+    if (!cardTemplate) {
+        console.error('Template #tpl-card non trouvé !');
+    }
+    if (!cardContainer) {
+        console.error('Container #cards-container non trouvé !');
+    }
 
-        async function fetchCards() {
-            try {
-                const response = await fetch('{{ route('cards.json') }}', {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                            'content')
-                    }
-                });
+    // Configuration responsive
+    function getLayoutConfig() {
+        const width = window.innerWidth;
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const cards = await response.json();
-                console.log('Cards chargées:', cards);
-                return cards;
-            } catch (error) {
-                console.error('Erreur lors du chargement des cartes:', error);
-                return [];
-            }
-        }
-        // Configuration responsive
-        function getLayoutConfig() {
-            const width = window.innerWidth;
-
-            if (width <= 600) {
-                return {
-                    itemsPerRow: 2,
-                    horizontalSpacing: 160, // Parfait sur mobile
-                    verticalSpacing: 200,
-                    cardWidth: 140,
-                    cardHeight: 180
-                };
-            }
-
-            if (width <= 960) {
-                return {
-                    itemsPerRow: 3,
-                    horizontalSpacing: 220, // Beaucoup plus d'espace
-                    verticalSpacing: 280, // Beaucoup plus d'espace vertical
-                    cardWidth: 160,
-                    cardHeight: 220
-                };
-            }
-
-            if (width <= 1440) {
-                return {
-                    itemsPerRow: 4,
-                    horizontalSpacing: 240, // Encore plus d'espace
-                    verticalSpacing: 320, // Encore plus d'espace vertical
-                    cardWidth: 180,
-                    cardHeight: 240
-                };
-            }
-
+        if (width <= 600) {
             return {
-                itemsPerRow: 4,
-                horizontalSpacing: 280, // Maximum d'espace sur très grands écrans
-                verticalSpacing: 360,
-                cardWidth: 200,
-                cardHeight: 260
+                itemsPerRow: 2,
+                horizontalSpacing: 160, // Parfait sur mobile
+                verticalSpacing: 200,
+                cardWidth: 140,
+                cardHeight: 180
             };
         }
-        // Fonction pour calculer et définir la hauteur du conteneur
-        function setContainerHeight(totalCards) {
-            const config = getLayoutConfig();
-            const rows = Math.ceil(totalCards / config.itemsPerRow);
 
-            // Calcul de la hauteur nécessaire
-            const containerHeight = (rows - 1) * config.verticalSpacing + config.cardHeight + 100; // +100 pour le padding
-
-            // Appliquer la hauteur au conteneur
-            const container = document.querySelector('.cards-container');
-            if (container) {
-                container.style.setProperty('--container-height', `${containerHeight}px`);
-            }
-        }
-        // Fonction pour déterminer le nombre de cartes par ligne selon la largeur d'écran
-        function getItemsPerRow() {
-            const width = window.innerWidth;
-            if (width <= 600) return 2; // Smartphone : 2 cartes
-            if (width <= 800) return 3; // Tablette : 3 cartes
-            if (width <= 1200) return 4; // Desktop : 4 cartes
-            return 5; // Large desktop : 5 cartes
+        if (width <= 960) {
+            return {
+                itemsPerRow: 3,
+                horizontalSpacing: 220, // Beaucoup plus d'espace
+                verticalSpacing: 280, // Beaucoup plus d'espace vertical
+                cardWidth: 160,
+                cardHeight: 220
+            };
         }
 
-        // Fonction pour déterminer l'espacement selon la largeur d'écran
-        function getSpacing() {
-            const width = window.innerWidth;
-            if (width <= 600) return 140; // Plus d'espace sur smartphone
-            if (width <= 800) return 120; // Espacement moyen sur tablette
-            if (width <= 1200) return 110; // Espacement standard sur desktop
-            return 100; // Espacement serré sur large desktop
+        if (width <= 1440) {
+            return {
+                itemsPerRow: 4,
+                horizontalSpacing: 240, // Encore plus d'espace
+                verticalSpacing: 320, // Encore plus d'espace vertical
+                cardWidth: 180,
+                cardHeight: 240
+            };
         }
 
-        function createCardPanel(card, index) {
-            const clone = cardTemplate.content.cloneNode(true);
+        return {
+            itemsPerRow: 4,
+            horizontalSpacing: 280, // Maximum d'espace sur très grands écrans
+            verticalSpacing: 360,
+            cardWidth: 200,
+            cardHeight: 260
+        };
+    }
 
-            assignIds(clone, card);
-            setContent(clone, card);
+    // Fonction pour calculer et définir la hauteur du conteneur
+    function setContainerHeight(totalCards) {
+        const config = getLayoutConfig();
+        const rows = Math.ceil(totalCards / config.itemsPerRow);
 
-            const infoHTML = createInfoHTML(card);
-            const contactHTML = createContactHTML(card);
-            const navPanels = clone.querySelectorAll("[data-panels] div");
+        // Calcul de la hauteur nécessaire
+        const containerHeight = (rows - 1) * config.verticalSpacing + config.cardHeight + 100; // +100 pour le padding
 
-            navPanels[1].appendChild(infoHTML);
-            navPanels[2].appendChild(contactHTML);
-
-            applyPositioning(clone, index);
-
-            cardContainer.append(clone);
+        // Appliquer la hauteur au conteneur - avec vérification d'existence
+        const container = document.querySelector('.cards-container');
+        if (container) {
+            container.style.setProperty('--container-height', `${containerHeight}px`);
+        } else {
+            console.warn('Container .cards-container non trouvé pour setContainerHeight');
         }
+    }
 
-        function assignIds(clone, card) {
-            clone.querySelector("input.panel-1").id = `radio-tab-${card.card_id}.1`;
-            clone.querySelector("input.panel-2").id = `radio-tab-${card.card_id}.2`;
-            clone.querySelector("input.panel-3").id = `radio-tab-${card.card_id}.3`;
-            clone.querySelector("input[name='character']").id = `radio-char-${card.card_id}`;
-            clone.querySelector(".avatar").setAttribute("for", `radio-char-${card.card_id}`);
-            clone.querySelector("article").id = `card-${card.card_id}`;
+    // Fonction pour recalculer toutes les positions
+    function recalculateAllPositions() {
+        const articles = document.querySelectorAll('.cards-container article');
+        
+        // Vérifier que des articles existent
+        if (articles.length === 0) {
+            console.warn('Aucun article trouvé pour recalculateAllPositions');
+            return;
         }
-
-        function setContent(clone, card) {
-            // Gestion de l'image de fond
-            if (card.background_url) {
-                clone.querySelector("article").style.setProperty(
-                    "--bg-img",
-                    `url(${card.background_url})`
-                );
-            }
-
-            // Gestion de l'avatar
-            const avatarImg = clone.querySelector(".avatar img");
-            if (card.avatar_url) {
-                avatarImg.src = card.avatar_url;
-            }
-            avatarImg.alt = card.name || 'Avatar';
-
-            // Contenu textuel
-            clone.querySelector("h2").textContent = card.name || 'Sans nom';
-            clone.querySelector("h3").textContent = card.title || card.subtitle || '';
-
-            // Navigation
-            const navLabels = clone.querySelectorAll("nav label");
-            navLabels[0].setAttribute("for", `radio-tab-${card.card_id}.1`);
-            navLabels[1].setAttribute("for", `radio-tab-${card.card_id}.2`);
-            navLabels[2].setAttribute("for", `radio-tab-${card.card_id}.3`);
-
-            // Contenu des panneaux
-            const navPanels = clone.querySelectorAll("[data-panels] div");
-            navPanels[0].textContent = card.description || 'Aucune description disponible.';
-        }
-
-        function applyPositioning(clone, index) {
-            const config = getLayoutConfig();
-
+        
+        const config = getLayoutConfig();
+        
+        // Mettre à jour la hauteur du conteneur
+        setContainerHeight(articles.length);
+        
+        articles.forEach((article, index) => {
             const row = Math.floor(index / config.itemsPerRow);
             const col = index % config.itemsPerRow;
 
-            const article = clone.querySelector("article");
-
-            // Calcul des offsets depuis le centre
             const colOffset = col - (config.itemsPerRow - 1) / 2;
-            const rowOffset = row - (Math.ceil(document.querySelectorAll('.cards-container article').length / config
-                .itemsPerRow) - 1) / 2;
+            const rowOffset = row - (Math.ceil(articles.length / config.itemsPerRow) - 1) / 2;
 
-            // Calcul des positions en pixels plutôt qu'en pourcentage
             const x = colOffset * config.horizontalSpacing;
             const y = rowOffset * config.verticalSpacing;
 
             article.style.setProperty("--translate-x", `${x}px`);
             article.style.setProperty("--translate-y", `${y}px`);
-        }
-        // Fonction pour recalculer toutes les positions
-        function recalculateAllPositions() {
-            const articles = document.querySelectorAll('.cards-container article');
-            const config = getLayoutConfig();
-
-            // Mettre à jour la hauteur du conteneur
-            setContainerHeight(articles.length);
-
-            articles.forEach((article, index) => {
-                const row = Math.floor(index / config.itemsPerRow);
-                const col = index % config.itemsPerRow;
-
-                const colOffset = col - (config.itemsPerRow - 1) / 2;
-                const rowOffset = row - (Math.ceil(articles.length / config.itemsPerRow) - 1) / 2;
-
-                const x = colOffset * config.horizontalSpacing;
-                const y = rowOffset * config.verticalSpacing;
-
-                article.style.setProperty("--translate-x", `${x}px`);
-                article.style.setProperty("--translate-y", `${y}px`);
-            });
-        }
-
-        window.addEventListener('resize', debounce(() => {
-            recalculateAllPositions();
-        }, 250));
-
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        function createInfoHTML(card) {
-            const fragment = document.createDocumentFragment();
-
-            if (card.subtitle && card.subtitle !== card.title) {
-                const h4 = document.createElement("h4");
-                h4.textContent = card.subtitle;
-                fragment.appendChild(h4);
-            }
-
-            if (card.details && typeof card.details === 'object' && Object.keys(card.details).length > 0) {
-                const ul = document.createElement("ul");
-                for (const [key, value] of Object.entries(card.details)) {
-                    if (value) {
-                        const li = document.createElement("li");
-                        li.innerHTML = `<strong>${key}:</strong> ${value}`;
-                        ul.appendChild(li);
-                    }
-                }
-                if (ul.children.length > 0) {
-                    fragment.appendChild(ul);
-                }
-            }
-
-            // Si pas de contenu, afficher un message
-            if (!fragment.hasChildNodes()) {
-                const p = document.createElement("p");
-                p.textContent = "Aucune information supplémentaire disponible.";
-                fragment.appendChild(p);
-            }
-
-            return fragment;
-        }
-
-        function createContactHTML(card) {
-            const fragment = document.createDocumentFragment();
-
-            if (card.contact_info && typeof card.contact_info === 'object' && Object.keys(card.contact_info).length > 0) {
-                const h4 = document.createElement("h4");
-                h4.textContent = "Contact";
-                fragment.appendChild(h4);
-
-                const ul = document.createElement("ul");
-                for (const [key, value] of Object.entries(card.contact_info)) {
-                    if (value) {
-                        const li = document.createElement("li");
-                        if (key.toLowerCase().includes('email')) {
-                            li.innerHTML =
-                                `<strong>${key}:</strong> <a href="mailto:${value}" style="color: #ffd700;">${value}</a>`;
-                        } else if (key.toLowerCase().includes('tel') || key.toLowerCase().includes('phone') || key
-                            .toLowerCase().includes('téléphone')) {
-                            li.innerHTML =
-                                `<strong>${key}:</strong> <a href="tel:${value}" style="color: #ffd700;">${value}</a>`;
-                        } else {
-                            li.innerHTML = `<strong>${key}:</strong> ${value}`;
-                        }
-                        ul.appendChild(li);
-                    }
-                }
-                if (ul.children.length > 0) {
-                    fragment.appendChild(ul);
-                }
-            }
-
-            // Si pas de contact, afficher un message
-            if (!fragment.hasChildNodes()) {
-                const p = document.createElement("p");
-                p.textContent = "Aucune information de contact disponible.";
-                fragment.appendChild(p);
-            }
-
-            return fragment;
-        }
-
-        async function renderCards() {
-            try {
-                const cards = await fetchCards();
-
-                // Clear loading message
-                cardContainer.innerHTML = '';
-
-                if (!cards || cards.length === 0) {
-                    cardContainer.innerHTML =
-                        '<p style="color: white; text-align: center; font-size: 1.2rem;">Aucune carte à afficher. <a href="{{ route('admin.cards.index') }}" style="color: #ffd700;">Ajouter des cartes</a></p>';
-                    return;
-                }
-
-                if (cards.error) {
-                    cardContainer.innerHTML =
-                        `<div class="error">Erreur: ${cards.error}</div>`;
-                    return;
-                }
-
-                console.log(`Affichage de ${cards.length} cartes`);
-
-                // Définir la hauteur du conteneur avant d'ajouter les cartes
-                setContainerHeight(cards.length);
-
-                requestAnimationFrame(() => {
-                    cards.forEach((card, index) => {
-                        createCardPanel(card, index);
-                    });
-                });
-
-            } catch (error) {
-                console.error('Erreur lors du rendu des cartes:', error);
-                cardContainer.innerHTML =
-                    '<div class="error">Erreur lors du chargement des cartes. Veuillez réessayer plus tard.</div>';
-            }
-        }
-
-        // Initialisation au chargement de la page
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM chargé, initialisation du trombinoscope...');
-            renderCards();
         });
+    }
 
-        // Fonction pour recharger les cartes (utile pour le debug)
-        window.reloadCards = renderCards;
-    </script>
+    async function fetchCards() {
+        try {
+            const response = await fetch('{{ route('cards.json') }}', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const cards = await response.json();
+            console.log('Cards chargées:', cards);
+            return cards;
+        } catch (error) {
+            console.error('Erreur lors du chargement des cartes:', error);
+            return [];
+        }
+    }
+
+    function createCardPanel(card, index) {
+        if (!cardTemplate) {
+            console.error('Template non disponible pour createCardPanel');
+            return;
+        }
+
+        const clone = cardTemplate.content.cloneNode(true);
+
+        assignIds(clone, card);
+        setContent(clone, card);
+
+        const infoHTML = createInfoHTML(card);
+        const contactHTML = createContactHTML(card);
+        const navPanels = clone.querySelectorAll("[data-panels] div");
+
+        if (navPanels.length >= 3) {
+            navPanels[1].appendChild(infoHTML);
+            navPanels[2].appendChild(contactHTML);
+        }
+
+        applyPositioning(clone, index);
+
+        if (cardContainer) {
+            cardContainer.append(clone);
+        }
+    }
+
+    function assignIds(clone, card) {
+        const panel1 = clone.querySelector("input.panel-1");
+        const panel2 = clone.querySelector("input.panel-2");
+        const panel3 = clone.querySelector("input.panel-3");
+        const charInput = clone.querySelector("input[name='character']");
+        const avatar = clone.querySelector(".avatar");
+        const article = clone.querySelector("article");
+
+        if (panel1) panel1.id = `radio-tab-${card.card_id}.1`;
+        if (panel2) panel2.id = `radio-tab-${card.card_id}.2`;
+        if (panel3) panel3.id = `radio-tab-${card.card_id}.3`;
+        if (charInput) charInput.id = `radio-char-${card.card_id}`;
+        if (avatar) avatar.setAttribute("for", `radio-char-${card.card_id}`);
+        if (article) article.id = `card-${card.card_id}`;
+    }
+
+    function setContent(clone, card) {
+        // Gestion de l'image de fond
+        const article = clone.querySelector("article");
+        if (card.background_url && article) {
+            article.style.setProperty("--bg-img", `url(${card.background_url})`);
+        }
+
+        // Gestion de l'avatar
+        const avatarImg = clone.querySelector(".avatar img");
+        if (avatarImg) {
+            if (card.avatar_url) {
+                avatarImg.src = card.avatar_url;
+            }
+            avatarImg.alt = card.name || 'Avatar';
+        }
+
+        // Contenu textuel
+        const h2 = clone.querySelector("h2");
+        const h3 = clone.querySelector("h3");
+        
+        if (h2) h2.textContent = card.name || 'Sans nom';
+        if (h3) h3.textContent = card.title || card.subtitle || '';
+
+        // Navigation
+        const navLabels = clone.querySelectorAll("nav label");
+        if (navLabels.length >= 3) {
+            navLabels[0].setAttribute("for", `radio-tab-${card.card_id}.1`);
+            navLabels[1].setAttribute("for", `radio-tab-${card.card_id}.2`);
+            navLabels[2].setAttribute("for", `radio-tab-${card.card_id}.3`);
+        }
+
+        // Contenu des panneaux
+        const navPanels = clone.querySelectorAll("[data-panels] div");
+        if (navPanels.length >= 1) {
+            navPanels[0].textContent = card.description || 'Aucune description disponible.';
+        }
+    }
+
+    function applyPositioning(clone, index) {
+        const config = getLayoutConfig();
+        const article = clone.querySelector("article");
+        
+        if (!article) {
+            console.warn('Article non trouvé pour applyPositioning');
+            return;
+        }
+
+        const row = Math.floor(index / config.itemsPerRow);
+        const col = index % config.itemsPerRow;
+
+        // Calcul des offsets depuis le centre
+        const colOffset = col - (config.itemsPerRow - 1) / 2;
+        // Calculer le nombre total de cartes attendues pour centrer correctement
+        const totalCards = document.querySelectorAll('.cards-container article').length + 1; // +1 pour la carte actuelle
+        const totalRows = Math.ceil(totalCards / config.itemsPerRow);
+        const rowOffset = row - (totalRows - 1) / 2;
+
+        // Calcul des positions en pixels
+        const x = colOffset * config.horizontalSpacing;
+        const y = rowOffset * config.verticalSpacing;
+
+        article.style.setProperty("--translate-x", `${x}px`);
+        article.style.setProperty("--translate-y", `${y}px`);
+    }
+
+    function createInfoHTML(card) {
+        const fragment = document.createDocumentFragment();
+
+        if (card.subtitle && card.subtitle !== card.title) {
+            const h4 = document.createElement("h4");
+            h4.textContent = card.subtitle;
+            fragment.appendChild(h4);
+        }
+
+        if (card.details && typeof card.details === 'object' && Object.keys(card.details).length > 0) {
+            const ul = document.createElement("ul");
+            for (const [key, value] of Object.entries(card.details)) {
+                if (value) {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<strong>${key}:</strong> ${value}`;
+                    ul.appendChild(li);
+                }
+            }
+            if (ul.children.length > 0) {
+                fragment.appendChild(ul);
+            }
+        }
+
+        // Si pas de contenu, afficher un message
+        if (!fragment.hasChildNodes()) {
+            const p = document.createElement("p");
+            p.textContent = "Aucune information supplémentaire disponible.";
+            fragment.appendChild(p);
+        }
+
+        return fragment;
+    }
+
+    function createContactHTML(card) {
+        const fragment = document.createDocumentFragment();
+
+        if (card.contact_info && typeof card.contact_info === 'object' && Object.keys(card.contact_info).length > 0) {
+            const h4 = document.createElement("h4");
+            h4.textContent = "Contact";
+            fragment.appendChild(h4);
+
+            const ul = document.createElement("ul");
+            for (const [key, value] of Object.entries(card.contact_info)) {
+                if (value) {
+                    const li = document.createElement("li");
+                    if (key.toLowerCase().includes('email')) {
+                        li.innerHTML = `<strong>${key}:</strong> <a href="mailto:${value}" style="color: #ffd700;">${value}</a>`;
+                    } else if (key.toLowerCase().includes('tel') || key.toLowerCase().includes('phone') || key.toLowerCase().includes('téléphone')) {
+                        li.innerHTML = `<strong>${key}:</strong> <a href="tel:${value}" style="color: #ffd700;">${value}</a>`;
+                    } else {
+                        li.innerHTML = `<strong>${key}:</strong> ${value}`;
+                    }
+                    ul.appendChild(li);
+                }
+            }
+            if (ul.children.length > 0) {
+                fragment.appendChild(ul);
+            }
+        }
+
+        // Si pas de contact, afficher un message
+        if (!fragment.hasChildNodes()) {
+            const p = document.createElement("p");
+            p.textContent = "Aucune information de contact disponible.";
+            fragment.appendChild(p);
+        }
+
+        return fragment;
+    }
+
+    async function renderCards() {
+        try {
+            if (!cardContainer) {
+                console.error('Container #cards-container non trouvé pour renderCards !');
+                return;
+            }
+
+            const cards = await fetchCards();
+
+            // Clear loading message
+            cardContainer.innerHTML = '';
+
+            if (!cards || cards.length === 0) {
+                cardContainer.innerHTML = '<p style="color: white; text-align: center; font-size: 1.2rem;">Aucune carte à afficher. <a href="{{ route('admin.cards.index') }}" style="color: #ffd700;">Ajouter des cartes</a></p>';
+                return;
+            }
+
+            if (cards.error) {
+                cardContainer.innerHTML = `<div class="error">Erreur: ${cards.error}</div>`;
+                return;
+            }
+
+            console.log(`Affichage de ${cards.length} cartes`);
+
+            // Définir la hauteur du conteneur avant d'ajouter les cartes
+            setContainerHeight(cards.length);
+
+            requestAnimationFrame(() => {
+                cards.forEach((card, index) => {
+                    createCardPanel(card, index);
+                });
+            });
+
+        } catch (error) {
+            console.error('Erreur lors du rendu des cartes:', error);
+            if (cardContainer) {
+                cardContainer.innerHTML = '<div class="error">Erreur lors du chargement des cartes. Veuillez réessayer plus tard.</div>';
+            }
+        }
+    }
+
+    // Fonction utilitaire pour debounce
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Event listener pour le redimensionnement
+    window.addEventListener('resize', debounce(() => {
+        recalculateAllPositions();
+    }, 250));
+
+    // Initialisation au chargement de la page
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM chargé, initialisation du trombinoscope...');
+        
+        // Attendre un peu que tous les éléments soient bien en place
+        setTimeout(() => {
+            renderCards();
+        }, 100);
+    });
+
+    // Fonction pour recharger les cartes (utile pour le debug)
+    window.reloadCards = renderCards;
+</script>
 @endsection
