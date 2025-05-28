@@ -1,453 +1,449 @@
-<!DOCTYPE html>
-<html lang="fr">
+@extends('base')
+<style>
+    @layer base, cards;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Trombinoscope</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="https://fonts.bunny.net/css?family=roboto-condensed:300,400,500,700" rel="stylesheet">
-    <style>
-        @layer reset, base, cards;
+    .trombinoscope-section {
+        padding-top: 10rem;
+        background: linear-gradient(135deg, #667eea 0%, #cccccc 100%);
+        min-height: 100vh; /* Assure une hauteur minimale */
+    }
 
-        @layer reset {
-            * {
-                box-sizing: border-box;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            ul {
-                margin: 0;
-            }
+    @layer base {
+        .trombinoscope-container {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Changé de 'end' à 'center' */
+            min-height: calc(100vh - 10rem); /* Hauteur adaptée */
+            position: relative;
+            line-height: 1.5;
+            padding: 4rem 2rem; /* Plus de padding vertical */
         }
 
-        @layer base {
-            body {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                position: relative;
-                font-family: 'Roboto Condensed', sans-serif;
-                line-height: 1.5;
-                padding: 2rem;
-            }
-
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border-width: 0;
-            }
-
-            .header {
-                position: fixed;
-                top: 1rem;
-                left: 1rem;
-                z-index: 1000;
-                color: white;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            }
-
-            .admin-link {
-                position: fixed;
-                top: 1rem;
-                right: 1rem;
-                z-index: 1000;
-                background: rgba(0, 0, 0, 0.7);
-                color: white;
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                text-decoration: none;
-                transition: background 0.3s;
-            }
-
-            .admin-link:hover {
-                background: rgba(0, 0, 0, 0.9);
-                color: white;
-            }
-
-            .loading {
-                color: white;
-                text-align: center;
-                font-size: 1.2rem;
-            }
-
-            .error {
-                color: #ff6b6b;
-                text-align: center;
-                font-size: 1.2rem;
-                background: rgba(0, 0, 0, 0.7);
-                padding: 1rem;
-                border-radius: 10px;
-                margin: 1rem;
-            }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
-        @layer cards {
-            .cards-container {
-                --item-border-clr: rgba(255 255 255 / .5);
-                --item-txt-clr: white;
-                --nav-indicator-bg: rgba(3, 39, 59, 0.7);
+        .header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-                color: var(--item-txt-clr);
-                display: grid;
-                place-content: center;
-                width: 100%;
-                max-width: 20rem;
-                position: relative;
-            }
+        .admin-link {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
 
+        .admin-link:hover {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+        }
+
+        .loading {
+            color: white;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .error {
+            color: #ff6b6b;
+            text-align: center;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem;
+        }
+    }
+
+    @layer cards {
+        .cards-container {
+            --item-border-clr: rgba(255 255 255 / .5);
+            --item-txt-clr: white;
+            --nav-indicator-bg: rgba(3, 39, 59, 0.7);
+
+            color: var(--item-txt-clr);
+            display: grid;
+            place-content: center;
+            width: 100%;
+            position: relative;
+            /* Hauteur calculée dynamiquement selon le nombre de lignes */
+            min-height: var(--container-height, 600px);
+        }
+
+        .cards-container article {
+            --article-width: 70px;
+            --article-height: 100px;
+            --article-transition-duration: 1000ms;
+            --article-transition-delay: 0s;
+            --article-transition-timing: ease-in-out;
+
+            grid-area: 1/1;
+            transform-origin: center;
+            width: var(--article-width);
+            height: var(--article-height);
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--item-border-clr);
+            border-radius: 10px;
+            position: relative;
+            z-index: var(--article-0);
+            transition: all var(--article-transition-duration) var(--article-transition-timing);
+            transition-delay: var(--article-transition-delay);
+            overflow: hidden;
+            isolation: isolate;
+            transform: translate(var(--translate-x, 0), var(--translate-y, 0));
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smartphone : 2 cartes par ligne */
+        @media (width <= 600px) {
             .cards-container article {
-                --article-width: 70px;
-                --article-height: 100px;
-                --article-transition-duration: 1000ms;
-                --article-transition-delay: 0s;
-                --article-transition-timing: ease-in-out;
-
-                grid-area: 1/1;
-                transform-origin: center;
-                width: var(--article-width);
-                height: var(--article-height);
-                background-color: rgba(0, 0, 0, 0.8);
-                border: 1px solid var(--item-border-clr);
-                border-radius: 10px;
-                position: relative;
-                z-index: var(--article-0);
-                transition: all var(--article-transition-duration) var(--article-transition-timing);
-                transition-delay: var(--article-transition-delay);
-                overflow: hidden;
-                isolation: isolate;
-                transform: translate(var(--translate-x, 0), var(--translate-y, 0));
-                backdrop-filter: blur(10px);
-            }
-
-            @media (width > 600px) {
-                .cards-container article {
-                    --article-width: 120px;
-                    --article-height: 180px;
-                }
-            }
-
-            @media (width > 800px) {
-                .cards-container article {
-                    --article-width: 200px;
-                    --article-height: 250px;
-                }
-            }
-
-            .cards-container article::before {
-                content: "";
-                background-image:
-                    linear-gradient(to bottom, transparent 40%, rgba(0 0 0 / .75)),
-                    var(--bg-img);
-                inset: 0;
-                position: absolute;
-                opacity: 100;
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                z-index: -20;
-            }
-
-            .cards-container>input[name="character"]:checked+article::after {
-                opacity: 1;
-                background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 75%);
-                transition-delay: 1500ms;
-                z-index: -1;
-            }
-
-            .cards-container label {
-                cursor: pointer;
-            }
-
-            .cards-container .avatar {
-                display: block;
-                background-color: rgba(0, 0, 0, 0.3);
-                margin: 0 auto;
-                width: 100%;
-                height: 100%;
-                border-radius: 10px;
-                position: relative;
-                transition: all 1000ms ease-in-out;
-                transition-delay: var(--avatar-transition-delay, 0ms);
-                overflow: hidden;
-                clip-path: var(--avatar-clip, circle(100% at 50% 50%));
-                translate: 0 var(--avatar-y, 0);
-            }
-
-            .cards-container .avatar>img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-                transition: all 500ms ease-in-out;
-                transition-delay: var(--avatar-img-transition-delay, 0ms);
-                scale: var(--avatar-img-scale, 1);
-                translate: var(--avatar-img-x, 0), var(--avatar-img-y, 0);
-                filter: saturate(var(--avatar-img-saturate, 75%));
-            }
-
-            .cards-container .avatar>img:hover {
-                filter: saturate(100%);
-            }
-
-            .cards-container .btnClose {
-                position: absolute;
-                top: 0;
-                right: 0;
-                z-index: 20;
-                background-color: rgba(0, 0, 0, 0.8);
-                width: 30px;
-                height: 30px;
-                display: grid;
-                place-content: center;
-                border-radius: 0 10px 0 10px;
-                transition: all 300ms ease-in-out;
-                transition-delay: var(--btn-close-transition-delay, 0ms);
-                translate: var(--btn-close-x, 8rem);
-            }
-
-            .cards-container .btnClose>span {
-                opacity: 0.7;
-                transition: opacity 150ms ease-in-out, rotate 150ms ease-in-out;
-            }
-
-            .cards-container .btnClose:hover>span {
-                opacity: 1;
-                rotate: 90deg;
-            }
-
-            .cards-container h2 {
-                font-size: clamp(0.9rem, 2.5vw + .05rem, 1.4rem);
-                font-weight: 300;
-                letter-spacing: wider;
-                color: white;
-                white-space: nowrap;
-                position: absolute;
-                top: 0;
-                left: 0;
-                writing-mode: vertical-rl;
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-                height: 50%;
-                transition: all 300ms ease-in-out 750ms;
-                z-index: 20;
-                padding: 1rem 0.5rem;
-                pointer-events: none;
-                opacity: var(--title-opacity, 0);
-            }
-
-            @media (width > 800px) {
-                .cards-container h2 {
-                    opacity: var(--title-opacity, 1);
-                }
-            }
-
-            .cards-container h3 {
-                padding: 0 0 1rem 2rem;
-                text-shadow: 1px 1px rgba(0 0 0);
-            }
-
-            .cards-container h4 {
-                padding: 0.5rem 0;
-                text-transform: uppercase;
-                font-size: 0.9rem;
-                color: #ffd700;
-            }
-
-            .cards-container>article>div {
-                transition: transform var(--_transition-delay-base) ease-in-out;
-                transition-delay: var(--data-transition-delay, 0ms);
-                transform: translateY(var(--data-y, 0));
-            }
-
-            .cards-container nav {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                overflow: hidden;
-                position: relative;
-                isolation: isolate;
-                transition: all 300ms ease-in-out;
-                border-top: 1px solid var(--item-border-clr);
-                border-bottom: 1px solid var(--item-border-clr);
-            }
-
-            .cards-container nav::after {
-                content: "";
-                position: absolute;
-                background-color: var(--nav-indicator-bg);
-                transition: all 300ms ease-in-out;
-                z-index: -10;
-                height: 100%;
-                width: calc((100 / var(--items)) * 1%);
-                backdrop-filter: blur(2px);
-            }
-
-            .cards-container nav>label {
-                padding: 0.5rem 1rem;
-                text-transform: uppercase;
-                white-space: nowrap;
-                flex: 1;
-                display: grid;
-                place-content: center;
-                cursor: pointer;
-                transition: all 300ms ease-in-out;
-                position: relative;
-                isolation: isolate;
-                overflow: hidden;
-            }
-
-            .cards-container nav>label>span {
-                font-size: 1.4rem !important;
-                transition: scale 150ms ease-in-out;
-            }
-
-            .cards-container nav>label:hover>span {
-                scale: 1.2;
-            }
-
-            .cards-container [data-panels] {
-                display: flex;
-                width: 100%;
-                transition: all 500ms ease-in-out;
-                align-items: flex-start;
-            }
-
-            .cards-container [data-panels]>div {
-                flex-shrink: 0;
-                width: 100%;
-                height: 200px;
-                overflow-y: auto;
-                padding: 1rem 2rem;
-                transition: all 500ms ease-in-out;
-                font-size: 0.85rem;
-                line-height: 1.4;
-            }
-
-            .cards-container [data-panels] ul {
-                padding: 0.5rem 0;
-                list-style: none;
-                display: grid;
-                gap: .5rem;
-            }
-
-            .cards-container [data-panels] li {
-                padding: 0.25rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .cards-container:has(input[name="character"]:checked) article:not(input[name="character"]:checked+article) {
-                scale: 0;
-                rotate: -10deg;
-            }
-
-            .cards-container>input[name="character"]:checked+article {
-                --_transition-delay-base: 500ms;
-                --_transition-delay-steps: 500ms;
-                z-index: 10000;
-                transform: translate(0) !important;
-                --article-width: 350px;
-                --article-height: 500px;
-                --article-transition-delay: var(--_transition-delay-base);
-                --avatar-clip: circle(20% at 50% 35%);
-                --avatar-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 2);
-                --avatar-y: -4rem;
-                --avatar-img-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 3);
-                --avatar-img-saturate: 100%;
-                --avatar-img-scale: .65;
-                --avatar-img-x: -0.5rem;
-                --avatar-img-y: -0.5rem;
-                --title-opacity: 1;
-                --data-y: -280px;
-                --data-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 4);
-                --btn-close-x: 0;
-                --btn-close-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 5);
-            }
-
-            .cards-container .panel-1:checked~article nav::after {
-                transform: translateX(0%);
-            }
-
-            .cards-container .panel-2:checked~article nav::after {
-                transform: translateX(100%);
-            }
-
-            .cards-container .panel-3:checked~article nav::after {
-                transform: translateX(200%);
-            }
-
-            .cards-container .panel-1:checked~article [data-panels] {
-                transform: translateX(0%);
-            }
-
-            .cards-container .panel-2:checked~article [data-panels] {
-                transform: translateX(-100%);
-            }
-
-            .cards-container .panel-3:checked~article [data-panels] {
-                transform: translateX(-200%);
+                --article-width: 140px;
+                --article-height: 180px;
             }
         }
-    </style>
-</head>
 
-<body>
-    <div class="header">
-        <h1>Trombinoscope</h1>
-    </div>
+        /* Tablette : 3 cartes par ligne */
+        @media (width > 600px) and (width <= 960px) {
+            .cards-container article {
+                --article-width: 160px;
+                --article-height: 220px;
+            }
+        }
 
-    <a href="{{ route('admin.cards.index') }}" class="admin-link">
-        <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 0.5rem;">settings</span>
-        Administration
-    </a>
+        /* Desktop : 4 cartes par ligne */
+        @media (width > 960px) and (width <= 1440px) {
+            .cards-container article {
+                --article-width: 180px;
+                --article-height: 240px;
+            }
+        }
 
-    <input type="radio" name="character" id="radio-close" class="sr-only">
-    <div id="cards-container" class="cards-container">
-        <div class="loading">Chargement des cartes...</div>
-    </div>
+        /* Large desktop : 4 cartes par ligne */
+        @media (width > 1440px) {
+            .cards-container article {
+                --article-width: 200px;
+                --article-height: 260px;
+            }
+        }
 
-    <!-- Template pour les cartes -->
-    <template id="tpl-card">
-        <input type="radio" name="panel-toggle" id="" class="sr-only panel-1" checked>
-        <input type="radio" name="panel-toggle" id="" class="sr-only panel-2">
-        <input type="radio" name="panel-toggle" id="" class="sr-only panel-3">
-        <input type="radio" name="character" id="" class="sr-only">
-        <article id="">
-            <label for="" class="avatar">
-                <img src="" alt="" onerror="this.src='{{ asset('images/default-avatar.png') }}'">
-            </label>
-            <label for="radio-close" class="btnClose">
-                <span class="material-symbols-outlined">close</span>
-            </label>
-            <h2></h2>
-            <div>
-                <h3></h3>
-                <nav style="--items:3">
-                    <label for=""><span class="material-symbols-outlined">person</span></label>
-                    <label for=""><span class="material-symbols-outlined">info</span></label>
-                    <label for=""><span class="material-symbols-outlined">contact_mail</span></label>
-                </nav>
-                <div data-panels>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+        .cards-container article::before {
+            content: "";
+            background-image:
+                linear-gradient(to bottom, transparent 40%, rgba(0 0 0 / .75)),
+                var(--bg-img);
+            inset: 0;
+            position: absolute;
+            opacity: 100;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -20;
+        }
+
+        .cards-container>input[name="character"]:checked+article::after {
+            opacity: 1;
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent 75%);
+            transition-delay: 1500ms;
+            z-index: -1;
+        }
+
+        .cards-container label {
+            cursor: pointer;
+        }
+
+        .cards-container .avatar {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            position: relative;
+            transition: all 1000ms ease-in-out;
+            transition-delay: var(--avatar-transition-delay, 0ms);
+            overflow: hidden;
+            clip-path: var(--avatar-clip, circle(100% at 50% 50%));
+            translate: 0 var(--avatar-y, 0);
+        }
+
+        .cards-container .avatar>img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: all 500ms ease-in-out;
+            transition-delay: var(--avatar-img-transition-delay, 0ms);
+            scale: var(--avatar-img-scale, 1);
+            translate: var(--avatar-img-x, 0), var(--avatar-img-y, 0);
+            filter: saturate(var(--avatar-img-saturate, 75%));
+        }
+
+        .cards-container .avatar>img:hover {
+            filter: saturate(100%);
+        }
+
+        .cards-container .btnClose {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 20;
+            background-color: rgba(0, 0, 0, 0.8);
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-content: center;
+            border-radius: 0 10px 0 10px;
+            transition: all 300ms ease-in-out;
+            transition-delay: var(--btn-close-transition-delay, 0ms);
+            translate: var(--btn-close-x, 8rem);
+        }
+
+        .cards-container .btnClose>span {
+            opacity: 0.7;
+            transition: opacity 150ms ease-in-out, rotate 150ms ease-in-out;
+        }
+
+        .cards-container .btnClose:hover>span {
+            opacity: 1;
+            rotate: 90deg;
+        }
+
+        .cards-container h2 {
+            font-size: clamp(0.8rem, 2vw + .05rem, 1.2rem);
+            font-weight: 300;
+            letter-spacing: wider;
+            color: white;
+            white-space: nowrap;
+            position: absolute;
+            top: 0;
+            left: 0;
+            writing-mode: vertical-rl;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+            height: 50%;
+            transition: all 300ms ease-in-out 750ms;
+            z-index: 20;
+            padding: 0.5rem 0.25rem;
+            pointer-events: none;
+            opacity: var(--title-opacity, 0);
+        }
+
+        @media (width > 800px) {
+            .cards-container h2 {
+                opacity: var(--title-opacity, 1);
+                padding: 1rem 0.5rem;
+                font-size: clamp(0.9rem, 2.5vw + .05rem, 1.4rem);
+            }
+        }
+
+        .cards-container h3 {
+            padding: 0 0 1rem 2rem;
+            text-shadow: 1px 1px rgba(0 0 0);
+        }
+
+        .cards-container h4 {
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #ffd700;
+        }
+
+        .cards-container>article>div {
+            transition: transform var(--_transition-delay-base) ease-in-out;
+            transition-delay: var(--data-transition-delay, 0ms);
+            transform: translateY(var(--data-y, 0));
+        }
+
+        .cards-container nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+            isolation: isolate;
+            transition: all 300ms ease-in-out;
+            border-top: 1px solid var(--item-border-clr);
+            border-bottom: 1px solid var(--item-border-clr);
+        }
+
+        .cards-container nav::after {
+            content: "";
+            position: absolute;
+            background-color: var(--nav-indicator-bg);
+            transition: all 300ms ease-in-out;
+            z-index: -10;
+            height: 100%;
+            width: calc((100 / var(--items)) * 1%);
+            backdrop-filter: blur(2px);
+        }
+
+        .cards-container nav>label {
+            padding: 0.5rem 1rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+            flex: 1;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 300ms ease-in-out;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+        }
+
+        .cards-container nav>label>span {
+            font-size: 1.4rem !important;
+            transition: scale 150ms ease-in-out;
+        }
+
+        .cards-container nav>label:hover>span {
+            scale: 1.2;
+        }
+
+        .cards-container [data-panels] {
+            display: flex;
+            width: 100%;
+            transition: all 500ms ease-in-out;
+            align-items: flex-start;
+        }
+
+        .cards-container [data-panels]>div {
+            flex-shrink: 0;
+            width: 100%;
+            height: 200px;
+            overflow-y: auto;
+            padding: 1rem 2rem;
+            transition: all 500ms ease-in-out;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .cards-container [data-panels] ul {
+            padding: 0.5rem 0;
+            list-style: none;
+            display: grid;
+            gap: .5rem;
+        }
+
+        .cards-container [data-panels] li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cards-container:has(input[name="character"]:checked) article:not(input[name="character"]:checked+article) {
+            scale: 0;
+            rotate: -10deg;
+        }
+
+        .cards-container>input[name="character"]:checked+article {
+            --_transition-delay-base: 500ms;
+            --_transition-delay-steps: 500ms;
+            z-index: 10000;
+            transform: translate(0) !important;
+            --article-width: min(380px, 90vw);
+            --article-height: min(520px, 85vh);
+            --article-transition-delay: var(--_transition-delay-base);
+            --avatar-clip: circle(20% at 50% 35%);
+            --avatar-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 2);
+            --avatar-y: -4rem;
+            --avatar-img-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 3);
+            --avatar-img-saturate: 100%;
+            --avatar-img-scale: .65;
+            --avatar-img-x: -0.5rem;
+            --avatar-img-y: -0.5rem;
+            --title-opacity: 1;
+            --data-y: -280px;
+            --data-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 4);
+            --btn-close-x: 0;
+            --btn-close-transition-delay: calc(var(--_transition-delay-base) + var(--_transition-delay-steps) * 5);
+        }
+
+        .cards-container .panel-1:checked~article nav::after {
+            transform: translateX(0%);
+        }
+
+        .cards-container .panel-2:checked~article nav::after {
+            transform: translateX(100%);
+        }
+
+        .cards-container .panel-3:checked~article nav::after {
+            transform: translateX(200%);
+        }
+
+        .cards-container .panel-1:checked~article [data-panels] {
+            transform: translateX(0%);
+        }
+
+        .cards-container .panel-2:checked~article [data-panels] {
+            transform: translateX(-100%);
+        }
+
+        .cards-container .panel-3:checked~article [data-panels] {
+            transform: translateX(-200%);
+        }
+    }
+</style>
+
+@section('content')
+    @include('sections.accessibilitytools')
+    <section class="trombinoscope-section">
+
+        <div class="trombinoscope-container">
+            <input type="radio" name="character" id="radio-close" class="sr-only">
+            <div id="cards-container" class="cards-container">
+                <div class="loading">Chargement des cartes...</div>
             </div>
-        </article>
-    </template>
 
+            <!-- Template pour les cartes -->
+            <template id="tpl-card">
+                <input type="radio" name="panel-toggle" id="" class="sr-only panel-1" checked>
+                <input type="radio" name="panel-toggle" id="" class="sr-only panel-2">
+                <input type="radio" name="panel-toggle" id="" class="sr-only panel-3">
+                <input type="radio" name="character" id="" class="sr-only">
+                <article id="">
+                    <label for="" class="avatar">
+                        <img src="" alt="" onerror="this.src='{{ asset('images/default-avatar.png') }}'">
+                    </label>
+                    <label for="radio-close" class="btnClose">
+                        <span class="material-symbols-outlined">close</span>
+                    </label>
+                    <h2></h2>
+                    <div>
+                        <h3></h3>
+                        <nav style="--items:3">
+                            <label for=""><span class="material-symbols-outlined">person</span></label>
+                            <label for=""><span class="material-symbols-outlined">info</span></label>
+                            <label for=""><span class="material-symbols-outlined">contact_mail</span></label>
+                        </nav>
+                        <div data-panels>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </article>
+            </template>
+
+        </div>
+    </section>
     <script>
         console.clear();
 
@@ -479,6 +475,79 @@
                 console.error('Erreur lors du chargement des cartes:', error);
                 return [];
             }
+        }
+        // Configuration responsive
+        function getLayoutConfig() {
+            const width = window.innerWidth;
+
+            if (width <= 600) {
+                return {
+                    itemsPerRow: 2,
+                    horizontalSpacing: 160, // Parfait sur mobile
+                    verticalSpacing: 200,
+                    cardWidth: 140,
+                    cardHeight: 180
+                };
+            }
+
+            if (width <= 960) {
+                return {
+                    itemsPerRow: 3,
+                    horizontalSpacing: 220, // Beaucoup plus d'espace
+                    verticalSpacing: 280, // Beaucoup plus d'espace vertical
+                    cardWidth: 160,
+                    cardHeight: 220
+                };
+            }
+
+            if (width <= 1440) {
+                return {
+                    itemsPerRow: 4,
+                    horizontalSpacing: 240, // Encore plus d'espace
+                    verticalSpacing: 320, // Encore plus d'espace vertical
+                    cardWidth: 180,
+                    cardHeight: 240
+                };
+            }
+
+            return {
+                itemsPerRow: 4,
+                horizontalSpacing: 280, // Maximum d'espace sur très grands écrans
+                verticalSpacing: 360,
+                cardWidth: 200,
+                cardHeight: 260
+            };
+        }
+        // Fonction pour calculer et définir la hauteur du conteneur
+        function setContainerHeight(totalCards) {
+            const config = getLayoutConfig();
+            const rows = Math.ceil(totalCards / config.itemsPerRow);
+
+            // Calcul de la hauteur nécessaire
+            const containerHeight = (rows - 1) * config.verticalSpacing + config.cardHeight + 100; // +100 pour le padding
+
+            // Appliquer la hauteur au conteneur
+            const container = document.querySelector('.cards-container');
+            if (container) {
+                container.style.setProperty('--container-height', `${containerHeight}px`);
+            }
+        }
+        // Fonction pour déterminer le nombre de cartes par ligne selon la largeur d'écran
+        function getItemsPerRow() {
+            const width = window.innerWidth;
+            if (width <= 600) return 2; // Smartphone : 2 cartes
+            if (width <= 800) return 3; // Tablette : 3 cartes
+            if (width <= 1200) return 4; // Desktop : 4 cartes
+            return 5; // Large desktop : 5 cartes
+        }
+
+        // Fonction pour déterminer l'espacement selon la largeur d'écran
+        function getSpacing() {
+            const width = window.innerWidth;
+            if (width <= 600) return 140; // Plus d'espace sur smartphone
+            if (width <= 800) return 120; // Espacement moyen sur tablette
+            if (width <= 1200) return 110; // Espacement standard sur desktop
+            return 100; // Espacement serré sur large desktop
         }
 
         function createCardPanel(card, index) {
@@ -540,19 +609,62 @@
         }
 
         function applyPositioning(clone, index) {
-            const row = Math.floor(index / ITEMS_PER_ROW);
-            const col = index % ITEMS_PER_ROW;
+            const config = getLayoutConfig();
+
+            const row = Math.floor(index / config.itemsPerRow);
+            const col = index % config.itemsPerRow;
 
             const article = clone.querySelector("article");
 
-            const colOffset = col - (ITEMS_PER_ROW - 1) / 2;
-            const rowOffset = row - (ITEMS_PER_ROW - 1) / 2;
+            // Calcul des offsets depuis le centre
+            const colOffset = col - (config.itemsPerRow - 1) / 2;
+            const rowOffset = row - (Math.ceil(document.querySelectorAll('.cards-container article').length / config
+                .itemsPerRow) - 1) / 2;
 
-            const x = colOffset * SPACING;
-            const y = rowOffset * SPACING;
+            // Calcul des positions en pixels plutôt qu'en pourcentage
+            const x = colOffset * config.horizontalSpacing;
+            const y = rowOffset * config.verticalSpacing;
 
-            article.style.setProperty("--translate-x", `${x}%`);
-            article.style.setProperty("--translate-y", `${y}%`);
+            article.style.setProperty("--translate-x", `${x}px`);
+            article.style.setProperty("--translate-y", `${y}px`);
+        }
+        // Fonction pour recalculer toutes les positions
+        function recalculateAllPositions() {
+            const articles = document.querySelectorAll('.cards-container article');
+            const config = getLayoutConfig();
+
+            // Mettre à jour la hauteur du conteneur
+            setContainerHeight(articles.length);
+
+            articles.forEach((article, index) => {
+                const row = Math.floor(index / config.itemsPerRow);
+                const col = index % config.itemsPerRow;
+
+                const colOffset = col - (config.itemsPerRow - 1) / 2;
+                const rowOffset = row - (Math.ceil(articles.length / config.itemsPerRow) - 1) / 2;
+
+                const x = colOffset * config.horizontalSpacing;
+                const y = rowOffset * config.verticalSpacing;
+
+                article.style.setProperty("--translate-x", `${x}px`);
+                article.style.setProperty("--translate-y", `${y}px`);
+            });
+        }
+
+        window.addEventListener('resize', debounce(() => {
+            recalculateAllPositions();
+        }, 250));
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
 
         function createInfoHTML(card) {
@@ -649,6 +761,9 @@
 
                 console.log(`Affichage de ${cards.length} cartes`);
 
+                // Définir la hauteur du conteneur avant d'ajouter les cartes
+                setContainerHeight(cards.length);
+
                 requestAnimationFrame(() => {
                     cards.forEach((card, index) => {
                         createCardPanel(card, index);
@@ -671,3 +786,4 @@
         // Fonction pour recharger les cartes (utile pour le debug)
         window.reloadCards = renderCards;
     </script>
+@endsection
