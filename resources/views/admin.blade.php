@@ -977,7 +977,7 @@
                 <div class="main-header__intro-wrapper">
                     <div class="sidenav__profile-title">
                         <img class="logo-icon" 
-                             src="{{ asset('images/Logo.png') }}" 
+                             src="{{ asset('images/logo.png') }}" 
                              alt="Logo de l'entreprise HrTélécoms">
                     </div>
                 </div>

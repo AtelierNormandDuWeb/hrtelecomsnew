@@ -52,12 +52,6 @@
                     @endforeach
                 </tbody>
             </table>
-
-            <div>
-                <a href="{{ route('admin.service.edit', ['id' => $service->id]) }}" class="btn btn-primary my-1">
-                    <i class="fa-solid fa-pen-to-square"></i> Modifier
-                </a>
-            </div>
         </div>
     </div>
 

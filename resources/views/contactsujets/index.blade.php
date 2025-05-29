@@ -41,11 +41,11 @@
                 @endforeach
             </table>
 
-            <div>
+            {{-- <div>
                 <a href="{{ route('admin.contactsujet.edit', ['id' => $contactsujet->id]) }}" class="btn btn-primary my-1">
                     <i class="fa-solid fa-pen-to-square"></i> Modifier
                 </a>
-            </div>
+            </div> --}}
         </div>
 
         <!-- Pagination -->

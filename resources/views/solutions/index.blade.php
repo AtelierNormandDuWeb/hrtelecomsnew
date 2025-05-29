@@ -85,11 +85,6 @@
                 </table>
             </div>
         @endforeach
-        <div>
-            <a href="{{ route('admin.solution.edit', ['id' => $solution->id]) }}" class="btn btn-primary my-1">
-                <i class="fa-solid fa-pen-to-square"></i> Modifier
-            </a>
-        </div>
     </div>
     <!-- Pagination -->
     <div class="d-flex justify-content-center">
