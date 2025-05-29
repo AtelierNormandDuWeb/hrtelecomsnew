@@ -241,7 +241,7 @@
             background-color: #3f72af;
             visibility: visible;
             overflow: hidden;
-            max-height: 200px;
+            /* max-height: 200px; */
             transition: all 0.4s ease-in-out;
         }
 
@@ -554,13 +554,13 @@
             display: flex;
             flex-direction: column-reverse;
             align-items: start;
-            padding: 10px 60px;
+            padding: 10px 30px 10px 60px;
             margin: 0;
             list-style-type: none;
             background-color: #f9f9f9;
             visibility: visible;
             overflow: hidden;
-            max-height: 200px;
+            /* max-height: 200px; */
             transition: all 0.4s ease-in-out;
         }
 
@@ -867,165 +867,103 @@
 
 <body>
     <header class="header">
-        <i class="fas fa-bars header__menu"></i>
+        <button class="header__menu" aria-label="Ouvrir le menu de navigation">
+            <i class="fas fa-bars"></i>
+        </button>
     </header>
+
     <div class="grid">
-        <aside class="sidenav">
+        <aside class="sidenav" role="navigation" aria-label="Menu principal">
             <div class="sidenav__brand">
-                <i class="fas fa-times sidenav__brand-close"></i>
+                <button class="sidenav__brand-close" aria-label="Fermer le menu">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+
             <div class="sidenav__profile">
-                <div class="sidenav__profile-adress">
-                    <a href="{{ route('home') }}">
-                        <h3>Retour site Web</h3>
-                    </a>
-                </div>
+                <a href="{{ route('home') }}">
+                    <h3>Retour site Web</h3>
+                </a>
             </div>
-            <div class="row row--align-v-center row--align-h-center">
+
+            <nav class="row row--align-v-center row--align-h-center">
                 <ul class="navList">
                     <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Accueil</span>
+                        <div class="navList__subheading" role="button" aria-expanded="false">
+                            <span class="navList__subheading-title">Les sections</span>
                         </div>
                         <ul class="subList subList--hidden">
                             <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.heroslider.index') }}">
-                                    Section accueil
-                                </a>
+                                <a href="{{ route('admin.contactsujet.index') }}">Sujet du contact</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.cards.index') }}">
-                                    Cards
-                                </a>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.info.index') }}">Les informations</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.solution.index') }}">Nos solutions</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.faq.index') }}">Foire aux questions</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.testimonial.index') }}">Les avis</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.service.index') }}">Les Services</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.title.index') }}">Les titres</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.about.index') }}">À propos</a>
+                            </li>
+                            <li class="subList__item">
+                                <a href="{{ route('admin.heroslider.index') }}">Section accueil</a>
                             </li>
                         </ul>
                     </li>
+
                     <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">A propos</span>
+                        <div class="navList__subheading" role="button" aria-expanded="false">
+                            <span class="navList__subheading-title">L'équipe</span>
                         </div>
                         <ul class="subList subList--hidden">
                             <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.about.index') }}">
-                                    A propos
-                                </a>
+                                <a href="{{ route('admin.cards.index') }}">L'équipe</a>
                             </li>
                         </ul>
                     </li>
+
                     <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Titre</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.title.index') }}">
-                                    Les titres
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Services</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.service.index') }}">
-                                    Les Services
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Avis</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.testimonial.index') }}">
-                                    Les avis
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Questions</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.faq.index') }}">
-                                    Foire aux questions
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Solutions</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.solution.index') }}">
-                                    Nos solutions
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Informations</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.info.index') }}">
-                                    Les informations
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
-                            <span class="navList__subheading-title">Contact sujet</span>
-                        </div>
-                        <ul class="subList subList--hidden">
-                            <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.contactsujet.index') }}">
-                                    Sujet du contact
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="navList__subheading row row--align-v-center">
+                        <div class="navList__subheading" role="button" aria-expanded="false">
                             <span class="navList__subheading-title">Gestion</span>
                         </div>
                         <ul class="subList subList--hidden">
                             <li class="subList__item">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">Déconnecter</a>
+                                    <a href="{{ route('logout') }}" 
+                                       onclick="event.preventDefault(); this.closest('form').submit();">
+                                        Déconnecter
+                                    </a>
                                 </form>
                             </li>
                             <li class="subList__item">
-                                <a class="nav-link" href="{{ route('admin.user.index') }}">
-                                    Utilisateurs
-                                </a>
+                                <a href="{{ route('admin.user.index') }}">Utilisateurs</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </nav>
 
             <div class="contact-buttons">
-                <a href="#" class="contact-btn">
+                <a href="mailto:contact@hrtelecom.fr" class="contact-btn" aria-label="Nous contacter par email">
                     <div class="contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <span>Nous contacter</span>
                 </a>
-                <a href="#" class="contact-btn">
+                <a href="tel:+33123456789" class="contact-btn" aria-label="Nous appeler au téléphone">
                     <div class="contact-icon">
                         <i class="fas fa-phone"></i>
                     </div>
@@ -1033,12 +971,14 @@
                 </a>
             </div>
         </aside>
-        <main class="main">
+
+        <main class="main" role="main">
             <div class="main-header">
                 <div class="main-header__intro-wrapper">
                     <div class="sidenav__profile-title">
-                        <img class="logo-icon" src="{{ asset('images/Logo.png') }}"
-                            alt="Logo de l'entreprise HrTélécoms">
+                        <img class="logo-icon" 
+                             src="{{ asset('images/Logo.png') }}" 
+                             alt="Logo de l'entreprise HrTélécoms">
                     </div>
                 </div>
             </div>
@@ -1046,9 +986,10 @@
                 @yield('content')
             </div>
         </main>
-        <footer class="footer">
+
+        <footer class="footer" role="contentinfo">
             <p><span class="footer__copyright">&copy;</span> HrTélécoms 2025</p>
-            <p><a href="" class="footer__signature">Doko972</a></p>
+            <p><a href="https://doko972.com" class="footer__signature">Doko972</a></p>
         </footer>
     </div>
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
