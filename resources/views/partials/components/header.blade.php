@@ -21,6 +21,7 @@
                 </li>
                 <li><a href="{{ url('/') }}#services">Services</a></li>
                 <li><a href="{{ url('/') }}#faq">FAQ</a></li>
+                <li><a href="{{ url('/trombinoscope') }}#faq">L'Equipe</a></li>
                 <li><a href="{{ url('/pagecontact') }}#contact">Contact</a></li>
             </ul>
         </nav>
