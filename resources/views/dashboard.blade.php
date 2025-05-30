@@ -4,13 +4,13 @@
             
             <div class="dashboard-content">
                 <p>Bienvenue dans votre espace personnel !</p>
-                <p>Vous pouvez ajouter une ou plusieurs réalisation ici:</p>
+                <p>Vous pouvez gerer votre site web ici :</p>
             </div>
             <ul class="nav-links-c">
                 <li>
-                    <a href="{{ route('admin.realization.index') }}"
-                       class="nav-link-c dashboard-title {{ request()->routeIs('admin.realization.*') ? 'active' : '' }}">
-                        Ajouter une réalisation
+                    <a href="{{ route('admin.heroslider.index') }}"
+                       class="nav-link-c dashboard-title {{ request()->routeIs('admin.heroslider.*') ? 'active' : '' }}">
+                        Cliquez ici
                     </a>
                 </li>
             </ul>  

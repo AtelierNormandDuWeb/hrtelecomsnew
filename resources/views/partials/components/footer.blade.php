@@ -1,7 +1,7 @@
 <footer>
     <div class="footer-content">
         <div class="footer-column">
-            <h3>HrTélécoms</h3>
+            <h3>HRTélécoms</h3>
             <p>Solutions de téléphonie IP innovantes pour les professionnels.</p>
 
             <div class="social-icons">

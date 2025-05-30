@@ -9,14 +9,14 @@ header {
     z-index: 1000;
     box-shadow: var(--box-shadow);
     transition: all var(--transition-speed) ease;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) var(--spacing-md);
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    // max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -276,6 +276,6 @@ nav a:hover::after {
     }
     
     .nav-toggle {
-        right: 1rem;
+        right: 0;
     }
 }

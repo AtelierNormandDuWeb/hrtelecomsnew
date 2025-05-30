@@ -1,6 +1,6 @@
 <header>
     <div class="header-content">
-        <a href="#" class="logo">
+        <a href="{{ url('/') }}#" class="logo">
             <img class="logo-icon" src="{{ asset('images/Logo_hr_télécoms-06.png') }}" alt="Logo de l'entreprise HrTélécoms">
         </a>
         

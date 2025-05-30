@@ -9,13 +9,13 @@
     h2,
     label,
     a,
-    p{
+    p {
         color: var(--text-color-w);
     }
 
 }
 
-.alert-danger{
+.alert-danger {
     color: var(--error-color);
 }
 
@@ -45,6 +45,7 @@
     margin-top: 1rem;
     font-size: 0.95rem;
 }
+
 .auth-link a {
     color: var(--text-color-w);
     font-weight: bold;
@@ -56,7 +57,7 @@
 }
 
 .dashboard-section {
-    background-color: var(--bck-1);
+    background-color: var(--primary-color);
     padding: 5rem 1rem;
     min-height: 80vh;
     text-align: center;
@@ -65,7 +66,7 @@
 .dashboard-section .container {
     max-width: 900px;
     margin: 0 auto;
-    background: var(--background-color);
+    background: var(--secondary-color);
     padding: 3rem 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -74,14 +75,52 @@
 .dashboard-title {
     font-size: 2.5rem;
     font-weight: 600;
-    color: var(--golden-1);
+    color: var(--text-color-w);
     margin-bottom: 1.5rem;
 }
 
 .dashboard-content {
     font-size: 1.2rem;
-    color: #444;
+    color: var(--text-color-w);
     line-height: 1.6;
+}
+
+.nav-links-c {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links-c li {
+    list-style: none;
+}
+
+/* Styles pour le lien - avec plus de spécificité */
+.nav-links-c .nav-link-c,
+.nav-links-c a.nav-link-c {
+    color: var(--text-color-w) !important;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links-c .nav-link-c:hover,
+.nav-links-c .nav-link-c:focus,
+.nav-links-c a.nav-link-c:hover,
+.nav-links-c a.nav-link-c:focus {
+    color: #ff9800 !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-links-c .nav-link-c.active,
+.nav-links-c a.nav-link-c.active {
+    color: #ff9800 !important;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .logged-status {
@@ -95,17 +134,13 @@
     .dashboard-section .container {
         padding: 2rem 1rem;
     }
-
     .dashboard-title {
         font-size: 2rem;
     }
-
     .dashboard-content {
         font-size: 1rem;
     }
 }
-
-
 .nav-dashboard {
     background-color: var(--bck-2);
     color: var(--font-color-1);
@@ -232,6 +267,6 @@
     }
 }
 
-.form-group{
+.form-group {
     color: #ffff;
 }
