@@ -8,10 +8,9 @@
 
 @section('content')
     <div>
-        <h3>Voir Question/Reponse</h3>
-
-        <a href="{{ route('admin.faq.index') }}" class="btn btn-success my-1">
-            Accueil
+        <h3 class="text-center"> Question/Reponse</h3>
+        <a href="{{ route('admin.faq.index') }}" class="btn btn-info btn-lg mb-3">
+            <i class="fa-solid"></i>Accueil
         </a>
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -27,10 +26,9 @@
 
                 </tbody>
             </table>
-
             <div>
-                <a href="{{ route('admin.faq.edit', ['id' => $faq->id]) }}" class="btn btn-primary my-1">
-                    <i class="fa-solid fa-pen-to-square"></i> Modifier
+                <a href="{{ route('admin.faq.edit', ['id' => $faq->id]) }}" class="btn btn-success btn-lg">Modifier
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </a>
             </div>
         </div>

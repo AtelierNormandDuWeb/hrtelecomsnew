@@ -8,16 +8,10 @@
 
 @section('content')
     <div>
-        <h3> Info Details</h3>
-
-        <div class="d-flex justify-content-start">
-            <div class="dropdown m-1">
-                <div id="columnSelector" class="dropdown-menu"> </div>
-            </div>
-            <a href="{{ route('admin.info.create') }}" class="btn btn-success m-1">
-                Creer nouveau
-            </a>
-        </div>
+        <h3 class="text-center"> Information</h3>
+        {{-- <a href="{{ route('admin.info.create') }}" class="btn btn-warning btn-lg mb-3">
+            <i class="fa-solid fa-plus"></i>Nouveau
+        </a> --}}
         <div class="table-responsive">
             <table class="table table-bordered">
                 @foreach ($infos as $info)
@@ -75,21 +69,23 @@
                             <td>{{ $info->dimanche }}</td>
                         </tr>
                         <tr>
-                            <td>
-                                <a href="{{ route('admin.info.show', ['id' => $info->id]) }}"
-                                    class="btn btn-primary btn-sm">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.info.edit', ['id' => $info->id]) }}"
-                                    class="btn btn-success btn-sm">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="#" data-id="{{ $info->id }}" class="btn btn-danger btn-sm deleteBtn">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
+                            <td colspan="2" class="text-center">
+                                <div class="btn-group gap-2" role="group" aria-label="Actions CRUD">
+                                    <a href="{{ route('admin.info.show', ['id' => $info->id]) }}"
+                                        class="btn btn-primary btn-lg">Voir
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.info.edit', ['id' => $info->id]) }}"
+                                        class="btn btn-success btn-lg">Modifier
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="#" data-id="{{ $info->id }}"
+                                        class="btn btn-danger btn-lg deleteBtn">Supprimer
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
-
                     </tbody>
                 @endforeach
             </table>
@@ -166,7 +162,7 @@
                     title
                 } = deleteButton.dataset
                 const modalBody = document.querySelector('.modal-body')
-                modalBody.innerHTML = `Are you sure you want to delete this data ?</strong> `
+                modalBody.innerHTML = `Êtes-vous sûr de vouloir supprimer ces données ?</strong> `
                 console.log({
                     id,
                     title

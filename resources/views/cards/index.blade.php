@@ -8,109 +8,102 @@
 
 @section('content')
     <div>
-        <h3> Cards Details</h3>
-
-        <div class="d-flex justify-content-end">
-            <div class="dropdown m-1">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Column
-                </button>
-                <div id="columnSelector" class="dropdown-menu"> </div>
+        <h3 class="text-center">L'équipe</h3>
+        <a href="{{ route('admin.cards.create') }}" class="btn btn-warning btn-lg mb-3">
+            <i class="fa-solid fa-plus"></i>Nouveau
+        </a>
+        @foreach ($cards as $card)
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>N#</th>
+                            <td>{{ $card->id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $card->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ $card->title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Subtitle</th>
+                            <td>{{ $card->subtitle }}</td>
+                        </tr>
+                        <tr>
+                            <th>Avatar</th>
+                            <td>
+                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
+                                    <img src="{{ Str::startsWith($card->avatar_url, 'http') ? $card->avatar_url : Storage::url($card->avatar_url) }}"
+                                        alt="Prévisualisation de l'avatar" style="max-width: 100px; display: block;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Background</th>
+                            <td>
+                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
+                                    <img src="{{ Str::startsWith($card->background_url, 'http') ? $card->background_url : Storage::url($card->background_url) }}"
+                                        alt="Prévisualisation du background" style="max-width: 100px; display: block;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ $card->description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Details</th>
+                            <td>{{ $card->details }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact Info</th>
+                            <td>{{ $card->contact_info }}</td>
+                        </tr>
+                        <tr>
+                            <th>Sort Order</th>
+                            <td>{{ $card->sort_order }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <div class="btn-group gap-2" role="group" aria-label="Actions CRUD">
+                                    <a href="{{ route('admin.cards.show', ['id' => $card->id]) }}"
+                                        class="btn btn-primary btn-lg">Voir
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.cards.edit', ['id' => $card->id]) }}"
+                                        class="btn btn-success btn-lg">Modifier
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="#" data-id="{{ $card->id }}"
+                                        class="btn btn-danger btn-lg deleteBtn">Supprimer
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <a href="{{ route('admin.cards.create') }}" class="btn btn-success m-1">
-
-                Create Cards
-
-            </a>
-        </div>
-        <div class="">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="Cards" class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">N#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Subtitle</th>
-                                <th scope="col">Avatar_url</th>
-                                <th scope="col">Background_url</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Details</th>
-                                <th scope="col">Contact_info</th>
-                                <th scope="col">Sort_order</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($cards as $cards)
-                                <tr>
-                                    <td>{{ $cards->id }}</td>
-                                    <td>{{ $cards->name }}</td>
-                                    <td>{{ $cards->title }}</td>
-                                    <td>{{ $cards->subtitle }}</td>
-                                    {{-- <td>{{ $cards->avatar_url }}</td> --}}
-                                    <td>
-                                        <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                            <img src="{{ Str::startsWith($cards->avatar_url, 'http') ? $cards->avatar_url : Storage::url($cards->avatar_url) }}"
-                                                alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
-                                        </div>
-                                    </td>
-                                    {{-- <td>{{ $cards->background_url }}</td> --}}
-                                    <td>
-                                        <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                            <img src="{{ Str::startsWith($cards->background_url, 'http') ? $cards->background_url : Storage::url($cards->background_url) }}"
-                                                alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
-                                        </div>
-                                    </td>
-                                    <td>{{ $cards->description }}</td>
-                                    <td>{{ $cards->details }}</td>
-                                    <td>{{ $cards->contact_info }}</td>
-                                    <td>{{ $cards->sort_order }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.cards.show', ['id' => $cards->id]) }}"
-                                            class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.cards.edit', ['id' => $cards->id]) }}"
-                                            class="btn btn-success btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <a href="#" data-id="{{ $cards->id }}"
-                                            class="btn btn-danger btn-sm deleteBtn">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                {{-- <div class="d-flex justify-content-center">
-                    {{ $cards->links('pagination::bootstrap-5') }}
-                </div> --}}
-            </div>
-        </div>
+        @endforeach
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="confirmModalLabel">Delete confirm</h3>
+                    <h3 class="modal-title fs-5" id="confirmModalLabel">Confirmer suppression</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary confirmDeleteAction">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary confirmDeleteAction">Supprimer</button>
                 </div>
             </div>
         </div>
@@ -161,7 +154,7 @@
                     title
                 } = deleteButton.dataset
                 const modalBody = document.querySelector('.modal-body')
-                modalBody.innerHTML = `Are you sure you want to delete this data ?</strong> `
+                modalBody.innerHTML = `Êtes-vous sûr de vouloir supprimer ces données ?</strong> `
                 console.log({
                     id,
                     title

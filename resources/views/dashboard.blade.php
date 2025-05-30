@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('base')
+@section('content')
+@include('sections.accessibilitytools')
     <section class="dashboard-section">
         <div class="container">
             
@@ -19,4 +21,4 @@
             </div>
         </div>      
     </section>
-</x-app-layout>
+@endsection

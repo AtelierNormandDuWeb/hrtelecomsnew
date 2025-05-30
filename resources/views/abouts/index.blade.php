@@ -8,21 +8,23 @@
 
 @section('content')
     <div>
-        <h3> A propos Details</h3>
-
-        <div class="d-flex justify-content-start">
-            <div class="dropdown m-1">
-                <div id="columnSelector" class="dropdown-menu"> </div>
-            </div>
-            <a href="{{ route('admin.about.create') }}" class="btn btn-success m-1">
-                Creer A propos
-            </a>
-        </div>
-
+        <h3 class="text-center">A propos</h3>
+        {{-- <a href="{{ route('admin.about.create') }}" class="btn btn-warning btn-lg mb-3">
+            <i class="fa-solid fa-plus"></i>Nouveau
+        </a> --}}
         @foreach ($abouts as $about)
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <tbody>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>ImageUrl</strong></th>
+                            <td>
+                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
+                                    <img src="{{ Str::startsWith($about->imageUrl, 'http') ? $about->imageUrl : Storage::url($about->imageUrl) }}"
+                                        alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <th>Titre 1</th>
                             <td>{{ $about->title1 }}</td>
@@ -44,33 +46,27 @@
                             <td>{{ $about->button }}</td>
                         </tr>
                         <tr>
-                            <th>ImageUrl</strong></th>
-                            <td>
-                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($about->imageUrl, 'http') ? $about->imageUrl : Storage::url($about->imageUrl) }}"
-                                        alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
+                            <td colspan="2" class="text-center">
+                                <div class="btn-group gap-2" role="group" aria-label="Actions CRUD">
+                                    <a href="{{ route('admin.about.show', ['id' => $about->id]) }}"
+                                        class="btn btn-primary btn-lg">Voir
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.about.edit', ['id' => $about->id]) }}"
+                                        class="btn btn-success btn-lg">Modifier
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="#" data-id="{{ $about->id }}"
+                                        class="btn btn-danger btn-lg deleteBtn">Supprimer
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="{{ route('admin.about.show', ['id' => $about->id]) }}"
-                                    class="btn btn-primary btn-sm">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.about.edit', ['id' => $about->id]) }}"
-                                    class="btn btn-success btn-sm">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="#" data-id="{{ $about->id }}" class="btn btn-danger btn-sm deleteBtn">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            @endforeach
+        @endforeach
 
 
         <!-- Modal -->
@@ -78,15 +74,15 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title fs-5" id="confirmModalLabel">Delete confirm</h3>
+                        <h3 class="modal-title fs-5" id="confirmModalLabel">Confirmer suppression</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         ...
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary confirmDeleteAction">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary confirmDeleteAction">Supprimer</button>
                     </div>
                 </div>
             </div>
@@ -119,7 +115,7 @@
                     const response = await fetch('/admin/abouts/speed/' + id, {
                         method: 'PUT',
                         body: JSON.stringify(
-                            data), // Utilisation de JSON.stringify au lieu de JSON.stringfy
+                            data),
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': csrfToken
@@ -137,7 +133,7 @@
                         title
                     } = deleteButton.dataset
                     const modalBody = document.querySelector('.modal-body')
-                    modalBody.innerHTML = `Are you sure you want to delete this data ?</strong> `
+                    modalBody.innerHTML = `Êtes-vous sûr de vouloir supprimer ces données ?</strong> `
                     console.log({
                         id,
                         title
@@ -186,7 +182,7 @@
                     checkbox.className = 'columnSelector form-check-input';
                     checkbox.dataset.column = index;
                     const savedSelection = localStorage.getItem('selectedColumns#About');
-                    checkbox.checked = !!!savedSelection; // Sélectionner par défaut
+                    checkbox.checked = !!!savedSelection;
                     checkbox.addEventListener('change', function() {
                         const columnIndex = parseInt(checkbox.dataset.column);
                         toggleColumn(columnIndex, checkbox.checked);

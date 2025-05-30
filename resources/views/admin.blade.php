@@ -84,7 +84,7 @@
             z-index: 5;
         }
 
-        .header__menu {
+        .header__menu--pos {
             position: fixed;
             padding: 13px;
             left: 12px;
@@ -332,7 +332,7 @@
             background-color: #F9FAFC;
         }
 
-        .header__menu {
+        .header__menu--pos {
             position: fixed;
             padding: 13px;
             left: 12px;
@@ -867,7 +867,7 @@
 
 <body>
     <header class="header">
-        <button class="header__menu" aria-label="Ouvrir le menu de navigation">
+        <button class="header__menu--pos" aria-label="Ouvrir le menu de navigation">
             <i class="fas fa-bars"></i>
         </button>
     </header>
@@ -918,7 +918,7 @@
                                 <a href="{{ route('admin.about.index') }}">À propos</a>
                             </li>
                             <li class="subList__item">
-                                <a href="{{ route('admin.heroslider.index') }}">Section accueil</a>
+                                <a href="{{ route('admin.heroslider.index') }}">Accueil</a>
                             </li>
                         </ul>
                     </li>
@@ -1064,7 +1064,7 @@
 
         // Icône du menu pour ouvrir la barre latérale, affichée uniquement sur mobile
         function setMenuClickListener() {
-            $('.header__menu').on('click', function(e) {
+            $('.header__menu--pos').on('click', function(e) {
                 toggleClass(sidenavEl, SIDENAV_ACTIVE_CLASS);
                 toggleClass(gridEl, GRID_NO_SCROLL_CLASS);
             });

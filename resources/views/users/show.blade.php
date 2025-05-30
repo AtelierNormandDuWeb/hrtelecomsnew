@@ -1,7 +1,9 @@
 @extends('admin')
 
 @section('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .user-show-section {
             padding: 2rem;
@@ -9,7 +11,7 @@
             margin: 2rem auto;
             background-color: #f9f9f9;
             border-radius: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .user-show-section h3 {
@@ -83,16 +85,14 @@
                 font-size: 0.9rem;
             }
         }
-        
     </style>
 @endsection
 
 @section('content')
     <div class="user-show-section">
-        <h3>Voir l'utilisateur</h3>
-
-        <a href="{{ route('admin.user.index') }}" class="btn-custom success">
-            Accueil
+        <h3 class="text-center"> Voir l'utilisateur</h3>
+        <a href="{{ route('admin.user.index') }}" class="btn btn-info btn-lg mb-3">
+            <i class="fa-solid"></i>Accueil
         </a>
 
         <table class="user-table">
@@ -105,19 +105,12 @@
                     <th>Email</th>
                     <td>{{ $user->email }}</td>
                 </tr>
-                <tr>
-                    <th>Email vérifié le</th>
-                    <td>{{ $user->email_verified_at }}</td>
-                </tr>
-                <tr>
-                    <th>Mot de passe (hashé)</th>
-                    <td>{{ $user->password }}</td>
-                </tr>
             </tbody>
         </table>
-
-        <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}" class="btn-custom primary">
-            <i class="fa-solid fa-pen-to-square"></i> Modifier
-        </a>
+        <div>
+            <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}" class="btn btn-success btn-lg">Modifier
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+        </div>
     </div>
 @endsection

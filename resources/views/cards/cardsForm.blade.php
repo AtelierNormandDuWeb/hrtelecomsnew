@@ -11,9 +11,9 @@
             @if (isset($cards))
                 @method('PUT')
             @endif
-            
+
             <div class="mb-3">
-                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                <label for="name" class="form-label">Nom <span class="text-danger">*</span></label>
                 <input type="text" placeholder="Name ..." name="name"
                     value="{{ old('name', isset($cards) ? $cards->name : '') }}" class="form-control" id="name"
                     aria-describedby="nameHelp" required />
@@ -24,12 +24,12 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
+                <label for="title" class="form-label">Titre</label>
                 <input type="text" placeholder="Title ..." name="title"
-                    value="{{ old('title', isset($cards) ? $cards->title : '') }}" class="form-control"
-                    id="title" aria-describedby="titleHelp" />
+                    value="{{ old('title', isset($cards) ? $cards->title : '') }}" class="form-control" id="title"
+                    aria-describedby="titleHelp" />
 
                 @error('title')
                     <div class="error text-danger">
@@ -37,9 +37,9 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
-                <label for="subtitle" class="form-label">Subtitle</label>
+                <label for="subtitle" class="form-label">Rôle</label>
                 <input type="text" placeholder="Subtitle ..." name="subtitle"
                     value="{{ old('subtitle', isset($cards) ? $cards->subtitle : '') }}" class="form-control"
                     id="subtitle" aria-describedby="subtitleHelp" />
@@ -50,11 +50,10 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
                 <label class="form-label">Avatar</label>
-                <button type="button" class="btn btn-success btn-file my-1"
-                    onclick="triggerFileInput('avatar_url')">
+                <button type="button" class="btn btn-success btn-lg" onclick="triggerFileInput('avatar_url')">
                     Ajouter image : (avatar_url)
                 </button>
                 <input type="file" name="avatar_url" accept="image/*"
@@ -62,9 +61,9 @@
                     aria-describedby="avatar_urlHelp" />
 
                 <div class="form-group d-flex" id="preview_avatar_url" style="max-width: 100%;">
-                    @if(isset($cards) && $cards->avatar_url)
+                    @if (isset($cards) && $cards->avatar_url)
                         <img src="{{ Str::startsWith($cards->avatar_url, 'http') ? $cards->avatar_url : Storage::url($cards->avatar_url) }}"
-                             alt="Current avatar" style="max-width: 100px; display: block;">
+                            alt="Current avatar" style="max-width: 100px; display: block;">
                     @endif
                 </div>
                 @error('avatar_url')
@@ -73,10 +72,10 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
                 <label class="form-label">Background</label>
-                <button type="button" class="btn btn-success btn-file my-1"
+                <button type="button" class="btn btn-success btn-lg"
                     onclick="triggerFileInput('background_url')">
                     Ajouter image : (background_url)
                 </button>
@@ -85,9 +84,9 @@
                     aria-describedby="background_urlHelp" />
 
                 <div class="form-group d-flex" id="preview_background_url" style="max-width: 100%;">
-                    @if(isset($cards) && $cards->background_url)
+                    @if (isset($cards) && $cards->background_url)
                         <img src="{{ Str::startsWith($cards->background_url, 'http') ? $cards->background_url : Storage::url($cards->background_url) }}"
-                             alt="Current background" style="max-width: 100px; display: block;">
+                            alt="Current background" style="max-width: 100px; display: block;">
                     @endif
                 </div>
                 @error('background_url')
@@ -96,11 +95,11 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
                 <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                <textarea placeholder="Description ..." name="description" class="form-control"
-                    id="description" aria-describedby="descriptionHelp" rows="3" required>{{ old('description', isset($cards) ? $cards->description : '') }}</textarea>
+                <textarea placeholder="Description ..." name="description" class="form-control" id="description"
+                    aria-describedby="descriptionHelp" rows="3" required>{{ old('description', isset($cards) ? $cards->description : '') }}</textarea>
 
                 @error('description')
                     <div class="error text-danger">
@@ -108,11 +107,11 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
                 <label for="details" class="form-label">Details</label>
-                <textarea placeholder="Details ..." name="details" class="form-control"
-                    id="details" aria-describedby="detailsHelp" rows="3">{{ old('details', isset($cards) ? $cards->details : '') }}</textarea>
+                <textarea placeholder="Details ..." name="details" class="form-control" id="details" aria-describedby="detailsHelp"
+                    rows="3">{{ old('details', isset($cards) ? $cards->details : '') }}</textarea>
 
                 @error('details')
                     <div class="error text-danger">
@@ -120,11 +119,11 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
-                <label for="contact_info" class="form-label">Contact Info</label>
-                <textarea placeholder="Contact info ..." name="contact_info" class="form-control"
-                    id="contact_info" aria-describedby="contact_infoHelp" rows="3">{{ old('contact_info', isset($cards) ? $cards->contact_info : '') }}</textarea>
+                <label for="contact_info" class="form-label">Email et/ou téléphone</label>
+                <textarea placeholder="Contact info ..." name="contact_info" class="form-control" id="contact_info"
+                    aria-describedby="contact_infoHelp" rows="3">{{ old('contact_info', isset($cards) ? $cards->contact_info : '') }}</textarea>
 
                 @error('contact_info')
                     <div class="error text-danger">
@@ -132,9 +131,9 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="mb-3">
-                <label for="sort_order" class="form-label">Sort Order</label>
+                <label for="sort_order" class="form-label">Ordre d'affichage</label>
                 <input type="number" placeholder="Sort order ..." name="sort_order" min="0"
                     value="{{ old('sort_order', isset($cards) ? $cards->sort_order : '0') }}" class="form-control"
                     id="sort_order" aria-describedby="sort_orderHelp" />
@@ -145,14 +144,14 @@
                     </div>
                 @enderror
             </div>
-            
+
             <div class="d-flex gap-2">
-                <a href="{{ route('admin.cards.index') }}" class="btn btn-danger mt-1">
-                    Cancel
+                <a href="{{ route('admin.cards.index') }}" class="btn btn-danger btn-lg mt-1">
+                    Annuler
+                    <i class="fa-solid fa-trash"></i>
                 </a>
-                <button type="submit" class="btn btn-primary mt-1">
-                    {{ isset($cards) ? 'Update' : 'Create' }}
-                </button>
+                <button class="btn btn-primary btn-lg mt-1"> {{ isset($cards) ? 'Modifier' : 'Creer' }}<i
+                        class="fa-solid fa-pen-to-square"></i></button>
             </div>
         </form>
     </div>
@@ -196,7 +195,7 @@
         imageUploads.forEach(function(imageUpload) {
             imageUpload.addEventListener('change', function(event) {
                 const files = this.files;
-                
+
                 if (files && files.length > 0) {
                     const previewContainer = document.getElementById('preview_' + this.id);
                     previewContainer.innerHTML = ''; // Effacer le contenu précédent
@@ -228,35 +227,35 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.querySelector('form');
             const submitBtn = document.querySelector('button[type="submit"]');
-            
+
             console.log('Form found:', form);
             console.log('Submit button found:', submitBtn);
             console.log('Form action:', form ? form.action : 'No form');
             console.log('Form method:', form ? form.method : 'No form');
-            
+
             if (form) {
                 form.addEventListener('submit', function(e) {
                     console.log('Form submitted');
-                    
+
                     // Vérification des champs obligatoires
                     const name = document.getElementById('name').value.trim();
                     const description = document.getElementById('description').value.trim();
-                    
+
                     console.log('Name:', name);
                     console.log('Description:', description);
-                    
+
                     if (!name) {
                         e.preventDefault();
                         alert('Le nom est obligatoire.');
                         return false;
                     }
-                    
+
                     if (!description) {
                         e.preventDefault();
                         alert('La description est obligatoire.');
                         return false;
                     }
-                    
+
                     console.log('Form validation passed');
                 });
             }

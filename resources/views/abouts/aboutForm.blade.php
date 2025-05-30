@@ -71,7 +71,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <button type="button" class="btn btn-success btn-file my-1" onclick="triggerFileInput('imageUrl')">
+                    <button type="button" class="btn btn-success btn-lg" onclick="triggerFileInput('imageUrl')">
                         Ajouter image : (ImageUrl)
                     </button>
                     <input type="file" name="imageUrl"
@@ -86,10 +86,13 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div> <a href="{{ route('admin.about.index') }}" class="btn btn-danger mt-1">
+                </div>
+                <a href="{{ route('admin.about.index') }}" class="btn btn-danger btn-lg mt-1">
                     Annuler
+                    <i class="fa-solid fa-trash"></i>
                 </a>
-                <button class="btn btn-primary mt-1"> {{ isset($about) ? 'Modifier' : 'Creer' }}</button>
+                <button class="btn btn-primary btn-lg mt-1"> {{ isset($about) ? 'Modifier' : 'Creer' }}<i
+                        class="fa-solid fa-pen-to-square"></i></button>
             </form>
         </div>
     </div>
@@ -136,7 +139,7 @@
                             if (file) {
                                 const reader = new FileReader();
                                 const img = document.createElement(
-                                'img'); // Créer un élément img pour chaque image
+                                    'img'); // Créer un élément img pour chaque image
 
                                 reader.onload = function(event) {
                                     img.src = event.target.result;

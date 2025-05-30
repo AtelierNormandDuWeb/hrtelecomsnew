@@ -16,7 +16,7 @@
 
     /* User form section styles */
     .user-form-section {
-        max-width: 600px;
+        /* max-width: 600px; */
         margin: 2rem auto;
         padding: 2rem;
         background-color: var(--white);
@@ -196,16 +196,6 @@
         </div>
 
         <div class="form-group">
-            <label for="email_verified_at">Email vérifié le</label>
-            <input type="text" name="email_verified_at" id="email_verified_at"
-                value="{{ old('email_verified_at', $user->email_verified_at ?? '') }}"
-                placeholder="YYYY-MM-DD HH:MM:SS">
-            @error('email_verified_at')
-                <p class="error-msg">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="form-group">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" placeholder="Mot de passe"
                 {{ isset($user) ? '' : 'required' }}>
@@ -214,9 +204,13 @@
             @enderror
         </div>
 
-        <div class="form-buttons">
-            <a href="{{ route('admin.user.index') }}" class="btn btn-cancel">Annuler</a>
-            <button type="submit" class="btn btn-submit">{{ isset($user) ? 'Modifier' : 'Créer' }}</button>
+        <div class="col-md-8">
+            <a href="{{ route('admin.user.index') }}" class="btn btn-danger btn-lg mt-1">
+                Annuler
+                <i class="fa-solid fa-trash"></i>
+            </a>
+            <button class="btn btn-primary btn-lg mt-1"> {{ isset($user) ? 'Modifier' : 'Creer' }}<i
+                    class="fa-solid fa-pen-to-square"></i></button>
         </div>
     </form>
 </div>

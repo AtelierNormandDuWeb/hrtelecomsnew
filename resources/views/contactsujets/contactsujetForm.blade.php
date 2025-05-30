@@ -21,10 +21,13 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div> <a href="{{ route('admin.contactsujet.index') }}" class="btn btn-danger mt-1">
+                </div>
+                <a href="{{ route('admin.contactsujet.index') }}" class="btn btn-danger btn-lg mt-1">
                     Annuler
+                    <i class="fa-solid fa-trash"></i>
                 </a>
-                <button class="btn btn-primary mt-1"> {{ isset($contactsujet) ? 'Modifier' : 'Creer' }}</button>
+                <button class="btn btn-primary btn-lg mt-1"> {{ isset($contactsujet) ? 'Modifier' : 'Creer' }}<i
+                        class="fa-solid fa-pen-to-square"></i></button>
             </form>
         </div>
     </div>
@@ -71,7 +74,7 @@
                             if (file) {
                                 const reader = new FileReader();
                                 const img = document.createElement(
-                                'img'); // Créer un élément img pour chaque image
+                                    'img'); // Créer un élément img pour chaque image
 
                                 reader.onload = function(event) {
                                     img.src = event.target.result;

@@ -112,15 +112,11 @@
 
 @section('content')
     <div class="admin-users-container">
-        <h3>Détails utilisateur</h3>
-        <div class="d-flex justify-content-start">
-            <div class="actions-bar">
-                <a href="{{ route('admin.user.create') }}" class="btn-custom btn-success">
-                    Créer utilisateur
-                </a>
-            </div>
-        </div>
-        <table class="user-table">
+        <h3 class="text-center"> Utilisateurs</h3>
+        <a href="{{ route('admin.user.create') }}" class="btn btn-warning btn-lg mb-3">
+            <i class="fa-solid fa-plus"></i>Créer utilisateur
+        </a>
+        <table class="user-table table-responsive">
             @foreach ($users as $user)
                 <tbody>
                     <tr>
@@ -132,55 +128,26 @@
                         <td>{{ $user->email }}</td>
                     </tr>
                     <tr>
-                        <th>Email vérifié le</th>
-                        <td>{{ $user->email_verified_at }}</td>
-                    </tr>
-                    {{-- <tr>
-                        <th>Mot de passe (hashé)</th>
-                        <td>{{ $user->password }}</td>
-                    </tr> --}}
-                    <tr>
-                        <td class="action-buttons">
-                            <a href="{{ route('admin.user.show', ['id' => $user->id]) }}"><i
-                                    class="fa-solid fa-eye"></i></a>
-                            <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}"><i
-                                    class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="#" data-id="{{ $user->id }}" class="deleteBtn"><i
-                                    class="fa-solid fa-trash"></i></a>
+                        <td colspan="2" class="text-center">
+                            <div class="btn-group gap-2" role="group" aria-label="Actions CRUD">
+                                <a href="{{ route('admin.user.show', ['id' => $user->id]) }}"
+                                    class="btn btn-primary btn-lg">Voir
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}"
+                                    class="btn btn-success btn-lg">Modifier
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                {{-- <a href="#" data-id="{{ $user->id }}"
+                                    class="btn btn-danger btn-lg deleteBtn">Supprimer
+                                    <i class="fa-solid fa-trash"></i>
+                                </a> --}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             @endforeach
         </table>
-        {{-- <table id="User" class="user-table">
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Email vérifié le</th>
-                 <th>Mot de passe</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-                <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->email_verified_at }}</td>
-                    <td>{{ $user->password }}</td>
-                    <td class="action-buttons">
-                        <a href="{{ route('admin.user.show', ['id' => $user->id]) }}"><i class="fa-solid fa-eye"></i></a>
-                        <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="#" data-id="{{ $user->id }}" class="deleteBtn"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
-
         <div class="pagination">
             {{ $users->links('pagination::bootstrap-5') }}
         </div>
@@ -206,4 +173,81 @@
 @endsection
 
 @section('scripts')
+  <script>
+        const checkboxs = document.querySelectorAll('input[type="checkbox"]')
+
+        checkboxs.forEach((checkbox) => {
+
+            checkbox.onchange = async (event) => {
+                const {
+                    checked,
+                    name,
+                    dataset
+                } = event.target;
+                const {
+                    id
+                } = dataset;
+                console.log({
+                    checked,
+                    name,
+                    id
+                });
+                const data = {
+                    [name]: checked.toString()
+                };
+                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+                const response = await fetch('/admin/user/speed/' + id, {
+                    method: 'PUT',
+                    body: JSON.stringify(
+                        data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
+            };
+        })
+
+        const deleteButtons = document.querySelectorAll('.deleteBtn')
+        deleteButtons.forEach(deleteButton => {
+            deleteButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const {
+                    id,
+                    title
+                } = deleteButton.dataset
+                const modalBody = document.querySelector('.modal-body')
+                modalBody.innerHTML = `Êtes-vous sûr de vouloir supprimer ces données ?</strong> `
+                console.log({
+                    id,
+                    title
+                });
+                const modal = new bootstrap.Modal(document.querySelector('#confirmModal'))
+                modal.show()
+                const confirmDeleteBtn = document.querySelector('.confirmDeleteAction')
+
+                confirmDeleteBtn.addEventListener('click', async () => {
+                    const csrfToken = document.head.querySelector('meta[name="csrf-token"]')
+                        .content;
+                    const response = await fetch('/admin/user/delete/' + id, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        }
+                    })
+
+                    const result = await response.json()
+
+                    if (result && result.isSuccess) {
+                        window.location.href = window.location.href;
+                    }
+
+
+                    modal.hide()
+                })
+            })
+
+        });
+    </script>
 @endsection

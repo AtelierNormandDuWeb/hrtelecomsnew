@@ -81,18 +81,15 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div> <a href="{{ route('admin.title.index') }}" class="btn btn-danger mt-1">
+                </div>
+                <a href="{{ route('admin.title.index') }}" class="btn btn-danger btn-lg mt-1">
                     Annuler
+                    <i class="fa-solid fa-trash"></i>
                 </a>
-                <button class="btn btn-primary mt-1"> {{ isset($title) ? 'Modifier' : 'Creer' }}</button>
+                <button class="btn btn-primary btn-lg mt-1"> {{ isset($title) ? 'Modifier' : 'Creer' }}<i
+                        class="fa-solid fa-pen-to-square"></i></button>
             </form>
         </div>
-        {{-- <div class="col-md-4">
-            <a class="btn btn-danger mt-1" href="{{ route('admin.title.index') }}">
-                Annuler
-            </a>
-            <button class="btn btn-primary mt-1"> {{ isset($title) ? 'Modifier' : 'Creer' }}</button>
-        </div> --}}
     </div>
 
     @section('scripts')
@@ -137,7 +134,7 @@
                             if (file) {
                                 const reader = new FileReader();
                                 const img = document.createElement(
-                                'img'); // Créer un élément img pour chaque image
+                                    'img'); // Créer un élément img pour chaque image
 
                                 reader.onload = function(event) {
                                     img.src = event.target.result;

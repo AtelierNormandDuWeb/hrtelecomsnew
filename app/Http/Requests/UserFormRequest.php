@@ -26,7 +26,6 @@ class UserFormRequest extends FormRequest
             //
             'name' => $isRequired.'string',
 			'email' => $isRequired.'email',
-			'email_verified_at' => $isRequired.'email',
 			'password' => $isRequired.'min:8'
 			
         ];

@@ -8,28 +8,27 @@
 
 @section('content')
     <div>
-        <h3>Show Cards</h3>
-
-        <a href="{{ route('admin.cards.index') }}" class="btn btn-success my-1">
-            Home
+        <h3 class="text-center"> L'équipe</h3>
+        <a href="{{ route('admin.cards.index') }}" class="btn btn-info btn-lg mb-3">
+            <i class="fa-solid"></i>Accueil
         </a>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th>Name</th>
+                        <th>Nom</th>
                         <td>{{ $cards->name }}</td>
                     </tr>
                     <tr>
-                        <th>Title</th>
+                        <th>Titre</th>
                         <td>{{ $cards->title }}</td>
                     </tr>
                     <tr>
-                        <th>Subtitle</th>
+                        <th>Rôle</th>
                         <td>{{ $cards->subtitle }}</td>
                     </tr>
                     <tr>
-                        <th>Avatar_url</th>
+                        <th>Image de l'avatar</th>
                         <td>
                             <div class="form-group d-flex" id="preview_avatar_url" style="max-width: 100%;">
                                 <img src="{{ Str::startsWith($cards->avatar_url, 'http') ? $cards->avatar_url : Storage::url($cards->avatar_url) }}"
@@ -38,7 +37,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Background_url</th>
+                        <th>Image du Papier-Peint</th>
                         <td>
                             <div class="form-group d-flex" id="preview_background_url" style="max-width: 100%;">
                                 <img src="{{ Str::startsWith($cards->background_url, 'http') ? $cards->background_url : Storage::url($cards->background_url) }}"
@@ -55,20 +54,19 @@
                         <td>{{ $cards->details }}</td>
                     </tr>
                     <tr>
-                        <th>Contact_info</th>
+                        <th>Adresse mail et/ou téléphone</th>
                         <td>{{ $cards->contact_info }}</td>
                     </tr>
                     <tr>
-                        <th>Sort_order</th>
+                        <th>Ordre d'affichage</th>
                         <td>{{ $cards->sort_order }}</td>
                     </tr>
 
                 </tbody>
             </table>
-
             <div>
-                <a href="{{ route('admin.cards.edit', ['id' => $cards->id]) }}" class="btn btn-primary my-1">
-                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                <a href="{{ route('admin.cards.edit', ['id' => $cards->id]) }}" class="btn btn-success btn-lg">Modifier
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </a>
             </div>
         </div>

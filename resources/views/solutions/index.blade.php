@@ -8,19 +8,23 @@
 
 @section('content')
     <div>
-        <h3> Details Section Solution</h3>
-        <div class="d-flex justify-content-start">
-            <div class="dropdown m-1">
-                <div id="columnSelector" class="dropdown-menu"> </div>
-            </div>
-            <a href="{{ route('admin.solution.create') }}" class="btn btn-success m-1">
-                Creer nouvelle
-            </a>
-        </div>
+        <h3 class="text-center"> Solution</h3>
+        <a href="{{ route('admin.solution.create') }}" class="btn btn-warning btn-lg mb-3">
+            <i class="fa-solid fa-plus"></i>Nouveau
+        </a>
         @foreach ($solutions as $solution)
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tbody>
+                        <tr>
+                            <th>ImageUrl</strong></th>
+                            <td>
+                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
+                                    <img src="{{ Str::startsWith($solution->imageUrl, 'http') ? $solution->imageUrl : Storage::url($solution->imageUrl) }}"
+                                        alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <th>Boutton 1</th>
                             <td>{{ $solution->button1 }}</td>
@@ -58,27 +62,21 @@
                             <td>{{ $solution->liste5 }}</td>
                         </tr>
                         <tr>
-                            <th>ImageUrl</strong></th>
-                            <td>
-                                <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($solution->imageUrl, 'http') ? $solution->imageUrl : Storage::url($solution->imageUrl) }}"
-                                        alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
+                            <td colspan="2" class="text-center">
+                                <div class="btn-group gap-2" role="group" aria-label="Actions CRUD">
+                                    <a href="{{ route('admin.solution.show', ['id' => $solution->id]) }}"
+                                        class="btn btn-primary btn-lg">Voir
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('admin.solution.edit', ['id' => $solution->id]) }}"
+                                        class="btn btn-success btn-lg">Modifier
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="#" data-id="{{ $solution->id }}"
+                                        class="btn btn-danger btn-lg deleteBtn">Supprimer
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="{{ route('admin.solution.show', ['id' => $solution->id]) }}"
-                                    class="btn btn-primary btn-sm">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.solution.edit', ['id' => $solution->id]) }}"
-                                    class="btn btn-success btn-sm">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <a href="#" data-id="{{ $solution->id }}" class="btn btn-danger btn-sm deleteBtn">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -159,7 +157,7 @@
                     title
                 } = deleteButton.dataset
                 const modalBody = document.querySelector('.modal-body')
-                modalBody.innerHTML = `Are you sure you want to delete this data ?</strong> `
+                modalBody.innerHTML = `Êtes-vous sûr de vouloir supprimer ces données ?</strong> `
                 console.log({
                     id,
                     title
