@@ -22,7 +22,7 @@
             <ul class="footer-links">
                 <li><a href="{{ url('/') }}#home">Accueil</a></li>
                 <li><a href="{{ url('/') }}#about">À propos</a></li>
-                <li><a href="{{ url('/') }}#solutions">Solutions</a></li>
+                <li><a href="{{ url('/solutions') }}#solutions">Solutions</a></li>
                 <li><a href="{{ url('/') }}#services">Services</a></li>
                 <li><a href="{{ url('/') }}#faq">FAQ</a></li>
                 <li><a href="{{ url('/') }}#contact">Contact</a></li>

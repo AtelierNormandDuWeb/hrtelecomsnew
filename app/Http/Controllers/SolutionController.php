@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Solution;
+use App\Models\Title;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -23,6 +24,13 @@ class SolutionController extends Controller
 
         return view('solutions/show',['solution' => $solution]);
     }
+    public function publicIndex(): View
+{
+    $titles = Title::all();
+    $solutions = Solution::orderBy('created_at', 'desc')->get();
+    
+    return view('solutions.public', compact('titles', 'solutions'));
+}
     public function create(): View
     {
         return view('solutions/create');

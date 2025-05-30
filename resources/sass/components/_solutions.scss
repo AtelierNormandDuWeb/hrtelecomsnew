@@ -91,6 +91,11 @@
     align-items: center;
     margin-bottom: var(--spacing-sm);
 }
+.feature-item-cont {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
 
 .feature-icon {
     color: var(--success-color);

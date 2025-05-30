@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardsController;
@@ -35,6 +36,8 @@ Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('tr
 Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');
 
 Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
+
+Route::get('/solutions', [SolutionController::class, 'publicIndex'])->name('solutions.public');
 
 // Routes existantes
 Route::get('/contact', [AppointmentController::class, 'showForm'])->name('appointments.form');
