@@ -31,6 +31,10 @@ Route::get('/cookiesview', fn() => view('cookiesview'))->name('cookiesview');
 
 Route::get('/ourservices', fn() => view('ourservices'))->name('ourservices');
 
+Route::get('/article', function () {
+    return view('articles.article');
+})->name('article.show');
+
 Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('trombinoscope');
 
 Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');

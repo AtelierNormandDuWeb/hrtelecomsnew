@@ -1,61 +1,1186 @@
 @extends('base')
 
 @section('content')
-    <section class="solutions" id="solutions">
-        <div class="feature-item-cont">
-        </br>
-        </div>
-        <div class="container">
-            <h2 class="section-title">
+<!-- Hero Section -->
+<section class="hero-solutions">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">
                 @if (isset($titles) && $titles->count() > 0)
                     @foreach ($titles as $title)
                         {{ $title->title3 }}
                     @endforeach
                 @else
-                    Nos Solutions
+                    Solutions de Téléphonie d'Entreprise
                 @endif
-            </h2>
-            @foreach ($solutions as $solution)
-                <div id="centrex" class="tab-content active">
-                    <div class="solution-content">
-                        <div class="solution-text">
-                            <h3>{{ $solution->title }}</h3>
-                            <p>{{ $solution->description }}</p>
-
-                            <div class="solution-features">
-                                <div class="feature-item">
-                                    <i class="fas fa-check feature-icon"></i>
-                                    <span>{{ $solution->liste1 }}</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check feature-icon"></i>
-                                    <span>{{ $solution->liste2 }}</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check feature-icon"></i>
-                                    <span>{{ $solution->liste3 }}</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check feature-icon"></i>
-                                    <span>{{ $solution->liste4 }}</span>
-                                </div>
-                                <div class="feature-item">
-                                    <i class="fas fa-check feature-icon"></i>
-                                    <span>{{ $solution->liste5 }}</span>
-                                </div>
-                            </div>
-
-                            {{-- <a href="#contact" class="cta-button">{{ $solution->button2 }}</a> --}}
-                        </div>
-
-                        <div class="solution-image">
-                            <img src="{{ asset('storage/' . $solution->imageUrl) }}" alt="Solution Centrex" />
-                        </div>
-                    </div>
-                </div>
-                <div class="feature-item-cont">
-                </div>
-            @endforeach
+            </h1>
+            <p class="hero-subtitle">Découvrez nos solutions innovantes adaptées à vos besoins professionnels</p>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Solutions Overview -->
+<section class="solutions-overview">
+    <div class="container">
+        <div class="solutions-grid">
+            <div class="solution-card centrex-card">
+                <div class="card-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Solution Centrex</h3>
+                <p>Une solution cloud flexible et évolutive pour votre entreprise</p>
+                <a href="#centrex-details" class="card-link">En savoir plus</a>
+            </div>
+            <div class="solution-card ipbx-card">
+                <div class="card-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Solution IpBX</h3>
+                <p>Un système sur site pour un contrôle total de votre infrastructure</p>
+                <a href="#ipbx-details" class="card-link">En savoir plus</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Centrex Section -->
+<section id="centrex-details" class="solution-details centrex-section">
+    <div class="container">
+        <div class="section-header-h2">
+            <span class="section-tag">Solution Cloud</span>
+            <h2>Centrex : La Téléphonie dans le Cloud</h2>
+            <p class="section-subtitle-header">Une solution moderne, flexible et sans contrainte d'infrastructure</p>
+        </div>
+        
+
+
+        <!-- Avantages Centrex -->
+        <div class="advantages-section-h3">
+            <h3>Pourquoi choisir le Centrex ?</h3>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Déploiement Rapide</h4>
+                    <p>Mise en service en quelques heures sans installation d'équipement</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h4>Coût Maîtrisé</h4>
+                    <p>Pas d'investissement initial, coûts prévisibles et évolutifs</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Maintenance Incluse</h4>
+                    <p>Mises à jour automatiques et support technique inclus</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h4>Évolutivité</h4>
+                    <p>Ajustez facilement le nombre de postes selon vos besoins</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- IpBX Section -->
+<section id="ipbx-details" class="solutions-overview cta-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Solution Sur Site</span>
+            <h2>IpBX : Votre Infrastructure Dédiée</h2>
+            <p class="section-subtitle">Un contrôle total pour les entreprises exigeantes</p>
+        </div>
+    
+
+        <!-- Avantages IpBX -->
+        <div class="advantages-section">
+            <h3>Pourquoi choisir l'IpBX ?</h3>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>Sécurité Maximale</h4>
+                    <p>Données hébergées en interne, contrôle total de la sécurité</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>Personnalisation</h4>
+                    <p>Configuration sur mesure selon vos processus métier</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h4>Intégration</h4>
+                    <p>Parfaite intégration avec votre infrastructure existante</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Performance</h4>
+                    <p>Ressources dédiées pour des performances optimales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="comparison-section">
+    <div class="container">
+        <h2>Quelle solution choisir ?</h2>
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div class="comparison-item">
+                    <h3>Critères</h3>
+                </div>
+                <div class="comparison-item centrex-bg">
+                    <h3>Centrex</h3>
+                </div>
+                <div class="comparison-item ipbx-bg">
+                    <h3>IpBX</h3>
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <strong>Investissement initial</strong>
+                </div>
+                <div class="comparison-item">
+                    <i class="fas fa-star"></i> Aucun
+                </div>
+                <div class="comparison-item">
+                    Équipements requis
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <strong>Maintenance</strong>
+                </div>
+                <div class="comparison-item">
+                    <i class="fas fa-star"></i> Incluse
+                </div>
+                <div class="comparison-item">
+                    À votre charge
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <strong>Évolutivité</strong>
+                </div>
+                <div class="comparison-item">
+                    <i class="fas fa-star"></i> Immédiate
+                </div>
+                <div class="comparison-item">
+                    Selon capacité matérielle
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <strong>Contrôle des données</strong>
+                </div>
+                <div class="comparison-item">
+                    Cloud sécurisé
+                </div>
+                <div class="comparison-item">
+                    <i class="fas fa-star"></i> Total
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <strong>Personnalisation</strong>
+                </div>
+                <div class="comparison-item">
+                    Standard avancé
+                </div>
+                <div class="comparison-item">
+                    <i class="fas fa-star"></i> Complète
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Prêt à choisir votre solution ?</h2>
+            <p>Nos experts vous accompagnent dans le choix de la solution la plus adaptée à vos besoins</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">Demander un devis</a>
+                {{-- <a href="#contact" class="btn-secondary">Nous contacter</a> --}}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Animations globales */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hero Section */
+.hero-solutions {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(30, 64, 175, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: gradientShift 8s ease infinite;
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-solutions::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(30, 58, 138, 0.1) 100%);
+    pointer-events: none;
+}
+
+.hero-solutions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* Solutions Overview */
+.solutions-overview {
+    padding: 80px 0;
+    background: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.solutions-overview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 100px,
+        rgba(30, 58, 138, 0.01) 101px,
+        rgba(30, 58, 138, 0.01) 102px
+    );
+    pointer-events: none;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.solution-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 4px solid;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.solution-card:hover::before {
+    left: 100%;
+}
+
+.solution-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.solution-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.solution-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.centrex-card {
+    border-top-color: #667eea;
+}
+
+.ipbx-card {
+    border-top-color: #f093fb;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #667eea;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.solution-card:hover .card-icon {
+    transform: scale(1.2) rotate(5deg);
+    color: #5a6fd8;
+}
+
+.ipbx-card .card-icon {
+    color: #f093fb;
+    animation-delay: 1.5s;
+}
+
+.ipbx-card:hover .card-icon {
+    color: #e680f0;
+}
+
+.solution-card h3 {
+    transition: color 0.3s ease;
+}
+
+.solution-card:hover h3 {
+    color: #667eea;
+}
+
+.ipbx-card:hover h3 {
+    color: #f093fb;
+}
+
+.card-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #667eea;
+    transition: width 0.3s ease;
+}
+
+.card-link:hover::after {
+    width: 100%;
+}
+
+.card-link:hover {
+    color: #5a6fd8;
+    transform: translateX(5px);
+}
+
+/* Solution Details - contenu avec z-index pour passer au-dessus du background */
+.solution-content-detailed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header,
+.section-header-h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+.advantages-section {
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.comparison-table {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: scaleIn 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+/* Effet parallax sur mobile désactivé */
+@media (max-width: 768px) {
+    .hero-solutions,
+    .solutions-overview,
+    .centrex-section,
+    .ipbx-section,
+    .comparison-section,
+    .cta-section {
+        background-attachment: scroll;
+    }
+}
+
+.centrex-section {
+    background: linear-gradient(135deg, #f5f7ff 0%, #e8f2ff 100%);
+}
+
+.ipbx-section {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe8f8 100%);
+}
+
+.section-header,
+.section-header-h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.section-tag {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    animation: scaleIn 0.6s ease-out;
+    transition: all 0.3s ease;
+}
+
+.section-tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.ipbx-section .section-tag {
+    background: #f093fb;
+}
+
+.ipbx-section .section-tag:hover {
+    box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.section-header-h2 h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #363535;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #ffffff;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+.section-subtitle-header {
+    font-size: 1.1rem;
+    color: #423c3c;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.solution-content-detailed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.solution-content-detailed.reverse {
+    direction: rtl;
+}
+
+.solution-content-detailed.reverse > * {
+    direction: ltr;
+}
+
+.content-text {
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.solution-content-detailed.reverse .content-text {
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.content-text h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.content-text h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: #667eea;
+    border-radius: 2px;
+    animation: slideInLeft 0.8s ease-out 0.5s both;
+}
+
+.ipbx-section .content-text h3::after {
+    background: #f093fb;
+}
+
+@keyframes slideInLeft {
+    from {
+        width: 0;
+    }
+    to {
+        width: 50px;
+    }
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(5) { animation-delay: 0.5s; }
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #fff, #f8f9ff);
+}
+
+.feature-card i {
+    color: #28a745;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover i {
+    transform: scale(1.2);
+    color: #20c997;
+}
+
+.content-image {
+    animation: fadeInRight 0.8s ease-out;
+    perspective: 1000px;
+}
+
+.solution-content-detailed.reverse .content-image {
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.content-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+}
+
+.content-image img:hover {
+    transform: scale(1.05) rotateY(5deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.placeholder-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    color: #7f8c8d;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: rotateShin 4s linear infinite;
+}
+
+@keyframes rotateShin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.placeholder-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.placeholder-image i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.centrex-placeholder i {
+    color: #667eea;
+}
+
+.ipbx-placeholder i {
+    color: #f093fb;
+}
+
+/* Advantages */
+.advantages-section,
+.advantages-section-h3 {
+    margin-top: 4rem;
+}
+
+.advantages-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+.advantages-section-h3 h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: #4c4545;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.advantage-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.advantage-item:nth-child(1) { animation-delay: 0.1s; }
+.advantage-item:nth-child(2) { animation-delay: 0.2s; }
+.advantage-item:nth-child(3) { animation-delay: 0.3s; }
+.advantage-item:nth-child(4) { animation-delay: 0.4s; }
+
+.advantage-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+    transition: left 0.6s ease;
+}
+
+.advantage-item:hover::before {
+    left: 100%;
+}
+
+.advantage-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.advantage-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 2rem;
+    transition: all 0.4s ease;
+    animation: scaleIn 0.6s ease-out;
+}
+
+.advantage-item:hover .advantage-icon {
+    transform: scale(1.1) rotate(10deg);
+    background: linear-gradient(135deg, #5a6fd8, #6a4c93);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.ipbx-section .advantage-icon {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.ipbx-section .advantage-item:hover .advantage-icon {
+    background: linear-gradient(135deg, #e680f0, #f04469);
+    box-shadow: 0 10px 25px rgba(240, 147, 251, 0.3);
+}
+
+.advantage-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.advantage-item:hover h4 {
+    color: #667eea;
+}
+
+.ipbx-section .advantage-item:hover h4 {
+    color: #f093fb;
+}
+
+.advantage-item p {
+    transition: color 0.3s ease;
+}
+
+.advantage-item:hover p {
+    color: #5a6fd8;
+}
+
+/* Comparison */
+.comparison-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(102, 126, 234, 0.02) 50%, transparent 51%);
+    animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(100px); }
+}
+
+.comparison-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+.comparison-table {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: scaleIn 0.8s ease-out;
+    position: relative;
+    z-index: 2;
+}
+
+.comparison-header,
+.comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.comparison-header {
+    background: #2c3e50;
+    color: white;
+}
+
+.comparison-item {
+    padding: 1.5rem;
+    text-align: center;
+    border-right: 1px solid #ecf0f1;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.comparison-item:last-child {
+    border-right: none;
+}
+
+.centrex-bg {
+    background: #667eea !important;
+    position: relative;
+}
+
+.ipbx-bg {
+    background: #f093fb !important;
+    position: relative;
+}
+
+.centrex-bg::before,
+.ipbx-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.centrex-bg:hover::before,
+.ipbx-bg:hover::before {
+    opacity: 1;
+}
+
+.comparison-row:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.comparison-row .comparison-item {
+    transition: all 0.3s ease;
+}
+
+.comparison-row:hover .comparison-item {
+    background: #e8f4fd;
+}
+
+.comparison-row .comparison-item i {
+    color: #f39c12;
+    margin-right: 0.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.comparison-row .comparison-item:hover {
+    transform: scale(1.02);
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 80px 0;
+    background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.9)),
+                url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+} */
+
+/* .cta-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.03) 1deg,
+        transparent 2deg
+    );
+    animation: rotate 30s linear infinite;
+    pointer-events: none;
+} */
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #1e3a8a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .solution-content-detailed {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .solution-content-detailed.reverse {
+        direction: ltr;
+    }
+    
+    .comparison-header,
+    .comparison-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-item {
+        border-right: none;
+        border-bottom: 1px solid #ecf0f1;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 200px;
+    }
+}
+</style>
 @endsection
