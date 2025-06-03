@@ -236,9 +236,9 @@ nav a:hover::after {
         background-color: rgba(255, 255, 255, 0.05);
     }
     
-    section {
-        padding: var(--spacing-lg) var(--spacing-md);
-    }
+    // section {
+    //     padding: var(--spacing-lg) var(--spacing-md);
+    // }
 }
 
 @media (max-width: 576px) {

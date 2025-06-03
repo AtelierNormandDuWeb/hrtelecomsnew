@@ -3,19 +3,18 @@
     @layer base, cards;
 
     .trombinoscope-section {
-        padding: 5rem 0 5rem 0;
-        background: linear-gradient(135deg, #667eea 0%, #cccccc 100%);
+        padding: 4rem 0 0 0;
+        background: var(--primary-color-services);
     }
 
     @layer base {
         .trombinoscope-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 110vh;
+            align-items: normal;
+            min-height: 850px;
             position: relative;
             line-height: 1.5;
-            padding: 4rem 2rem;
         }
 
         .sr-only {
@@ -194,7 +193,6 @@
             translate: var(--avatar-img-x, 0), var(--avatar-img-y, 0);
             filter: saturate(var(--avatar-img-saturate, 75%));
             object-position: center 15%;
-            /* Point focal encore plus haut pour capturer le visage */
         }
 
         .cards-container .avatar>img:hover {
@@ -403,7 +401,7 @@
 </style>
 
 @section('content')
-    @include('sections.accessibilitytools')
+@include('sections.accessibilitytools')
     <section class="trombinoscope-section">
         <div>
 
@@ -467,7 +465,7 @@
             if (width <= 600) {
                 return {
                     itemsPerRow: 2,
-                    horizontalSpacing: 160, // Parfait sur mobile
+                    horizontalSpacing: 160,
                     verticalSpacing: 200,
                     cardWidth: 140,
                     cardHeight: 180
@@ -477,8 +475,8 @@
             if (width <= 960) {
                 return {
                     itemsPerRow: 3,
-                    horizontalSpacing: 220, // Beaucoup plus d'espace
-                    verticalSpacing: 280, // Beaucoup plus d'espace vertical
+                    horizontalSpacing: 220,
+                    verticalSpacing: 280,
                     cardWidth: 160,
                     cardHeight: 220
                 };
@@ -487,8 +485,8 @@
             if (width <= 1440) {
                 return {
                     itemsPerRow: 4,
-                    horizontalSpacing: 240, // Encore plus d'espace
-                    verticalSpacing: 320, // Encore plus d'espace vertical
+                    horizontalSpacing: 240,
+                    verticalSpacing: 320,
                     cardWidth: 180,
                     cardHeight: 240
                 };
@@ -496,7 +494,7 @@
 
             return {
                 itemsPerRow: 4,
-                horizontalSpacing: 280, // Maximum d'espace sur très grands écrans
+                horizontalSpacing: 280,
                 verticalSpacing: 360,
                 cardWidth: 200,
                 cardHeight: 260

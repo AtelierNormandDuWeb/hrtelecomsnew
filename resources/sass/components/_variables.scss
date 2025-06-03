@@ -26,6 +26,11 @@
     --primary-color-services: #2563eb;
     --secondary-color-services: #1e3a8a;
 
+    /*BACKGROUND SOLUTIONS*/
+    --background-section: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(30, 64, 175, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    --background-url: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+
     /* Typographie */
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-size-base: 16px;
@@ -95,6 +100,8 @@
     --dark-background: #070b1a;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.4);
+    --background-section: #121d3a;
+    --background-url:#121d3a;
 }
 
 /* Mode Daltonien */

@@ -1,6 +1,8 @@
 @extends('base')
 
 @section('content')
+
+@include('sections.accessibilitytools')
 <!-- Hero Section -->
 <section class="hero-solutions">
     <div class="container">
@@ -221,14 +223,11 @@
             <p>Nos experts vous accompagnent dans le choix de la solution la plus adaptée à vos besoins</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn-primary">Demander un devis</a>
-                {{-- <a href="#contact" class="btn-secondary">Nous contacter</a> --}}
             </div>
         </div>
     </div>
 </section>
-
-<style>
-/* Animations globales */
+{{-- /*<style>
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -303,7 +302,6 @@
     }
 }
 
-/* Hero Section */
 .hero-solutions {
     background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(30, 64, 175, 0.9) 100%),
                 url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
@@ -365,7 +363,6 @@
     animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-/* Solutions Overview */
 .solutions-overview {
     padding: 80px 0;
     background: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
@@ -512,7 +509,6 @@
     transform: translateX(5px);
 }
 
-/* Solution Details - contenu avec z-index pour passer au-dessus du background */
 .solution-content-detailed {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -549,7 +545,6 @@
     z-index: 2;
 }
 
-/* Effet parallax sur mobile désactivé */
 @media (max-width: 768px) {
     .hero-solutions,
     .solutions-overview,
@@ -1047,7 +1042,6 @@
     transform: scale(1.02);
 }
 
-/* CTA Section */
 .cta-section {
     padding: 80px 0;
     background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.9)),
@@ -1060,34 +1054,12 @@
     position: relative;
     overflow: hidden;
 }
-
-/* .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-} */
-
-/* .cta-section::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        rgba(255, 255, 255, 0.03) 1deg,
-        transparent 2deg
-    );
-    animation: rotate 30s linear infinite;
-    pointer-events: none;
-} */
+.centrex-section {
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
 @keyframes rotate {
     0% { transform: rotate(0deg); }
@@ -1147,7 +1119,6 @@
     color: #1e3a8a;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2rem;
@@ -1181,6 +1152,6 @@
     .btn-secondary {
         width: 200px;
     }
-}
-</style>
+} 
+</style> --}}
 @endsection
