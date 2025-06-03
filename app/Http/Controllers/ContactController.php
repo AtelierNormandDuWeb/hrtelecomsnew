@@ -36,8 +36,8 @@ class ContactController extends Controller
 
         // 📨 Envoi de l'e-mail
         Mail::raw($messageContent, function ($message) use ($validatedData) {
-            $message->from('contact@zelecrenovation.fr', 'ZElect & Rénovation Contact')
-                ->to('z.renov14@gmail.com')
+            $message->from('contact@hrtelecoms.fr', 'HRTelecoms')
+                ->to('contact@gmail.com')
                 ->subject('Nouveau message via le formulaire de contact')
                 ->replyTo($validatedData['email'], $validatedData['name']);
         });
