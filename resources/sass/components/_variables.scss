@@ -26,9 +26,18 @@
     --primary-color-services: #2563eb;
     --secondary-color-services: #1e3a8a;
 
+    --contact-primary: #1a365d;
+    --contact-accent: #5ab9ea;
+    --contact-light: #ffffff;
+    --contact-glass: rgba(255, 255, 255, 0.1);
+    --contact-glass-border: rgba(255, 255, 255, 0.2);
+    --contact-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --contact-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --contact-gradient: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+
     /*BACKGROUND SOLUTIONS*/
     --background-section: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(30, 64, 175, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     --background-url: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
 
     /* Typographie */
@@ -101,7 +110,16 @@
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.4);
     --background-section: #121d3a;
-    --background-url:#121d3a;
+    --background-url: #121d3a;
+
+    --contact-primary: #1a365d;
+    --contact-accent: #5ab9ea;
+    --contact-light: #ffffff;
+    --contact-glass: rgba(255, 255, 255, 0.1);
+    --contact-glass-border: rgba(255, 255, 255, 0.2);
+    --contact-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --contact-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --contact-gradient: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
 }
 
 /* Mode Daltonien */

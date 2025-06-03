@@ -39,24 +39,17 @@ Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('tr
 
 Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');
 
-Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
+// Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
 
 Route::get('/solutions', [SolutionController::class, 'publicIndex'])->name('solutions.public');
 
-// Routes existantes
-Route::get('/contact', [AppointmentController::class, 'showForm'])->name('appointments.form');
-Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
-Route::get('/appointments/confirm/{appointmentId}', [AppointmentController::class, 'confirmAppointment'])->name('appointments.confirm');
+Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
 
-// Routes pour l'authentification Google Calendar
-Route::get('/google-calendar/auth', [AppointmentController::class, 'redirectToGoogleAuth'])->name('google-calendar.auth');
-Route::get('/google-calendar/callback', [AppointmentController::class, 'handleGoogleCallback'])->name('google-calendar.callback');
+Route::post('/pagecontact', [ContactController::class, 'send'])->name('pagecontact.send');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
