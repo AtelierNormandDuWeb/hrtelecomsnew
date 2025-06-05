@@ -39,8 +39,6 @@ Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('tr
 
 Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');
 
-// Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
-
 Route::get('/solutions', [SolutionController::class, 'publicIndex'])->name('solutions.public');
 
 Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
@@ -411,33 +409,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/herosliders/delete/{heroslider}', 'App\Http\Controllers\HerosliderController@delete')->name('heroslider.delete');
 
 });
-// Route::prefix('admin')->name('admin.')->group(function(){
-
-//     //Get Cards datas
-//     Route::get('/cards', 'App\Http\Controllers\CardsController@index')->name('cards.index');
-
-//     //Show Card by Id
-//     Route::get('/cards/show/{id}', 'App\Http\Controllers\CardsController@show')->name('cards.show');
-
-//     //Get Cards by Id
-//     Route::get('/cards/create', 'App\Http\Controllers\CardsController@create')->name('cards.create');
-
-//     //Edit Card by Id
-//     Route::get('/cards/edit/{id}', 'App\Http\Controllers\CardsController@edit')->name('cards.edit');
-
-//     //Save new Card
-//     Route::post('/cards/store', 'App\Http\Controllers\CardsController@store')->name('cards.store');
-
-//     //Update One Card
-//     Route::put('/cards/update/{cards}', 'App\Http\Controllers\CardsController@update')->name('cards.update');
-
-//     //Update One Card Speedly
-//     Route::put('/cards/speed/{cards}', 'App\Http\Controllers\CardsController@updateSpeed')->name('cards.update.speed');
-
-//     //Delete Card
-//     Route::delete('/cards/delete/{cards}', 'App\Http\Controllers\CardsController@delete')->name('cards.delete');
-
-// });
 
 Route::prefix('admin/cards')->name('admin.cards.')->group(function () {
     Route::get('/', [CardsController::class, 'index'])->name('index');
