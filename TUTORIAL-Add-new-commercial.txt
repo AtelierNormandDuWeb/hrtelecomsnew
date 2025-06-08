@@ -1,0 +1,236 @@
+# Guide : Configuration des commerciaux pour le système RDV
+
+## 🎯 Objectif
+Ajouter les 2 autres commerciaux au système de prise de rendez-vous automatique.
+
+---
+
+## 📋 Prérequis
+- Emails Google/Gmail des 2 commerciaux
+- Ils doivent utiliser Google Agenda (Google Calendar)
+- Accès à votre projet Laravel
+
+---
+
+## 📧 Étape 1 : Email à envoyer aux commerciaux
+
+Copiez-collez ce message à vos commerciaux :
+
+```
+Objet : Configuration Google Agenda - Système RDV automatique
+
+Bonjour [Nom du commercial],
+
+Pour activer la prise de rendez-vous automatique sur notre site web, vous devez partager votre agenda Google avec notre système.
+
+ÉTAPES À SUIVRE :
+
+1. Allez sur Google Agenda : https://calendar.google.com
+2. Dans la liste de vos agendas (colonne de gauche), trouvez votre agenda principal (souvent votre nom)
+3. Cliquez sur les 3 points à côté de votre agenda
+4. Cliquez sur "Paramètres et partage"
+5. Descendez jusqu'à "Partager avec des personnes en particulier"
+6. Cliquez sur "Ajouter des personnes"
+7. Ajoutez cette adresse EMAIL EXACTE : 
+   laravel-calendar-booking@hrtelecoms-462011.iam.gserviceaccount.com
+8. Dans les permissions, choisissez "Apporter des modifications aux événements"
+9. Cliquez sur "Envoyer"
+
+⚠️ IMPORTANT : Utilisez exactement cette adresse email, sans faute de frappe.
+
+Cette manipulation permet au site web de :
+- Voir vos créneaux occupés
+- Créer automatiquement les RDV dans votre agenda
+- Éviter les conflits de planning
+
+Merci de me confirmer quand c'est fait !
+
+Cordialement,
+[Votre nom]
+```
+
+---
+
+## 🔧 Étape 2 : Test de la configuration
+
+### 2a. Route de test
+Ajoutez cette route temporaire dans `routes/web.php` :
+
+```php
+Route::get('/test-commercial-access/{email}', function ($email) {
+    $calendarService = new GoogleCalendarService();
+    return response()->json($calendarService->testDirectAccess($email));
+});
+```
+
+### 2b. Test pour chaque commercial
+Une fois qu'un commercial a fait le partage, testez :
+
+```
+http://votre-site.local/test-commercial-access/email-du-commercial@gmail.com
+```
+
+**Résultat attendu :**
+```json
+{
+  "access": "OK",
+  "calendar_id": "email-du-commercial@gmail.com",
+  "calendar_summary": "email-du-commercial@gmail.com",
+  "timezone": "Europe/Paris"
+}
+```
+
+**Si erreur :** Le commercial n'a pas encore fait le partage ou s'est trompé d'email.
+
+---
+
+## ⚙️ Étape 3 : Mise à jour de la configuration
+
+### 3a. Modifier `config/commerciaux.php`
+
+Remplacez le contenu par :
+
+```php
+<?php
+
+return [
+    'commerciaux' => [
+        [
+            'id' => 1,
+            'nom' => 'David ICHIDO',
+            'email' => 'doko972@gmail.com',
+            'calendar_id' => 'doko972@gmail.com',
+            'specialites' => ['Télécoms', 'Internet'],
+        ],
+        [
+            'id' => 2,
+            'nom' => 'VRAI NOM COMMERCIAL 2',  // ← À modifier
+            'email' => 'email-commercial2@gmail.com',  // ← À modifier
+            'calendar_id' => 'email-commercial2@gmail.com',  // ← À modifier
+            'specialites' => ['Sécurité', 'Réseau'],  // ← À modifier si besoin
+        ],
+        [
+            'id' => 3,
+            'nom' => 'VRAI NOM COMMERCIAL 3',  // ← À modifier
+            'email' => 'email-commercial3@gmail.com',  // ← À modifier
+            'calendar_id' => 'email-commercial3@gmail.com',  // ← À modifier
+            'specialites' => ['Maintenance', 'Support'],  // ← À modifier si besoin
+        ],
+    ]
+];
+```
+
+### 3b. Mise à jour du JavaScript
+
+Dans votre fichier JavaScript, remplacez la fonction `loadCommerciaux()` :
+
+```javascript
+function loadCommerciaux() {
+    if (!commercialSelect) return;
+    
+    // NOUVEAU : Récupération dynamique via API (optionnel)
+    // Ou mise à jour manuelle :
+    const commerciaux = [
+        { id: 1, nom: 'David ICHIDO', specialites: 'Télécoms, Internet' },
+        { id: 2, nom: 'VRAI NOM COMMERCIAL 2', specialites: 'Sécurité, Réseau' },  // ← À modifier
+        { id: 3, nom: 'VRAI NOM COMMERCIAL 3', specialites: 'Maintenance, Support' },  // ← À modifier
+    ];
+    
+    commercialSelect.innerHTML = '<option value="">Sélectionnez un commercial</option>';
+    
+    commerciaux.forEach(commercial => {
+        const option = document.createElement('option');
+        option.value = commercial.id;
+        option.textContent = `${commercial.nom} - ${commercial.specialites}`;
+        commercialSelect.appendChild(option);
+    });
+}
+```
+
+---
+
+## ✅ Étape 4 : Tests complets
+
+### 4a. Test des créneaux disponibles
+Pour chaque commercial configuré :
+
+```
+http://votre-site.local/test-disponibilites?date=2025-06-11
+```
+
+Changez le paramètre `commercial` dans la route `/api/available-slots` pour tester chaque commercial.
+
+### 4b. Test de prise de RDV
+1. Allez sur le formulaire de contact
+2. Sélectionnez "Prise de rendez-vous"
+3. Testez chaque commercial dans la liste
+4. Vérifiez que les créneaux se chargent
+5. Créez un RDV de test
+6. Vérifiez qu'il apparaît dans l'agenda du commercial
+
+### 4c. Test des conflits
+1. Créez un événement manuellement dans l'agenda d'un commercial
+2. Essayez de prendre RDV au même créneau via le site
+3. Vérifiez que le créneau n'apparaît pas dans la liste
+
+---
+
+## 🐛 Dépannage
+
+### Problème : "Commercial introuvable"
+- Vérifiez que l'ID du commercial existe dans `config/commerciaux.php`
+- Vérifiez que les guillemets sont corrects dans le config
+
+### Problème : "Erreur d'accès au calendrier"
+- Le commercial n'a pas fait le partage
+- Mauvaise adresse email utilisée pour le partage
+- Permissions insuffisantes (doit être "Apporter des modifications")
+
+### Problème : "Créneaux ne se chargent pas"
+- Vérifiez les logs Laravel : `storage/logs/laravel.log`
+- Testez la route `/test-commercial-access/email` directement
+- Vérifiez que le JavaScript n'a pas d'erreurs (console navigateur)
+
+### Problème : "Mauvais fuseau horaire"
+- Vérifiez que votre `.env` contient : `APP_TIMEZONE=Europe/Paris`
+- Les commerciaux doivent être en France ou avoir configuré le bon fuseau
+
+---
+
+## 🔄 Nettoyage final
+
+Une fois tout configuré et testé, supprimez les routes de test :
+
+```php
+// Supprimer ces routes de routes/web.php :
+Route::get('/test-calendar', ...);
+Route::get('/test-direct-access', ...);
+Route::get('/test-disponibilites', ...);
+Route::get('/test-slot-check', ...);
+Route::get('/test-commercial-access/{email}', ...);
+Route::get('/debug-calendar', ...);
+Route::get('/create-test-event', ...);
+Route::get('/list-calendars', ...);
+```
+
+---
+
+## 📈 Résultat final
+
+✅ **3 commerciaux opérationnels**  
+✅ **Système anti-conflit actif**  
+✅ **Interface utilisateur complète**  
+✅ **Créneaux en temps réel**  
+✅ **Emails de notification**  
+
+**Le système de RDV est maintenant complètement autonome !** 🎉
+
+---
+
+## 📞 Support
+
+Si vous rencontrez des difficultés :
+1. Vérifiez les logs Laravel
+2. Testez étape par étape avec les routes de debug
+3. Contactez les commerciaux pour confirmer le partage
+4. Vérifiez les permissions Google Calendar
