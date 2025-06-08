@@ -2,118 +2,307 @@
 
 namespace App\Services;
 
-use Google_Client;
-use Google_Service_Calendar;
-use Google_Service_Calendar_Event;
-use Illuminate\Support\Facades\File;
-use App\Models\Appointment;
+use Google\Client;
+use Google\Service\Calendar;
+use Google\Service\Calendar\Event;
+use Google\Service\Calendar\EventDateTime;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class GoogleCalendarService
 {
-    protected $client;
-    protected $service;
+    private $client;
+    private $service;
 
     public function __construct()
     {
-        $this->client = new Google_Client();
-        $this->client->setApplicationName(config('app.name'));
-        $this->client->setScopes(Google_Service_Calendar::CALENDAR);
-        
-        // Utilisation des identifiants de configuration
-        $this->client->setClientId(config('google-calendar.client_id'));
-        $this->client->setClientSecret(config('google-calendar.client_secret'));
-        $this->client->setRedirectUri(config('google-calendar.redirect_uri'));
-        $this->client->setAccessType('offline');
-        $this->client->setPrompt('select_account consent');
-        
-        // Vérifier si un token existe et l'utiliser
-        $tokenPath = config('google-calendar.token_file');
-        if (File::exists($tokenPath)) {
-            $accessToken = json_decode(File::get($tokenPath), true);
-            $this->client->setAccessToken($accessToken);
-        }
-        
-        // Rafraîchissement du token si nécessaire
-        if ($this->client->isAccessTokenExpired()) {
-            if ($this->client->getRefreshToken()) {
-                $this->client->fetchAccessTokenWithRefreshToken($this->client->getRefreshToken());
-                File::put($tokenPath, json_encode($this->client->getAccessToken()));
-            }
-        }
-        
-        $this->service = new Google_Service_Calendar($this->client);
+        $this->client = new Client();
+        $this->client->setApplicationName(config('services.google.application_name'));
+        $this->client->setAuthConfig(storage_path('app/google/service-account-key.json'));
+        $this->client->addScope(Calendar::CALENDAR);
+
+        $this->service = new Calendar($this->client);
     }
-    
-    public function getAuthUrl()
+
+    public function test()
     {
-        return $this->client->createAuthUrl();
+        return "Google Calendar Service initialized!";
     }
-    
-    public function handleCallback($authCode)
+
+    public function listCalendars()
     {
-        $accessToken = $this->client->fetchAccessTokenWithAuthCode($authCode);
-        $this->client->setAccessToken($accessToken);
-        
-        // Enregistrer le token pour une utilisation future
-        if (!File::exists(dirname(config('google-calendar.token_file')))) {
-            File::makeDirectory(dirname(config('google-calendar.token_file')), 0755, true);
-        }
-        
-        File::put(config('google-calendar.token_file'), json_encode($this->client->getAccessToken()));
-        
-        return $accessToken;
-    }
-    
-    public function isConnected()
-    {
-        return $this->client->getAccessToken() && !$this->client->isAccessTokenExpired();
-    }
-    
-    public function createEvent(Appointment $appointment)
-    {
-        if (!$this->isConnected()) {
-            return null;
-        }
-        
-        $event = new Google_Service_Calendar_Event([
-            'summary' => 'Rendez-vous avec ' . $appointment->name . ($appointment->company ? ' (' . $appointment->company . ')' : ''),
-            'description' => "Informations du contact:\n" .
-                            "Email: " . $appointment->email . "\n" .
-                            "Téléphone: " . $appointment->phone . "\n\n" .
-                            "Message:\n" . $appointment->message,
-            'start' => [
-                'dateTime' => $appointment->appointment_date->format('c'),
-                'timeZone' => config('app.timezone'),
-            ],
-            'end' => [
-                'dateTime' => $appointment->appointment_date->copy()->addMinutes(60)->format('c'),
-                'timeZone' => config('app.timezone'),
-            ],
-            'reminders' => [
-                'useDefault' => false,
-                'overrides' => [
-                    ['method' => 'email', 'minutes' => 24 * 60],
-                    ['method' => 'popup', 'minutes' => 30],
-                ],
-            ],
-        ]);
-        
         try {
-            $calendarId = config('google-calendar.calendar_id');
-            $event = $this->service->events->insert($calendarId, $event);
-            return $event->getId();
-        } catch (\Exception $e) {
-            \Log::error('Google Calendar Error: ' . $e->getMessage());
-            return null;
+            $calendarList = $this->service->calendarList->listCalendarList();
+            $calendars = [];
+
+            foreach ($calendarList->getItems() as $calendar) {
+                $calendars[] = [
+                    'id' => $calendar->getId(),
+                    'summary' => $calendar->getSummary(),
+                    'primary' => $calendar->getPrimary()
+                ];
+            }
+
+            return $calendars;
+        } catch (Exception $e) {
+            return "Erreur: " . $e->getMessage();
         }
     }
-    
-    public function getEventUrl($eventId)
+    public function debugConnection()
     {
-        if (!$eventId) {
-            return null;
+        try {
+            // Test basique de connexion
+            $calendarList = $this->service->calendarList->listCalendarList();
+
+            return [
+                'connection' => 'OK',
+                'calendars_count' => count($calendarList->getItems()),
+                'service_email' => 'laravel-calendar-booking@hrtelecoms-462011.iam.gserviceaccount.com'
+            ];
+        } catch (Exception $e) {
+            return [
+                'connection' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
         }
-        
-        return 'https://calendar.google.com/calendar/event?eid=' . base64_encode($eventId);
+    }
+    public function testDirectAccess($calendarId)
+    {
+        try {
+            // Test d'accès direct à un agenda spécifique
+            $calendar = $this->service->calendars->get($calendarId);
+
+            return [
+                'access' => 'OK',
+                'calendar_id' => $calendar->getId(),
+                'calendar_summary' => $calendar->getSummary(),
+                'timezone' => $calendar->getTimeZone()
+            ];
+        } catch (Exception $e) {
+            return [
+                'access' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    // TEST
+    public function createTestEvent($calendarId)
+    {
+        try {
+            $event = new Event([
+                'summary' => 'Test RDV - Laravel',
+                'description' => 'Événement de test créé depuis Laravel',
+                'start' => [
+                    'dateTime' => '2025-06-10T10:00:00',
+                    'timeZone' => 'Europe/Paris',
+                ],
+                'end' => [
+                    'dateTime' => '2025-06-10T11:00:00',
+                    'timeZone' => 'Europe/Paris',
+                ],
+                // Supprimé la ligne 'attendees' qui causait l'erreur
+            ]);
+
+            $createdEvent = $this->service->events->insert($calendarId, $event);
+
+            return [
+                'status' => 'SUCCESS',
+                'event_id' => $createdEvent->getId(),
+                'event_link' => $createdEvent->getHtmlLink(),
+                'start_time' => $createdEvent->getStart()->getDateTime()
+            ];
+
+        } catch (Exception $e) {
+            return [
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+    public function getCommerciaux()
+    {
+        return config('commerciaux.commerciaux');
+    }
+
+    public function createRendezVous($calendarId, $date, $time, $clientName, $clientEmail, $clientPhone, $company, $subject, $message, $commercialName)
+    {
+        try {
+            // Construire la date/heure de début et fin
+            $startDateTime = $date . 'T' . $time . ':00';
+            $endTime = date('H:i', strtotime($time . ' +1 hour')); // RDV d'1 heure par défaut
+            $endDateTime = $date . 'T' . $endTime . ':00';
+
+            // Créer la description de l'événement
+            $description = "=== RENDEZ-VOUS CLIENT ===\n\n";
+            $description .= "Client: " . $clientName . "\n";
+            $description .= "Email: " . $clientEmail . "\n";
+            $description .= "Téléphone: " . $clientPhone . "\n";
+            $description .= "Entreprise: " . $company . "\n";
+            $description .= "Sujet: " . $subject . "\n\n";
+            $description .= "Message:\n" . $message;
+
+            $event = new Event([
+                'summary' => 'RDV - ' . $clientName . ' (' . $company . ')',
+                'description' => $description,
+                'start' => [
+                    'dateTime' => $startDateTime,
+                    'timeZone' => 'Europe/Paris',
+                ],
+                'end' => [
+                    'dateTime' => $endDateTime,
+                    'timeZone' => 'Europe/Paris',
+                ],
+            ]);
+
+            $createdEvent = $this->service->events->insert($calendarId, $event);
+
+            return [
+                'status' => 'SUCCESS',
+                'event_id' => $createdEvent->getId(),
+                'event_link' => $createdEvent->getHtmlLink(),
+                'start_time' => $createdEvent->getStart()->getDateTime(),
+                'commercial' => $commercialName
+            ];
+
+        } catch (Exception $e) {
+            return [
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function isTimeSlotAvailable($calendarId, $date, $time, $duration = 60)
+    {
+        try {
+            // DÉBOGAGE : Ajoutons des logs
+            Log::info('Vérification créneau:', [
+                'calendar' => $calendarId,
+                'date' => $date,
+                'time' => $time,
+                'duration' => $duration
+            ]);
+
+            // Construire les dates de début et fin du créneau souhaité
+            $startDateTime = $date . 'T' . $time . ':00';
+            $endTime = date('H:i', strtotime($time . ' +' . $duration . ' minutes'));
+            $endDateTime = $date . 'T' . $endTime . ':00';
+
+            Log::info('Période à vérifier:', [
+                'start' => $startDateTime,
+                'end' => $endDateTime
+            ]);
+
+            // Rechercher les événements existants sur cette période
+            $timezone = new \DateTimeZone('Europe/Paris');
+            $startDateTimeObj = new \DateTime($startDateTime, $timezone);
+            $endDateTimeObj = new \DateTime($endDateTime, $timezone);
+
+            $timeMin = $startDateTimeObj->format(\DateTime::RFC3339);
+            $timeMax = $endDateTimeObj->format(\DateTime::RFC3339);
+
+            Log::info('Recherche événements avec timezone:', [
+                'timeMin' => $timeMin,
+                'timeMax' => $timeMax,
+                'timezone' => 'Europe/Paris'
+            ]);
+
+            Log::info('Recherche événements:', [
+                'timeMin' => $timeMin,
+                'timeMax' => $timeMax
+            ]);
+
+            $optParams = [
+                'timeMin' => $timeMin,
+                'timeMax' => $timeMax,
+                'singleEvents' => true,
+                'orderBy' => 'startTime',
+            ];
+
+            $events = $this->service->events->listEvents($calendarId, $optParams);
+
+            Log::info('Événements trouvés:', [
+                'count' => count($events->getItems()),
+                'events' => $this->formatConflicts($events->getItems())
+            ]);
+
+            // Si des événements existent sur cette période, le créneau n'est pas disponible
+            if (count($events->getItems()) > 0) {
+                return [
+                    'available' => false,
+                    'conflicts' => $this->formatConflicts($events->getItems()),
+                    'message' => 'Ce créneau est déjà occupé'
+                ];
+            }
+
+            return [
+                'available' => true,
+                'message' => 'Créneau disponible'
+            ];
+
+        } catch (\Exception $e) {
+            Log::error('Erreur vérification créneau: ' . $e->getMessage());
+            return [
+                'available' => false,
+                'message' => 'Erreur lors de la vérification : ' . $e->getMessage()
+            ];
+        }
+    }
+
+    private function formatConflicts($events)
+    {
+        $conflicts = [];
+        foreach ($events as $event) {
+            $conflicts[] = [
+                'summary' => $event->getSummary(),
+                'start' => $event->getStart()->getDateTime(),
+                'end' => $event->getEnd()->getDateTime(),
+            ];
+        }
+        return $conflicts;
+    }
+
+    public function getAvailableTimeSlots($calendarId, $date, $workingHours = ['09:00', '17:00'], $slotDuration = 60)
+    {
+        try {
+            // Horaires de travail par défaut : 9h-17h
+            $startHour = $workingHours[0];
+            $endHour = $workingHours[1];
+
+            // Générer tous les créneaux possibles
+            $possibleSlots = [];
+            $timezone = new \DateTimeZone('Europe/Paris'); // ← Ajout du timezone
+            $current = strtotime($date . ' ' . $startHour);
+            $end = strtotime($date . ' ' . $endHour);
+
+            while ($current < $end) {
+                $timeSlot = date('H:i', $current);
+                $possibleSlots[] = $timeSlot;
+                $current += ($slotDuration * 60);
+            }
+
+            // Vérifier la disponibilité de chaque créneau
+            $availableSlots = [];
+            foreach ($possibleSlots as $slot) {
+                $check = $this->isTimeSlotAvailable($calendarId, $date, $slot, $slotDuration);
+                if ($check['available']) {
+                    $availableSlots[] = $slot;
+                }
+            }
+
+            return [
+                'status' => 'SUCCESS',
+                'date' => $date,
+                'available_slots' => $availableSlots,
+                'total_slots' => count($availableSlots)
+            ];
+
+        } catch (Exception $e) {
+            return [
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ];
+        }
     }
 }
