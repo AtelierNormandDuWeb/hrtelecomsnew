@@ -123,6 +123,66 @@
                             </div>
                         </div>
 
+                        <!-- NOUVEAU : Type de demande -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="request_type">Type de demande <span class="required">*</span></label>
+                                <select id="request_type" name="request_type"
+                                    class="@error('request_type') input-error @enderror" required>
+                                    <option value="">Choisissez le type de demande</option>
+                                    <option value="information"
+                                        {{ old('request_type') == 'information' ? 'selected' : '' }}>
+                                        Demande d'information
+                                    </option>
+                                    <option value="rendez_vous"
+                                        {{ old('request_type') == 'rendez_vous' ? 'selected' : '' }}>
+                                        Prise de rendez-vous
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- NOUVEAU : Section prise de rendez-vous (cachée par défaut) -->
+                        <div id="rdv-section" class="rdv-section" style="display: none;">
+                            <div class="rdv-header">
+                                <h4><i class="fas fa-calendar-alt"></i> Planifier votre rendez-vous</h4>
+                                <p>Choisissez le commercial et le créneau qui vous conviennent.</p>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="commercial">Commercial souhaité <span
+                                            class="required">*</span></label>
+                                    <select id="commercial" name="commercial"
+                                        class="@error('commercial') input-error @enderror">
+                                        <option value="">Sélectionnez un commercial</option>
+                                        <!-- Options seront ajoutées via JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="rdv_date">Date souhaitée <span class="required">*</span></label>
+                                    <input type="date" id="rdv_date" name="rdv_date"
+                                        class="@error('rdv_date') input-error @enderror" min="{{ date('Y-m-d') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rdv_time">Heure souhaitée <span class="required">*</span></label>
+                                    <select id="rdv_time" name="rdv_time"
+                                        class="@error('rdv_time') input-error @enderror">
+                                        <option value="">Choisissez une heure</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="message">Message <span class="required">*</span></label>
                             <textarea id="message" name="message" placeholder="Détaillez votre demande, pour une meilleure estimation *"

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\AppointmentController;
+use App\Services\GoogleCalendarService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\CardsDisplayController;
@@ -38,8 +39,6 @@ Route::get('/article', function () {
 Route::get('/trombinoscope', [CardsDisplayController::class, 'index'])->name('trombinoscope');
 
 Route::get('/cards.json', [CardsDisplayController::class, 'getCardsJson'])->name('cards.json');
-
-// Route::get('/pagecontact', [HomeController::class, 'pagecontact'])->name('pagecontact');
 
 Route::get('/solutions', [SolutionController::class, 'publicIndex'])->name('solutions.public');
 
@@ -140,7 +139,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/users/delete/{user}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Abouts datas
     Route::get('/abouts', 'App\Http\Controllers\AboutController@index')->name('about.index');
@@ -167,7 +166,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/abouts/delete/{about}', 'App\Http\Controllers\AboutController@delete')->name('about.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Titles datas
     Route::get('/titles', 'App\Http\Controllers\TitleController@index')->name('title.index');
@@ -194,7 +193,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/titles/delete/{title}', 'App\Http\Controllers\TitleController@delete')->name('title.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Services datas
     Route::get('/services', 'App\Http\Controllers\ServiceController@index')->name('service.index');
@@ -221,7 +220,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/services/delete/{service}', 'App\Http\Controllers\ServiceController@delete')->name('service.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Testimonials datas
     Route::get('/testimonials', 'App\Http\Controllers\TestimonialController@index')->name('testimonial.index');
@@ -248,7 +247,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/testimonials/delete/{testimonial}', 'App\Http\Controllers\TestimonialController@delete')->name('testimonial.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Faqs datas
     Route::get('/faqs', 'App\Http\Controllers\FaqController@index')->name('faq.index');
@@ -276,7 +275,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Solutions datas
     Route::get('/solutions', 'App\Http\Controllers\SolutionController@index')->name('solution.index');
@@ -303,7 +302,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/solutions/delete/{solution}', 'App\Http\Controllers\SolutionController@delete')->name('solution.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Infos datas
     Route::get('/infos', 'App\Http\Controllers\InfoController@index')->name('info.index');
@@ -330,7 +329,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/infos/delete/{info}', 'App\Http\Controllers\InfoController@delete')->name('info.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Contactsujets datas
     Route::get('/contactsujets', 'App\Http\Controllers\ContactsujetController@index')->name('contactsujet.index');
@@ -357,7 +356,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/contactsujets/delete/{contactsujet}', 'App\Http\Controllers\ContactsujetController@delete')->name('contactsujet.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Phonesliders datas
     Route::get('/phonesliders', 'App\Http\Controllers\PhonesliderController@index')->name('phoneslider.index');
@@ -384,7 +383,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/phonesliders/delete/{phoneslider}', 'App\Http\Controllers\PhonesliderController@delete')->name('phoneslider.delete');
 
 });
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //Get Herosliders datas
     Route::get('/herosliders', 'App\Http\Controllers\HerosliderController@index')->name('heroslider.index');
@@ -411,33 +410,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::delete('/herosliders/delete/{heroslider}', 'App\Http\Controllers\HerosliderController@delete')->name('heroslider.delete');
 
 });
-// Route::prefix('admin')->name('admin.')->group(function(){
-
-//     //Get Cards datas
-//     Route::get('/cards', 'App\Http\Controllers\CardsController@index')->name('cards.index');
-
-//     //Show Card by Id
-//     Route::get('/cards/show/{id}', 'App\Http\Controllers\CardsController@show')->name('cards.show');
-
-//     //Get Cards by Id
-//     Route::get('/cards/create', 'App\Http\Controllers\CardsController@create')->name('cards.create');
-
-//     //Edit Card by Id
-//     Route::get('/cards/edit/{id}', 'App\Http\Controllers\CardsController@edit')->name('cards.edit');
-
-//     //Save new Card
-//     Route::post('/cards/store', 'App\Http\Controllers\CardsController@store')->name('cards.store');
-
-//     //Update One Card
-//     Route::put('/cards/update/{cards}', 'App\Http\Controllers\CardsController@update')->name('cards.update');
-
-//     //Update One Card Speedly
-//     Route::put('/cards/speed/{cards}', 'App\Http\Controllers\CardsController@updateSpeed')->name('cards.update.speed');
-
-//     //Delete Card
-//     Route::delete('/cards/delete/{cards}', 'App\Http\Controllers\CardsController@delete')->name('cards.delete');
-
-// });
 
 Route::prefix('admin/cards')->name('admin.cards.')->group(function () {
     Route::get('/', [CardsController::class, 'index'])->name('index');
@@ -448,4 +420,68 @@ Route::prefix('admin/cards')->name('admin.cards.')->group(function () {
     Route::put('/{cards}', [CardsController::class, 'update'])->name('update');
     Route::put('/speed/{cards}', [CardsController::class, 'updateSpeed'])->name('updateSpeed');
     Route::delete('/delete/{cards}', [CardsController::class, 'delete'])->name('delete');
+});
+
+Route::get('/test-calendar', function () {
+    try {
+        $calendarService = new GoogleCalendarService();
+        return $calendarService->test();
+    } catch (Exception $e) {
+        return "Erreur: " . $e->getMessage();
+    }
+});
+
+Route::get('/list-calendars', function () {
+    $calendarService = new GoogleCalendarService();
+    return response()->json($calendarService->listCalendars());
+});
+
+Route::get('/debug-calendar', function () {
+    $calendarService = new GoogleCalendarService();
+    return response()->json($calendarService->debugConnection());
+});
+Route::get('/test-direct-access', function () {
+    $calendarService = new GoogleCalendarService();
+    return response()->json($calendarService->testDirectAccess('doko972@gmail.com'));
+});
+Route::get('/create-test-event', function () {
+    $calendarService = new GoogleCalendarService();
+    return response()->json($calendarService->createTestEvent('doko972@gmail.com'));
+});
+Route::get('/test-disponibilites', function () {
+    $calendarService = new GoogleCalendarService();
+    $date = request('date', date('Y-m-d', strtotime('+1 day'))); // Demain par défaut
+
+    $result = $calendarService->getAvailableTimeSlots('doko972@gmail.com', $date);
+    return response()->json($result);
+});
+Route::get('/api/available-slots', function () {
+    $request = request();
+    $commercialId = $request->get('commercial');
+    $date = $request->get('date');
+
+    if (!$commercialId || !$date) {
+        return response()->json(['error' => 'Commercial et date requis'], 400);
+    }
+
+    // Récupérer l'agenda du commercial
+    $commerciaux = config('commerciaux.commerciaux');
+    $commercial = collect($commerciaux)->firstWhere('id', (int) $commercialId);
+
+    if (!$commercial) {
+        return response()->json(['error' => 'Commercial introuvable'], 404);
+    }
+
+    $calendarService = new GoogleCalendarService();
+    $result = $calendarService->getAvailableTimeSlots($commercial['calendar_id'], $date);
+
+    return response()->json($result);
+});
+Route::get('/test-slot-check', function () {
+    $calendarService = new GoogleCalendarService();
+    $date = request('date', '2025-06-10'); // Date du test
+    $time = request('time', '10:00'); // Heure du test
+    
+    $result = $calendarService->isTimeSlotAvailable('doko972@gmail.com', $date, $time);
+    return response()->json($result);
 });
