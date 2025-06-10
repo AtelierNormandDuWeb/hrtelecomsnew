@@ -11,17 +11,24 @@ return [
         ],
         [
             'id' => 2,
-            'nom' => 'Commercial 2',
-            'email' => 'commercial2@exemple.com',
-            'calendar_id' => 'commercial2@exemple.com',
-            'specialites' => ['Sécurité', 'Réseau'],
+            'nom' => 'J. RONDEAU',
+            'email' => 'j.rondeau@hrtelecoms.fr',
+            'calendar_id' => 'j.rondeau@hrtelecoms.fr',
+            'specialites' => ['Infrastructure', 'Téléphonie'],
         ],
         [
             'id' => 3,
-            'nom' => 'Commercial 3', 
-            'email' => 'commercial3@exemple.com',
-            'calendar_id' => 'commercial3@exemple.com',
-            'specialites' => ['Maintenance', 'Support'],
+            'nom' => 'M. HORST',
+            'email' => 'm.horst@hrtelecoms.fr',
+            'calendar_id' => 'm.horst@hrtelecoms.fr',
+            'specialites' => ['Infrastructure', 'Téléphonie'],
+        ],
+        [
+            'id' => 4,
+            'nom' => 'M. GIRARD',
+            'email' => 'm.girard@hrtelecoms.fr',
+            'calendar_id' => 'm.girard@hrtelecoms.fr',
+            'specialites' => ['Infrastructure', 'Téléphonie'],
         ],
     ]
 ];

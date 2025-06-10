@@ -189,12 +189,6 @@
         </div>
         
         <p>Pour plus d'informations sur les cookies et comment les gérer, visitez <a href="https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi" target="_blank">le site de la CNIL</a>.</p>
-        
-        {{-- <div class="cookie-buttons">
-            <button class="cookie-btn cookie-btn-primary">Accepter tous les cookies</button>
-            <button class="cookie-btn cookie-btn-secondary">Seulement les cookies essentiels</button>
-            <button class="cookie-btn cookie-btn-accent">Personnaliser mes choix</button>
-        </div> --}}
     </div>
 
     <div class="cookie-confidentialite-section">
@@ -207,7 +201,7 @@
         <h2>Contact</h2>
         <p>Si vous avez des questions concernant notre utilisation des cookies, veuillez nous contacter à :</p>
         <ul>
-            <li>Email : dpo@hrtelecoms.fr</li>
+            <li>Email : adv@hrtelecoms.fr</li>
             <li>Téléphone : 02 31 43 50 11</li>
             <li>Adresse : 16 rue de la cavée, Impasse Banville, 14320 Laize-Clinchamps</li>
         </ul>

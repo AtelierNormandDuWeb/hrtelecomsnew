@@ -13,6 +13,7 @@ import './confidentialite';
 import './mentions';
 import './cookiesview';
 import './servicesproposed';
+import './cookie-consent';
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

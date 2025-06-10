@@ -5,7 +5,7 @@
             <div class='content'>
                 <h2 class='title'>{{ $heroslider->title }}</h2>
                 <p class='description'>{{ $heroslider->description }}</p>
-                <button class="cta-button">{{ $heroslider->button }}</button>
+                <a href="{{ url('/pagecontact') }}#contact" class="button">{{ $heroslider->button }}</a>
             </div>
         </li>
         @endforeach

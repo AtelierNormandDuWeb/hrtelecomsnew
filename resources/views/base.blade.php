@@ -94,7 +94,7 @@
     </div>
 
     @yield('content')
-
+    @include('sections.cookie-consent')
     <footer>
         @include('partials/components/footer')
     </footer>

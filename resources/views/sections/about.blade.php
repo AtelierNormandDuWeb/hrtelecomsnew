@@ -12,7 +12,7 @@
                     <h3>{{ $about->title2 }}</h3>
                     <p>{{ $about->texte1 }}</p>
                     <p>{{ $about->texte2 }}</p>
-                    <a href="#contact" class="cta-button">{{ $about->button }}</a>
+                    <a href="{{ url('/pagecontact') }}#contact" class="cta-button">{{ $about->button }}</a>
                 </div>
 
                 <div class="about-image">
