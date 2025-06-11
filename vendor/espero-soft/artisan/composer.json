@@ -1,0 +1,39 @@
+{
+    "name": "espero-soft/artisan",
+    "description": "Laravel command line interface (CLI)",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "config": {
+        "secure-http": false
+    },
+    "minimum-stability": "stable",
+    "keywords": [
+        "model",
+        "laravel",
+        "laravel-maker",
+        "maker",
+        "entity",
+        "migration",
+        "espero-soft",
+        "mudey",
+        "espero",
+        "akpoli"
+    ],
+    "require": {
+        "php": ">=7.1",
+        "illuminate/support": "*",
+        "illuminate/console": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "EsperoSoft\\Artisan\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Espero-Soft Informatiques",
+            "email": "contact@espero-soft.com"
+        }
+    ]
+}

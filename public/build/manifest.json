@@ -1,0 +1,29 @@
+{
+  "resources/fonts/OpenDyslexic-Bold.otf": {
+    "file": "assets/OpenDyslexic-Bold-DhR1qjGc.otf",
+    "src": "resources/fonts/OpenDyslexic-Bold.otf"
+  },
+  "resources/fonts/OpenDyslexic-BoldItalic.otf": {
+    "file": "assets/OpenDyslexic-BoldItalic-BkRv4ssj.otf",
+    "src": "resources/fonts/OpenDyslexic-BoldItalic.otf"
+  },
+  "resources/fonts/OpenDyslexic-Italic.otf": {
+    "file": "assets/OpenDyslexic-Italic-CMl2IzwI.otf",
+    "src": "resources/fonts/OpenDyslexic-Italic.otf"
+  },
+  "resources/fonts/OpenDyslexic-Regular.otf": {
+    "file": "assets/OpenDyslexic-Regular-D3WaKpvD.otf",
+    "src": "resources/fonts/OpenDyslexic-Regular.otf"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-dslQIkCC.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-BQ1HbSoI.css",
+    "src": "resources/sass/app.scss",
+    "isEntry": true
+  }
+}
