@@ -16,17 +16,12 @@
                 </div>
 
                 <div class="about-image">
-                    <img src="{{ asset('storage/' . $about->imageUrl) }}" alt="L'équipe HrTélécoms" />
+                    <img src="{{ asset('images/' . $about->imageUrl) }}" alt="L'équipe HrTélécoms" />
                 </div>
             </div>
         @endforeach
         <div class="phone-slider">
             <div class="phone-slide-track">
-                {{-- @foreach ($phonesliders as $phoneslider)
-		<div class="phone-slide">
-			<img src="{{ asset('storage/' . $phoneslider->imageUrl) }}" height="200" width="200" alt="{{ $phoneslider->alt }}" />
-		</div>
-        @endforeach --}}
                 <div class="phone-slide">
                     <img src="{{ asset('images/w79p-removebg-preview.webp') }}" height="200" width="250"
                         alt="" />

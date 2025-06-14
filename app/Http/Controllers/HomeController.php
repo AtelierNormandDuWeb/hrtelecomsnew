@@ -20,7 +20,6 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $realizations = Realization::orderBy('created_at', 'desc')->paginate(5);
         $abouts = About::orderBy('created_at', 'desc')->paginate(5);
         $titles = Title::orderBy('created_at', 'desc')->paginate(10);
         $services = Service::orderBy('created_at', 'desc')->paginate(10);
@@ -33,7 +32,6 @@ class HomeController extends Controller
         $herosliders = Heroslider::orderBy('created_at', 'asc')->paginate(10);
 
         return view('home', [
-            'realizations' => $realizations,
             'abouts' => $abouts,
             'titles' => $titles,
             'services' => $services,

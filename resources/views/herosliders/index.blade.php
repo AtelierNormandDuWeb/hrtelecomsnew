@@ -20,7 +20,7 @@
                             <th>ImageUrl</strong></th>
                             <td>
                                 <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($heroslider->imageUrl, 'http') ? $heroslider->imageUrl : Storage::url($heroslider->imageUrl) }}"
+                                    <img src="{{ Str::startsWith($heroslider->imageUrl, 'http') ? $heroslider->imageUrl : asset('images/' . $heroslider->imageUrl) }}"
                                         alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
                                 </div>
                             </td>

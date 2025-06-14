@@ -9,9 +9,6 @@
 @section('content')
     <div>
         <h3 class="text-center">A propos</h3>
-        {{-- <a href="{{ route('admin.about.create') }}" class="btn btn-warning btn-lg mb-3">
-            <i class="fa-solid fa-plus"></i>Nouveau
-        </a> --}}
         @foreach ($abouts as $about)
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -20,7 +17,7 @@
                             <th>ImageUrl</strong></th>
                             <td>
                                 <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($about->imageUrl, 'http') ? $about->imageUrl : Storage::url($about->imageUrl) }}"
+                                    <img src="{{ Str::startsWith($about->imageUrl, 'http') ? $about->imageUrl : asset('images/' . $about->imageUrl) }}"
                                         alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
                                 </div>
                             </td>

@@ -20,7 +20,7 @@
                             <th>ImageUrl</strong></th>
                             <td>
                                 <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($solution->imageUrl, 'http') ? $solution->imageUrl : Storage::url($solution->imageUrl) }}"
+                                    <img src="{{ Str::startsWith($solution->imageUrl, 'http') ? $solution->imageUrl : asset('images/' . $solution->imageUrl) }}"
                                         alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
                                 </div>
                             </td>

@@ -1,7 +1,7 @@
 <section class="hero">
     <ul class='slider'>
       @foreach ($herosliders as $heroslider)
-        <li class='item-img box1' style="background-image: url('{{ asset('storage/' . $heroslider->imageUrl) }}')">
+        <li class='item-img box1' style="background-image: url('{{ asset('images/' . $heroslider->imageUrl) }}')">
             <div class='content'>
                 <h2 class='title'>{{ $heroslider->title }}</h2>
                 <p class='description'>{{ $heroslider->description }}</p>
