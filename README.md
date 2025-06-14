@@ -136,6 +136,27 @@ Gestion des utilisateurs: /admin/users
 - MySQL
 - Hébergement mutualisé (Hostinger)
 
+## Commandes utiles
+### NETTOYAGE COMPLET
+```
+php artisan optimize:clear
+```
+
+### OPTIMISATION PRODUCTION
+```
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+### IMPORTANT sur hébergement 
+### Connectez-vous en SSH et exécutez
+```
+cd ~/www
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
 
 # Contact
 Développé par l'Atelier Normand du Web
