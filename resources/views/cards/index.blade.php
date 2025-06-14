@@ -36,7 +36,7 @@
                             <th>Avatar</th>
                             <td>
                                 <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($card->avatar_url, 'http') ? $card->avatar_url : Storage::url($card->avatar_url) }}"
+                                    <img src="{{ Str::startsWith($card->avatar_url, 'http') ? $card->avatar_url : asset('images/' . $card->avatar_url) }}"
                                         alt="Prévisualisation de l'avatar" style="max-width: 100px; display: block;">
                                 </div>
                             </td>
@@ -45,7 +45,7 @@
                             <th>Background</th>
                             <td>
                                 <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-                                    <img src="{{ Str::startsWith($card->background_url, 'http') ? $card->background_url : Storage::url($card->background_url) }}"
+                                    <img src="{{ Str::startsWith($card->background_url, 'http') ? $card->background_url : asset('images/' . $card->background_url) }}"
                                         alt="Prévisualisation du background" style="max-width: 100px; display: block;">
                                 </div>
                             </td>

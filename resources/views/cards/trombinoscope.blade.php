@@ -615,43 +615,50 @@
             if (article) article.id = `card-${card.card_id}`;
         }
 
-        function setContent(clone, card) {
-            // Gestion de l'image de fond
-            const article = clone.querySelector("article");
-            if (card.background_url && article) {
-                article.style.setProperty("--bg-img", `url(${card.background_url})`);
-            }
+function setContent(clone, card) {
+    // CORRECTION 1 : Gestion de l'image de fond avec le nouveau chemin
+    const article = clone.querySelector("article");
+    if (card.background_url && article) {
+        // Nouveau : Ajouter le préfixe /images/ si ce n'est pas déjà une URL complète
+        const backgroundUrl = card.background_url.startsWith('http') ? 
+            card.background_url : 
+            `/images/${card.background_url}`;
+        article.style.setProperty("--bg-img", `url(${backgroundUrl})`);
+    }
 
-            // Gestion de l'avatar
-            const avatarImg = clone.querySelector(".avatar img");
-            if (avatarImg) {
-                if (card.avatar_url) {
-                    avatarImg.src = card.avatar_url;
-                }
-                avatarImg.alt = card.name || 'Avatar';
-            }
-
-            // Contenu textuel
-            const h2 = clone.querySelector("h2");
-            const h3 = clone.querySelector("h3");
-
-            if (h2) h2.textContent = card.name || 'Sans nom';
-            if (h3) h3.textContent = card.title || card.subtitle || '';
-
-            // Navigation
-            const navLabels = clone.querySelectorAll("nav label");
-            if (navLabels.length >= 3) {
-                navLabels[0].setAttribute("for", `radio-tab-${card.card_id}.1`);
-                navLabels[1].setAttribute("for", `radio-tab-${card.card_id}.2`);
-                navLabels[2].setAttribute("for", `radio-tab-${card.card_id}.3`);
-            }
-
-            // Contenu des panneaux
-            const navPanels = clone.querySelectorAll("[data-panels] div");
-            if (navPanels.length >= 1) {
-                navPanels[0].textContent = card.description || 'Aucune description disponible.';
-            }
+    // CORRECTION 2 : Gestion de l'avatar avec le nouveau chemin
+    const avatarImg = clone.querySelector(".avatar img");
+    if (avatarImg) {
+        if (card.avatar_url) {
+            // Nouveau : Ajouter le préfixe /images/ si ce n'est pas déjà une URL complète
+            avatarImg.src = card.avatar_url.startsWith('http') ? 
+                card.avatar_url : 
+                `/images/${card.avatar_url}`;
         }
+        avatarImg.alt = card.name || 'Avatar';
+    }
+
+    // Contenu textuel (reste identique)
+    const h2 = clone.querySelector("h2");
+    const h3 = clone.querySelector("h3");
+
+    if (h2) h2.textContent = card.name || 'Sans nom';
+    if (h3) h3.textContent = card.title || card.subtitle || '';
+
+    // Navigation (reste identique)
+    const navLabels = clone.querySelectorAll("nav label");
+    if (navLabels.length >= 3) {
+        navLabels[0].setAttribute("for", `radio-tab-${card.card_id}.1`);
+        navLabels[1].setAttribute("for", `radio-tab-${card.card_id}.2`);
+        navLabels[2].setAttribute("for", `radio-tab-${card.card_id}.3`);
+    }
+
+    // Contenu des panneaux (reste identique)
+    const navPanels = clone.querySelectorAll("[data-panels] div");
+    if (navPanels.length >= 1) {
+        navPanels[0].textContent = card.description || 'Aucune description disponible.';
+    }
+}
 
         function applyPositioning(clone, index, totalCards) {
             const config = getLayoutConfig();

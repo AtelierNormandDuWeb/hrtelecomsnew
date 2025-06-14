@@ -6,7 +6,7 @@ use App\Models\Cards;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class CardsDisplayController extends Controller
 {
@@ -70,7 +70,7 @@ class CardsDisplayController extends Controller
         }
 
         // Si c'est un chemin local
-        return Storage::url($imagePath);
+        return asset($imagePath);
     }
 
     /**

@@ -1,13 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Contactsujet;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\ContactsujetFormRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ContactsujetController extends Controller
 {
@@ -20,9 +16,9 @@ class ContactsujetController extends Controller
     public function show($id): View
     {
         $contactsujet = Contactsujet::findOrFail($id);
-
         return view('contactsujets/show',['contactsujet' => $contactsujet]);
     }
+
     public function create(): View
     {
         return view('contactsujets/create');
@@ -34,24 +30,23 @@ class ContactsujetController extends Controller
         return view('contactsujets/edit', ['contactsujet' => $contactsujet]);
     }
 
-    public function store(ContactsujetFormRequest $req): RedirectResponse
+    public function store(Request $req): RedirectResponse
     {
-        $data = $req->validated();
-
-        
-
+        $data = $req->validate([
+            'sujet' => 'required|string|max:255',
+        ]);
+       
         $contactsujet = Contactsujet::create($data);
         return redirect()->route('admin.contactsujet.show', ['id' => $contactsujet->id]);
     }
 
-    public function update(Contactsujet $contactsujet, ContactsujetFormRequest $req)
+    public function update(Contactsujet $contactsujet, Request $req)
     {
-        $data = $req->validated();
-
-        
-
+        $data = $req->validate([
+            'sujet' => 'required|string|max:255',
+        ]);
+       
         $contactsujet->update($data);
-
         return redirect()->route('admin.contactsujet.show', ['id' => $contactsujet->id]);
     }
 
@@ -62,7 +57,6 @@ class ContactsujetController extends Controller
                 $key => $value
             ]);
         }
-
         return [
             'isSuccess' => true,
             'data' => $req->all()
@@ -71,13 +65,9 @@ class ContactsujetController extends Controller
 
     public function delete(Contactsujet $contactsujet)
     {
-        
         $contactsujet->delete();
-
         return [
             'isSuccess' => true
         ];
     }
-
-    
 }

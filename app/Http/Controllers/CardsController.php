@@ -1,13 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Cards;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\CardsFormRequest;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class CardsController extends Controller
 {
@@ -34,44 +31,64 @@ class CardsController extends Controller
         return view('cards/edit', ['cards' => $cards]);
     }
 
-    public function store(CardsFormRequest $req): RedirectResponse
+    public function store(Request $req): RedirectResponse
     {
-        $data = $req->validated();
-        
+        // CORRECTION 1 : Validation manuelle au lieu de validated()
+        $data = $req->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'avatar_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'background_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            // Ajoutez ici les autres champs selon votre modèle Cards
+        ]);
+       
         if ($req->hasFile('avatar_url')) {
             $data['avatar_url'] = $this->handleImageUpload($req->file('avatar_url'));
         }
-        
+       
         if ($req->hasFile('background_url')) {
             $data['background_url'] = $this->handleImageUpload($req->file('background_url'));
         }
-
+        
         $cards = Cards::create($data);
         return redirect()->route('admin.cards.show', ['id' => $cards->id]);
     }
 
-    public function update(Cards $cards, CardsFormRequest $req)
+    public function update(Cards $cards, Request $req)
     {
-        $data = $req->validated();
-        
+        // CORRECTION 2 : Validation manuelle au lieu de validated()
+        $data = $req->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'avatar_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'background_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            // Ajoutez ici les autres champs selon votre modèle Cards
+        ]);
+       
+        // CORRECTION 3 : File::delete au lieu de Storage::disk('public')->delete
         // Gestion de l'avatar
         if ($req->hasFile('avatar_url')) {
-            // Suppression de l'ancienne image si elle existe
-            if ($cards->avatar_url && Storage::disk('public')->exists($cards->avatar_url)) {
-                Storage::disk('public')->delete($cards->avatar_url);
+            if ($cards->avatar_url) {
+                $oldAvatarPath = public_path('images/' . $cards->avatar_url);
+                if (File::exists($oldAvatarPath)) {
+                    File::delete($oldAvatarPath);
+                }
             }
             $data['avatar_url'] = $this->handleImageUpload($req->file('avatar_url'));
         }
-        
-        // Gestion du background (correction de la condition)
+       
+        // CORRECTION 4 : File::delete au lieu de Storage::disk('public')->delete
+        // Gestion du background
         if ($req->hasFile('background_url')) {
-            // Suppression de l'ancienne image si elle existe
-            if ($cards->background_url && Storage::disk('public')->exists($cards->background_url)) {
-                Storage::disk('public')->delete($cards->background_url);
+            if ($cards->background_url) {
+                $oldBackgroundPath = public_path('images/' . $cards->background_url);
+                if (File::exists($oldBackgroundPath)) {
+                    File::delete($oldBackgroundPath);
+                }
             }
             $data['background_url'] = $this->handleImageUpload($req->file('background_url'));
         }
-
+        
         $cards->update($data);
         return redirect()->route('admin.cards.show', ['id' => $cards->id]);
     }
@@ -83,7 +100,7 @@ class CardsController extends Controller
                 $key => $value
             ]);
         }
-        
+       
         return response()->json([
             'isSuccess' => true,
             'data' => $req->all()
@@ -92,17 +109,24 @@ class CardsController extends Controller
 
     public function delete(Cards $cards)
     {
+        // CORRECTION 5 : File::delete au lieu de Storage::disk('public')->delete
         // Suppression des images si elles existent
-        if ($cards->avatar_url && Storage::disk('public')->exists($cards->avatar_url)) {
-            Storage::disk('public')->delete($cards->avatar_url);
+        if ($cards->avatar_url) {
+            $avatarPath = public_path('images/' . $cards->avatar_url);
+            if (File::exists($avatarPath)) {
+                File::delete($avatarPath);
+            }
+        }
+       
+        if ($cards->background_url) {
+            $backgroundPath = public_path('images/' . $cards->background_url);
+            if (File::exists($backgroundPath)) {
+                File::delete($backgroundPath);
+            }
         }
         
-        if ($cards->background_url && Storage::disk('public')->exists($cards->background_url)) {
-            Storage::disk('public')->delete($cards->background_url);
-        }
-
         $cards->delete();
-        
+       
         return response()->json([
             'isSuccess' => true
         ]);
@@ -110,18 +134,27 @@ class CardsController extends Controller
 
     private function handleImageUpload(\Illuminate\Http\UploadedFile|array $images): string|array
     {
+        // CORRECTION 6 : Création automatique du dossier public/images
+        if (!File::exists(public_path('images'))) {
+            File::makeDirectory(public_path('images'), 0755, true);
+        }
+
         if (is_array($images)) {
             $uploadedImages = [];
             foreach ($images as $image) {
                 $imageName = uniqid() . '_' . $image->getClientOriginalName();
-                $image->storeAs('images', $imageName, 'public');
-                $uploadedImages[] = 'images/' . $imageName;
+                // CORRECTION 7 : move() vers public/images au lieu de storeAs()
+                $image->move(public_path('images'), $imageName);
+                // CORRECTION 8 : Retour du nom seulement, pas du chemin
+                $uploadedImages[] = $imageName;
             }
             return $uploadedImages;
         } else {
             $imageName = uniqid() . '_' . $images->getClientOriginalName();
-            $images->storeAs('images', $imageName, 'public');
-            return 'images/' . $imageName;
+            // CORRECTION 9 : move() vers public/images au lieu de storeAs()
+            $images->move(public_path('images'), $imageName);
+            // CORRECTION 10 : Retour du nom seulement, pas du chemin
+            return $imageName;
         }
     }
 }

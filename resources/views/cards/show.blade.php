@@ -31,7 +31,7 @@
                         <th>Image de l'avatar</th>
                         <td>
                             <div class="form-group d-flex" id="preview_avatar_url" style="max-width: 100%;">
-                                <img src="{{ Str::startsWith($cards->avatar_url, 'http') ? $cards->avatar_url : Storage::url($cards->avatar_url) }}"
+                                <img src="{{ Str::startsWith($cards->avatar_url, 'http') ? $cards->avatar_url : asset('images/' . $cards->avatar_url) }}"
                                     alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
                             </div>
                         </td>
@@ -40,7 +40,7 @@
                         <th>Image du Papier-Peint</th>
                         <td>
                             <div class="form-group d-flex" id="preview_background_url" style="max-width: 100%;">
-                                <img src="{{ Str::startsWith($cards->background_url, 'http') ? $cards->background_url : Storage::url($cards->background_url) }}"
+                                <img src="{{ Str::startsWith($cards->background_url, 'http') ? $cards->background_url : asset('images/' . $cards->background_url) }}"
                                     alt="Prévisualisation de l'image" style="max-width: 100px; display: block;">
                             </div>
                         </td>
